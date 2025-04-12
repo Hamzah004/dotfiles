@@ -1,0 +1,10 @@
+configuration {
+    modi: "combi,drun,run,window,ssh,filebrowser";
+    icon-theme: "Papirus";
+    font: "MesloLGM Nerd Font 15";
+    combi-modi: "drun,run,window,ssh,filebrowser";
+    show-icons: true;
+    matching: "fuzzy";
+    sorting-method: "fzf";
+}
+@theme "/usr/share/rofi/themes/android_notification.rasi"
