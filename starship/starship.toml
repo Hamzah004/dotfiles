@@ -1,4 +1,4 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+# "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
 [](color_red)\
@@ -24,7 +24,7 @@ $line_break$character"""
 palette = 'catppuccin'
 
 [palettes.catppuccin]
-color_fg0 = '#F8F8F2'
+color_fg0 = '#fafdf6'
 color_bg1 = '#282A36'
 color_bg3 = '#665c54'
 color_blue = '#42a5f5'
@@ -33,7 +33,7 @@ color_green = '#50FA7B'
 color_orange = '#e85d04'
 color_purple = '#ff0054'
 color_red = '#d62828'
-color_yellow = '#ecc30b'
+color_yellow = '#ffb300'
 color_black = '#080808'
 
 [os]

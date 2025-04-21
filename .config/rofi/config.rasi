@@ -1,5 +1,5 @@
 configuration {
-    modi: "window,drun,combi,filebrowser,ssh";
+    modi: "window,combi,filebrowser,ssh";
     combi-modi: "drun,run,ssh";
     font: "MesloLGM Nerd Font 13";
     show-icons: true;

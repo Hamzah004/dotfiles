@@ -147,9 +147,15 @@ alias bat="batcat"
 
 alias ls="eza --icons=always"
 
+alias lsa="eza --icons=always --all"
+
 alias lslsg="eza --long -G --total-size --icons=always"
 
+alias lslsga="eza --long -G --total-size --icons=always --all"
+
 alias lsls="eza --long --total-size --icons=always"
+
+alias lslsa="eza --long --total-size --icons=always --all"
 
 # ---- Zoxide (better cd) ----
 eval "$(zoxide init bash)"

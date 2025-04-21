@@ -9,9 +9,9 @@ window:
  dimensions:
     columns: 70 # Number of columns
     lines: 18 # Number of rows
- # opacity: 0.6
- # decorations: none # makes alacritty without any borders
- title: " "
+ opacity: 0.6
+ decorations: none # makes alacritty without any borders
+ # title: " "
 
 font:
   normal:
@@ -27,7 +27,8 @@ font:
 
 colors:
   primary:
-    background: "#1e1e2e"
+    # background: "#1e1e2e"
+    background: "#000000"
     foreground: "#cdd6f4"
     dim_foreground: "#7f849c"
     bright_foreground: "#cdd6f4"
