@@ -1,0 +1,5 @@
+# ${filename}
+
+Created: ${date}
+
+## Content
