@@ -18,7 +18,7 @@ $dart\
 $docker_context\
 [](fg:color_bg3 bg:color_bg1)\
 $time\
-[ ](fg:color_bg1)\
+[](fg:color_bg1)\
 $line_break$character"""
 
 palette = 'catppuccin'
@@ -50,7 +50,7 @@ Macos = "󰀵"
 Manjaro = ""
 Linux = "󰌽"
 Gentoo = "󰣨"
-Fedora = "󰣛"
+Fedora = "󰣛 "
 Alpine = ""
 Amazon = ""
 Android = ""
@@ -171,7 +171,7 @@ vimcmd_visual_symbol = '[](bold fg:color_yellow)'
 [custom.countdown]
 command = "~/bin/countdown"
 when = "test -x ~/bin/countdown"
-format = "[$output](bg:color_red fg:color_fg0)"
+format = "[$output ](bg:color_red fg:color_fg0)"
 
 # format = """
 # [╭](fg:current_line)\

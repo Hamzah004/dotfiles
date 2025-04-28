@@ -122,12 +122,10 @@ if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
     export PATH="$HOME/bin:$PATH"
 fi
 
-xset b off
-
 # for Rust's Cargo toolchain to work correctly
 . "$HOME/.cargo/env"
 
-source /home/hamzah/alacritty/extra/completions/alacritty.bash
+# source /home/hamzah/alacritty/extra/completions/alacritty.bash
 eval -- "$(/home/hamzah/.cargo/bin/starship init bash --print-full-init)"
 export STARSHIP_CONFIG="/home/hamzah/starship/starship.toml"
 
