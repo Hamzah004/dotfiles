@@ -41,7 +41,6 @@ disabled = false
 style = "bg:color_red fg:color_fg0"
 
 [os.symbols]
-Windows = "󰍲"
 Ubuntu = "󰕈"
 SUSE = ""
 Raspbian = "󰐿"

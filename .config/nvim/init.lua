@@ -87,6 +87,7 @@ map('n', '<leader>nl', ':Limelight!!<CR>', { desc = '[N]ote [L]imelight' })
 map('n', '<leader>tt', ':TodoTelescope<CR>', { desc = '[T]odo list' })
 map('n', '<leader>td', ':TodoQuickFix<CR>', { desc = '[T]odo [D]etails' })
 map('n', '<leader>ta', ':TodoTrouble<CR>', { desc = '[T]odo [A]ll' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -188,8 +189,8 @@ vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  -- multiple cursor
 
+  -- multiple cursor
   {
     'jake-stewart/multicursor.nvim',
     branch = '1.0',
