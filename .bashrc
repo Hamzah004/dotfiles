@@ -138,8 +138,8 @@ set -o vi
 alias brightup="brightnessctl set +5%"
 alias brightdown="brightnessctl set 5%-"
 alias rm="trash-put"
-
-alias bat="batcat"
+# ---- bat (better cat) ----
+alias bat="/usr/bin/bat"
 
 # ---- Eza (better ls) -----
 
@@ -166,3 +166,7 @@ alias c="clear"
 # to manage dotfiles
 
 alias dotfiles='/usr/bin/git --git-dir=/home/hamzah/.dotfiles/ --work-tree=/home/hamzah'
+
+alias q="exit"
+
+alias w3m="w3m duckduckgo.com"
