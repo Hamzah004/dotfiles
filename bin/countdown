@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Target date
+target_date="2026-06-01"
+
+# Calculate the difference in days
+days_left=$(( ( $(date -d "$target_date" +%s) - $(date +%s) )/(60*60*24) ))
+
+# Display the countdown
+echo "$days_left"
+ 

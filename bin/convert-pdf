@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ $# == 0 ]] then
+	echo "this shit is worng Enter file name... please"
+	exit
+fi
+
+echo "starting convert process..."
+
+file=$1
+
+libreoffice --headless --convert-to pdf $file
+echo "Done!!!"

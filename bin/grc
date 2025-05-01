@@ -1,0 +1,84 @@
+#!/bin/bash
+
+set -e
+
+# Check if Git is installed
+if ! command -v git &>/dev/null; then
+    echo "Error: Git is not installed";
+    exit 1
+fi
+
+# Check if GITHUB_TOKEN environment variable is set
+if [ -z "$GITHUB_TOKEN" ]; then
+    echo "Error: GITHUB_TOKEN is not set. Please export it using: export GITHUB_TOKEN='your_token_here'"
+    exit 1
+fi
+
+# Check if GitHub username is saved in a file
+if [ -f "$HOME/.git_config" ]; then
+    export GITHUB_USER=$(cat "$HOME/.git_config")
+else
+    echo "GitHub username is not set."
+    read -p "Please enter your GitHub username: " GITHUB_USER
+    echo "$GITHUB_USER" > "$HOME/.git_config"  # Save the username
+fi
+
+# Check if repository name is provided
+if [[ $# -lt 1 ]]; then
+    echo "Usage: Repository name is required"
+    exit 1
+fi
+
+repo_name=$1
+is_private=${2:-false}
+
+# Check SSH authentication to GitHub
+if ! ssh -T git@github.com 2>&1 | grep "successfully authenticated"; then
+    echo "❌ Error: GitHub SSH authentication failed. Add your SSH key to GitHub."
+    exit 1
+fi
+
+# Check if the current directory is already a Git repository
+if [ -d ".git" ]; then
+    echo "❌ Error: This directory is already a Git repository."
+    exit 1
+fi
+
+# Create the GitHub repository
+echo "🌍 Creating GitHub repository..."
+response=$(curl -s -w "%{http_code}" -o response.json -u "$GITHUB_USER:$GITHUB_TOKEN" \
+  -X POST https://api.github.com/user/repos \
+  -d "{\"name\":\"$repo_name\", \"private\":$is_private}")
+
+http_code=$(cat response.json | jq -r '.message // empty')
+if [[ "$http_code" == "Bad credentials" ]]; then
+    echo "❌ Error: Invalid GitHub credentials."
+    exit 1
+fi
+
+repo_url=$(jq -r .ssh_url response.json)
+if [[ "$repo_url" == "null" ]]; then
+    echo "❌ Error: Failed to create repository. $(jq -r .message response.json)"
+    exit 1
+fi
+
+echo "✅ Repository created: $repo_url"
+
+# Ask for README content
+echo "📄 Enter README content (Press Ctrl+D to save):"
+cat > README.md
+
+# Initialize local Git repository
+echo "🚀 Initializing Git repository..."
+git init
+git add README.md
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin "$repo_url"
+git push -u origin main
+
+# Clean up response file
+rm -f response.json
+
+echo "🎉 Repository successfully created and pushed to GitHub!"
+

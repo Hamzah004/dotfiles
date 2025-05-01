@@ -1,0 +1,39 @@
+#!/bin/bash
+
+city="Amman"
+weather=$(curl -s "wttr.in/${city}?n?2")
+        echo "$weather"
+
+# echo "Enter your city name:"
+# read CITY
+# echo "Enter 1 if you want simple day report, and 2 for full report with weather forecast"
+# read method
+# if [ "$method" = "1" ]; then
+#     weather=$(curl -s "wttr.in/${CITY}?0")
+#         echo "$weather"
+#     else 
+#     weather=$(curl -s "wttr.in/${CITY}")
+#        echo "$weather"
+# fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

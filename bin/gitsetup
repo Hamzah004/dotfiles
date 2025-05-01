@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# 🚀 Step 1: Check if Git is installed
+if ! command -v git &> /dev/null; then
+  echo "❌ Error: Git is not installed. Please install Git and try again."
+  exit 1
+fi
+
+# 🚀 Step 2: Validate Input
+if [[ $# -ne 1 ]]; then
+  echo "Usage: Git SSH URL is Rrequired"
+  exit 1
+fi
+
+ssh_url=$1
+
+# 🚀 Step 3: Check if Git SSH is configured
+if ! ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+  echo "❌ Error: GitHub SSH authentication failed. Make sure your SSH key is added to GitHub."
+  exit 1
+fi
+
+# 🚀 Step 4: Ensure the script isn't run in an already initialized repo
+if [ -d ".git" ]; then
+  echo "❌ Error: This directory is already a Git repository."
+  exit 1
+fi
+
+# 🚀 Step 5: Get README Content (Multi-line input)
+echo "📄 Enter README content (Press Ctrl+D to save):"
+cat > README.md
+
+# 🚀 Step 6: Initialize Git and push to GitHub
+echo "🚀 Initializing Git repository..."
+git init
+git add README.md
+git commit -m "Initial commit"
+
+# 🚀 Step 7: Set up the remote repository
+git branch -M main
+git remote add origin "$ssh_url"
+
+# 🚀 Step 8: Push to GitHub
+git push -u origin main
+
+echo "✅ Repository successfully created and pushed to GitHub!"

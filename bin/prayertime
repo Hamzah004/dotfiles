@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# location (Amman, Jordan)
+latitude=31.9454
+longitude=35.9284
+
+# Method for calculating prayer times for ISNA
+method=1
+
+# API URL to fetch the current prayer times
+api_url="http://api.aladhan.com/v1/timings/now?latitude=$latitude&longitude=$longitude&method=$method"
+
+# Fetching prayer times using curl
+response=$(curl -s $api_url)
+
+# prayer times from the API response using jq
+fajr=$(echo $response | jq -r '.data.timings.Fajr')
+dhuhr=$(echo $response | jq -r '.data.timings.Dhuhr')
+asr=$(echo $response | jq -r '.data.timings.Asr')
+maghrib=$(echo $response | jq -r '.data.timings.Maghrib')
+isha=$(echo $response | jq -r '.data.timings.Isha')
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+echo -e "${RED}                                     __  _             ${NC}"
+echo -e "${RED}   ___  _______ ___ _____ _______   / /_(_)_ _  ___ ___${NC}"
+echo -e "${RED}  / _ \\/ __/ _ \`/ // / -_) __(_-<  / __/ /  ' \\/ -_|_-<${NC}"
+echo -e "${RED} / .__/_/  \\_,_/\\_, /\\__/_/ /___/  \\__/_/_/_/_/\\__/___/${NC}"
+echo -e "${RED}/_/            /___/                                   ${NC}"
+
+# echo "Prayer times for Amman, Jordan:"
+echo -e "${RED}-----------------------------------${NC}"
+printf "%-10s | %-10s\n" "Prayer" "Time"
+echo "-----------------------------------"
+printf "%-10s | %-10s\n" "Fajr" "$fajr"
+printf "%-10s | %-10s\n" "Dhuhr" "$dhuhr"
+printf "%-10s | %-10s\n" "Asr" "$asr"
+printf "%-10s | %-10s\n" "Maghrib" "$maghrib"
+printf "%-10s | %-10s\n" "Isha" "$isha"
+echo "-----------------------------------"
