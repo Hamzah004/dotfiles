@@ -88,6 +88,60 @@ map('n', '<leader>tt', ':TodoTelescope<CR>', { desc = '[T]odo list' })
 map('n', '<leader>td', ':TodoQuickFix<CR>', { desc = '[T]odo [D]etails' })
 map('n', '<leader>ta', ':TodoTrouble<CR>', { desc = '[T]odo [A]ll' })
 
+-- Competitive Programming Shortcuts
+vim.keymap.set('n', '<leader>cc', ':w | !g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o %:r %<CR>', { desc = '[C]ompile [C]++' })
+vim.keymap.set('n', '<leader>cr', ':!./%:r<CR>', { desc = '[C]++ [R]un' })
+vim.keymap.set('n', '<leader>ct', ':w | !g++ -std=c++17 -Wall -Wextra -Wshadow -g -o %:r %<CR>', { desc = '[C]++ [T]est build (debug)' })
+
+-- For quick testing with input files
+vim.keymap.set('n', '<leader>ci', function()
+  vim.cmd 'w'
+  local filename = vim.fn.expand '%:r'
+
+  -- Create input.txt if it doesn't exist
+  if vim.fn.filereadable 'input.txt' == 0 then
+    vim.fn.writefile({}, 'input.txt')
+    print 'Created empty input.txt'
+  end
+
+  local cmd = 'g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o ' .. filename .. ' % && ./' .. filename .. ' < input.txt'
+  vim.cmd('belowright split | terminal ' .. cmd)
+  vim.cmd 'startinsert'
+end, { desc = '[C]++ run with [I]nput (clean terminal)' })
+vim.keymap.set('n', '<leader>co', ':e output.txt<CR>', { desc = '[C]++ open [O]utput' })
+
+-- mapping to compare against expected output
+vim.keymap.set('n', '<leader>co', function()
+  vim.cmd 'w'
+  local filename = vim.fn.expand '%:r'
+  vim.cmd('silent !g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o ' .. filename .. ' %')
+  vim.cmd('silent !./' .. filename .. ' < input.txt > output.txt')
+  vim.cmd 'vsplit output.txt'
+end, { desc = '[C]ompile and save [O]utput' })
+-- Create input/output files if they don't exist
+vim.keymap.set('n', '<leader>ii', function()
+  if vim.fn.filereadable 'input.txt' == 0 then
+    vim.fn.writefile({}, 'input.txt')
+    print 'Created input.txt'
+  else
+    print 'input.txt already exists'
+  end
+end, { desc = '[I]nitialize [I]nput file' })
+
+vim.keymap.set('n', '<leader>io', function()
+  if vim.fn.filereadable 'output.txt' == 0 then
+    vim.fn.writefile({}, 'output.txt')
+    print 'Created output.txt'
+  else
+    print 'output.txt already exists'
+  end
+end, { desc = '[I]nitialize [O]utput file' })
+
+-- Quickly open input/output files
+vim.keymap.set('n', '<leader>vi', ':e input.txt<CR>', { desc = '[V]iew [I]nput' })
+vim.keymap.set('n', '<leader>vo', ':e output.txt<CR>', { desc = '[V]iew [O]utput' })
+-----------------------------------------
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -189,6 +243,198 @@ vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  {
+    'xeluxee/competitest.nvim',
+    dependencies = 'MunifTanjim/nui.nvim',
+    config = function()
+      require('competitest').setup {
+        local_config_file_name = '.competitest.lua',
+
+        floating_border = 'rounded',
+        floating_border_highlight = 'FloatBorder',
+        picker_ui = {
+          width = 0.2,
+          height = 0.3,
+          mappings = {
+            focus_next = { 'j', '<down>', '<Tab>' },
+            focus_prev = { 'k', '<up>', '<S-Tab>' },
+            close = { '<esc>', '<C-c>', 'q', 'Q' },
+            submit = '<cr>',
+          },
+        },
+        editor_ui = {
+          popup_width = 0.4,
+          popup_height = 0.6,
+          show_nu = true,
+          show_rnu = false,
+          normal_mode_mappings = {
+            switch_window = { '<C-h>', '<C-l>', '<C-i>' },
+            save_and_close = '<C-s>',
+            cancel = { 'q', 'Q' },
+          },
+          insert_mode_mappings = {
+            switch_window = { '<C-h>', '<C-l>', '<C-i>' },
+            save_and_close = '<C-s>',
+            cancel = '<C-q>',
+          },
+        },
+        runner_ui = {
+          interface = 'popup',
+          selector_show_nu = false,
+          selector_show_rnu = false,
+          show_nu = true,
+          show_rnu = false,
+          mappings = {
+            run_again = 'R',
+            run_all_again = '<C-r>',
+            kill = 'K',
+            kill_all = '<C-k>',
+            view_input = { 'i', 'I' },
+            view_output = { 'a', 'A' },
+            view_stdout = { 'o', 'O' },
+            view_stderr = { 'e', 'E' },
+            toggle_diff = { 'd', 'D' },
+            close = { 'q', 'Q' },
+          },
+          viewer = {
+            width = 0.5,
+            height = 0.5,
+            show_nu = true,
+            show_rnu = false,
+          },
+        },
+        popup_ui = {
+          total_width = 0.8,
+          total_height = 0.8,
+          layout = {
+            { 4, 'tc' },
+            { 5, { { 1, 'so' }, { 1, 'si' } } },
+            { 5, { { 1, 'eo' }, { 1, 'se' } } },
+          },
+        },
+        split_ui = {
+          position = 'right',
+          relative_to_editor = true,
+          total_width = 0.3,
+          vertical_layout = {
+            { 1, 'tc' },
+            { 1, { { 1, 'so' }, { 1, 'eo' } } },
+            { 1, { { 1, 'si' }, { 1, 'se' } } },
+          },
+          total_height = 0.4,
+          horizontal_layout = {
+            { 2, 'tc' },
+            { 3, { { 1, 'so' }, { 1, 'si' } } },
+            { 3, { { 1, 'eo' }, { 1, 'se' } } },
+          },
+        },
+
+        save_current_file = true,
+        save_all_files = false,
+        compile_directory = '.',
+        compile_command = {
+          c = { exec = 'gcc', args = { '-Wall', '$(FNAME)', '-o', '$(FNOEXT)' } },
+          cpp = { exec = 'g++', args = { '-Wall', '$(FNAME)', '-o', '$(FNOEXT)' } },
+          rust = { exec = 'rustc', args = { '$(FNAME)' } },
+          java = { exec = 'javac', args = { '$(FNAME)' } },
+        },
+        running_directory = '.',
+        run_command = {
+          c = { exec = './$(FNOEXT)' },
+          cpp = { exec = './$(FNOEXT)' },
+          rust = { exec = './$(FNOEXT)' },
+          python = { exec = 'python', args = { '$(FNAME)' } },
+          java = { exec = 'java', args = { '$(FNOEXT)' } },
+        },
+        multiple_testing = -1,
+        maximum_time = 5000,
+        output_compare_method = 'squish',
+        view_output_diff = false,
+
+        testcases_directory = '.',
+        testcases_use_single_file = false,
+        testcases_auto_detect_storage = true,
+        testcases_single_file_format = '$(FNOEXT).testcases',
+        testcases_input_file_format = '$(FNOEXT)_input$(TCNUM).txt',
+        testcases_output_file_format = '$(FNOEXT)_output$(TCNUM).txt',
+
+        companion_port = 27121,
+        receive_print_message = true,
+        start_receiving_persistently_on_setup = false,
+        template_file = false,
+        evaluate_template_modifiers = false,
+        date_format = '%c',
+        received_files_extension = 'cpp',
+        received_problems_path = '$(CWD)/$(PROBLEM).$(FEXT)',
+        received_problems_prompt_path = true,
+        received_contests_directory = '$(CWD)',
+        received_contests_problems_path = '$(PROBLEM).$(FEXT)',
+        received_contests_prompt_directory = true,
+        received_contests_prompt_extension = true,
+        open_received_problems = true,
+        open_received_contests = true,
+        replace_received_testcases = false,
+      }
+    end,
+  },
+  -- Debug Adapter Protocol
+  {
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      'rcarriga/nvim-dap-ui',
+      'theHamsta/nvim-dap-virtual-text',
+    },
+    config = function()
+      local dap = require 'dap'
+      local dapui = require 'dapui'
+
+      dap.adapters.cppdbg = {
+        id = 'cppdbg',
+        type = 'executable',
+        command = '/path/to/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+      }
+
+      dap.configurations.cpp = {
+        {
+          name = 'Launch',
+          type = 'cppdbg',
+          request = 'launch',
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = '${workspaceFolder}',
+          stopAtEntry = true,
+          setupCommands = {
+            {
+              text = '-enable-pretty-printing',
+              description = 'enable pretty printing',
+              ignoreFailures = false,
+            },
+          },
+        },
+      }
+
+      dapui.setup()
+      require('nvim-dap-virtual-text').setup()
+
+      -- Keymaps for debugging
+      vim.keymap.set('n', '<F5>', dap.continue)
+      vim.keymap.set('n', '<F10>', dap.step_over)
+      vim.keymap.set('n', '<F11>', dap.step_into)
+      vim.keymap.set('n', '<F12>', dap.step_out)
+      vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint)
+      vim.keymap.set('n', '<leader>B', function()
+        dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+      end)
+    end,
+  },
+  -- C++ Snippets
+  {
+    'rafamadriz/friendly-snippets',
+    config = function()
+      require('luasnip.loaders.from_vscode').lazy_load()
+    end,
+  },
 
   -- multiple cursor
   {
@@ -276,24 +522,24 @@ require('lazy').setup({
     config = function()
       require('obsidian').setup {
         dir = '~/notes',
-        notes_subdir = 'notes',
-        daily_notes = {
-          folder = 'journal',
-          date_format = '%Y-%m-%d',
-        },
-        templates = {
-          subdir = 'templates',
-          date_format = '%Y-%m-%d',
-          time_format = '%H:%M',
-        },
+        -- notes_subdir = 'notes',
+        -- daily_notes = {
+        --   folder = 'journal',
+        --   date_format = '%Y-%m-%d',
+        -- },
+        -- templates = {
+        --   subdir = 'templates',
+        --   date_format = '%Y-%m-%d',
+        --   time_format = '%H:%M',
+        -- },
         ui = {
           enable = true, -- Keep UI features enabled
         },
         -- Set recommended markdown settings
-        markdown = {
-          subdirs = { 'notes', 'journal' },
-          link_style = 'markdown',
-        },
+        -- markdown = {
+        --   subdirs = { 'notes', 'journal' },
+        --   link_style = 'markdown',
+        -- },
       }
 
       -- Set recommended conceal level for markdown files
@@ -344,14 +590,53 @@ require('lazy').setup({
       local template_dir = vim.fn.expand '~/.config/nvim/templates'
       if vim.fn.isdirectory(template_dir) == 0 then
         vim.fn.mkdir(template_dir, 'p')
-        -- Create a default markdown template
-        local default_template = template_dir .. '/markdown.tpl'
-        if vim.fn.filereadable(default_template) == 0 then
-          local file = io.open(default_template, 'w')
-          if file then
-            file:write '# ${filename}\n\nCreated: ${date}\n\n## Content\n'
-            file:close()
-          end
+      end
+
+      -- Create C++ template if it doesn't exist
+      local cpp_template = template_dir .. '/cpp.tpl'
+      if vim.fn.filereadable(cpp_template) == 0 then
+        local file = io.open(cpp_template, 'w')
+        if file then
+          file:write [[
+// Competitive Programming Template
+#include <bits/stdc++.h>
+using namespace std;
+
+#define DEBUG(x) cerr << #x << " = " << x << '\n'
+#define all(x) x.begin(), x.end()
+#define pb push_back
+#define mp make_pair
+#define endl '\n'
+#define fi first
+#define se second
+
+typedef long long ll;
+typedef pair<int, int> pii;
+typedef vector<int> vi;
+
+const int INF = 1e9;
+const ll LLINF = 4e18;
+const int MOD = 1000000007;
+
+void solve() {
+    // Your code here
+    
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    // cin >> t;
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+]]
+          file:close()
         end
       end
 
@@ -359,14 +644,40 @@ require('lazy').setup({
       vim.g.templates_no_builtin_templates = 1
       vim.g.templates_global_name_prefix = 'tpl_'
 
-      -- Disable template auto-loading in Goyo mode
+      -- Add C++ specific template mapping
+      vim.g.templates_user_variables = {
+        ['CPP'] = {
+          filename = function()
+            return vim.fn.expand '%:t:r'
+          end,
+          date = function()
+            return os.date '%Y-%m-%d'
+          end,
+        },
+      }
+
+      -- Disable template auto-loading in Goyo mode (kept from your original)
       vim.cmd [[
-      augroup TemplateGoyo
-        autocmd!
-        autocmd User GoyoEnter let g:templates_auto_initialize = 0
-        autocmd User GoyoLeave let g:templates_auto_initialize = 1
-      augroup END
-    ]]
+        augroup TemplateGoyo
+            autocmd!
+            autocmd User GoyoEnter let g:templates_auto_initialize = 0
+            autocmd User GoyoLeave let g:templates_auto_initialize = 1
+        augroup END
+        ]]
+
+      -- Add autocmd for C++ files
+      vim.api.nvim_create_autocmd('BufNewFile', {
+        pattern = '*.cpp',
+        callback = function()
+          if vim.fn.line '$' == 1 and vim.fn.getline(1) == '' then
+            vim.cmd '0r ~/.config/nvim/templates/cpp.tpl'
+            -- Position cursor inside solve() function
+            vim.cmd 'normal! gg'
+            vim.cmd '/solve()'
+            vim.cmd 'normal! j'
+          end
+        end,
+      })
     end,
   },
 
@@ -524,6 +835,17 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
+      -- CP shit
+      vim.keymap.set('n', '<leader>ci', function()
+        vim.cmd 'w'
+        local filename = vim.fn.expand '%:r'
+        vim.cmd('!g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o ' .. filename .. ' %')
+        -- Create input.txt if it doesn't exist
+        if vim.fn.filereadable 'input.txt' == 0 then
+          vim.fn.writefile({}, 'input.txt')
+        end
+        vim.cmd('!./' .. filename .. ' < input.txt')
+      end, { desc = '[C]++ run with [I]nput' })
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
@@ -759,6 +1081,21 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        clangd = {
+          capabilities = {
+            offsetEncoding = 'utf-8',
+          },
+          cmd = {
+            'clangd',
+            '--background-index',
+            '--clang-tidy',
+            '--header-insertion=never',
+            '--completion-style=detailed',
+            '--function-arg-placeholders',
+            '--fallback-style=llvm',
+          },
+          filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
+        },
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -1094,7 +1431,23 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'dart', 'java', 'kotlin' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'cpp',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'dart',
+        'java',
+        'kotlin',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -1160,6 +1513,18 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+})
+vim.api.nvim_create_autocmd('BufNewFile', {
+  pattern = '*.cpp',
+  callback = function()
+    -- Only insert template if file is empty
+    if vim.fn.line '$' == 1 and vim.fn.getline(1) == '' then
+      vim.cmd '0r ~/.config/nvim/templates/cpp.tpl'
+      -- Move cursor to solve() function
+      vim.cmd '/solve()'
+      vim.cmd 'normal! j'
+    end
+  end,
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
