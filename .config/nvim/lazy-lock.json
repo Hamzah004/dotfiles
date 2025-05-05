@@ -33,6 +33,7 @@
   "nvim-lspconfig": { "branch": "master", "commit": "1b801f68d09e70e59e6dd967b663b6d84ee3e87d" },
   "nvim-nio": { "branch": "master", "commit": "21f5324bfac14e22ba26553caf69ec76ae8a7662" },
   "nvim-treesitter": { "branch": "master", "commit": "94ea4f436d2b59c80f02e293466c374584f03b8c" },
+  "nvim-web-devicons": { "branch": "master", "commit": "2c2b4eafce6cdd0cb165036faa17396eff18f847" },
   "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "1f08ed60cafc8f6168b72b80be2b2ea149813e55" },

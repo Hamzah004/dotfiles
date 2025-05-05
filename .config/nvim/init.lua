@@ -2,7 +2,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -140,6 +140,16 @@ end, { desc = '[I]nitialize [O]utput file' })
 -- Quickly open input/output files
 vim.keymap.set('n', '<leader>vi', ':e input.txt<CR>', { desc = '[V]iew [I]nput' })
 vim.keymap.set('n', '<leader>vo', ':e output.txt<CR>', { desc = '[V]iew [O]utput' })
+------
+
+vim.keymap.set('n', '<leader>ri', function()
+  -- Save and compile
+  vim.cmd 'w | !g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o %:r %'
+
+  -- Run with input.txt and show clean output
+  local output = vim.fn.system('./' .. vim.fn.expand '%:r' .. ' < input.txt')
+  print('\nProgram output:\n' .. output)
+end, { desc = '[R]un with [I]nput (clean output)' })
 -----------------------------------------
 
 -- Diagnostic keymaps
