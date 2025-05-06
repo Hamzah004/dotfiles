@@ -88,8 +88,8 @@ map('n', '<leader>tt', ':TodoTelescope<CR>', { desc = '[T]odo list' })
 map('n', '<leader>td', ':TodoQuickFix<CR>', { desc = '[T]odo [D]etails' })
 map('n', '<leader>ta', ':TodoTrouble<CR>', { desc = '[T]odo [A]ll' })
 
--- Competitive Programming Shortcuts
-vim.keymap.set('n', '<leader>cc', ':w | !g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o %:r %<CR>', { desc = '[C]ompile [C]++' })
+-- CP keymaps
+vim.keymap.set('n', '<leader>cc', ':w | !g++ -std=c++17 -O2 -Wall -Wshadow -Wno-sign-compare -DLOCAL -o %:r %<CR>', { desc = 'Tourist-style compile' })
 vim.keymap.set('n', '<leader>cr', ':!./%:r<CR>', { desc = '[C]++ [R]un' })
 vim.keymap.set('n', '<leader>ct', ':w | !g++ -std=c++17 -Wall -Wextra -Wshadow -g -o %:r %<CR>', { desc = '[C]++ [T]est build (debug)' })
 
@@ -151,6 +151,32 @@ vim.keymap.set('n', '<leader>ri', function()
   print('\nProgram output:\n' .. output)
 end, { desc = '[R]un with [I]nput (clean output)' })
 -----------------------------------------
+-- C-specific keymaps
+vim.keymap.set('n', '<leader>gc', ':w | !gcc -Wall -Wextra -Werror -g -o %:r %<CR>', { desc = '[G]CC [C]ompile' })
+vim.keymap.set('n', '<leader>gr', ':!./%:r<CR>', { desc = '[G]CC [R]un' })
+
+-- Debugger keymaps
+vim.keymap.set('n', '<F5>', function()
+  require('dap').continue()
+end, { desc = 'Debug: Start/Continue' })
+vim.keymap.set('n', '<F10>', function()
+  require('dap').step_over()
+end, { desc = 'Debug: Step Over' })
+vim.keymap.set('n', '<F11>', function()
+  require('dap').step_into()
+end, { desc = 'Debug: Step Into' })
+vim.keymap.set('n', '<F12>', function()
+  require('dap').step_out()
+end, { desc = 'Debug: Step Out' })
+vim.keymap.set('n', '<leader>lp', function()
+  require('dap').set_breakpoint(nil, nil, vim.fn.input 'Log point message: ')
+end, { desc = 'Debug: Set Log Point' })
+vim.keymap.set('n', '<leader>dr', function()
+  require('dap').repl.open()
+end, { desc = 'Debug: Open REPL' })
+vim.keymap.set('n', '<leader>dl', function()
+  require('dap').run_last()
+end, { desc = 'Debug: Run Last' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -253,189 +279,250 @@ vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  -- C plugins
+  -- debugger UI
   {
-    'xeluxee/competitest.nvim',
-    dependencies = 'MunifTanjim/nui.nvim',
+    'rcarriga/nvim-dap-ui',
+    dependencies = { 'mfussenegger/nvim-dap' },
     config = function()
-      require('competitest').setup {
-        local_config_file_name = '.competitest.lua',
-
-        floating_border = 'rounded',
-        floating_border_highlight = 'FloatBorder',
-        picker_ui = {
-          width = 0.2,
-          height = 0.3,
-          mappings = {
-            focus_next = { 'j', '<down>', '<Tab>' },
-            focus_prev = { 'k', '<up>', '<S-Tab>' },
-            close = { '<esc>', '<C-c>', 'q', 'Q' },
-            submit = '<cr>',
-          },
-        },
-        editor_ui = {
-          popup_width = 0.4,
-          popup_height = 0.6,
-          show_nu = true,
-          show_rnu = false,
-          normal_mode_mappings = {
-            switch_window = { '<C-h>', '<C-l>', '<C-i>' },
-            save_and_close = '<C-s>',
-            cancel = { 'q', 'Q' },
-          },
-          insert_mode_mappings = {
-            switch_window = { '<C-h>', '<C-l>', '<C-i>' },
-            save_and_close = '<C-s>',
-            cancel = '<C-q>',
-          },
-        },
-        runner_ui = {
-          interface = 'popup',
-          selector_show_nu = false,
-          selector_show_rnu = false,
-          show_nu = true,
-          show_rnu = false,
-          mappings = {
-            run_again = 'R',
-            run_all_again = '<C-r>',
-            kill = 'K',
-            kill_all = '<C-k>',
-            view_input = { 'i', 'I' },
-            view_output = { 'a', 'A' },
-            view_stdout = { 'o', 'O' },
-            view_stderr = { 'e', 'E' },
-            toggle_diff = { 'd', 'D' },
-            close = { 'q', 'Q' },
-          },
-          viewer = {
-            width = 0.5,
-            height = 0.5,
-            show_nu = true,
-            show_rnu = false,
-          },
-        },
-        popup_ui = {
-          total_width = 0.8,
-          total_height = 0.8,
-          layout = {
-            { 4, 'tc' },
-            { 5, { { 1, 'so' }, { 1, 'si' } } },
-            { 5, { { 1, 'eo' }, { 1, 'se' } } },
-          },
-        },
-        split_ui = {
-          position = 'right',
-          relative_to_editor = true,
-          total_width = 0.3,
-          vertical_layout = {
-            { 1, 'tc' },
-            { 1, { { 1, 'so' }, { 1, 'eo' } } },
-            { 1, { { 1, 'si' }, { 1, 'se' } } },
-          },
-          total_height = 0.4,
-          horizontal_layout = {
-            { 2, 'tc' },
-            { 3, { { 1, 'so' }, { 1, 'si' } } },
-            { 3, { { 1, 'eo' }, { 1, 'se' } } },
-          },
-        },
-
-        save_current_file = true,
-        save_all_files = false,
-        compile_directory = '.',
-        compile_command = {
-          c = { exec = 'gcc', args = { '-Wall', '$(FNAME)', '-o', '$(FNOEXT)' } },
-          cpp = { exec = 'g++', args = { '-Wall', '$(FNAME)', '-o', '$(FNOEXT)' } },
-          rust = { exec = 'rustc', args = { '$(FNAME)' } },
-          java = { exec = 'javac', args = { '$(FNAME)' } },
-        },
-        running_directory = '.',
-        run_command = {
-          c = { exec = './$(FNOEXT)' },
-          cpp = { exec = './$(FNOEXT)' },
-          rust = { exec = './$(FNOEXT)' },
-          python = { exec = 'python', args = { '$(FNAME)' } },
-          java = { exec = 'java', args = { '$(FNOEXT)' } },
-        },
-        multiple_testing = -1,
-        maximum_time = 5000,
-        output_compare_method = 'squish',
-        view_output_diff = false,
-
-        testcases_directory = '.',
-        testcases_use_single_file = false,
-        testcases_auto_detect_storage = true,
-        testcases_single_file_format = '$(FNOEXT).testcases',
-        testcases_input_file_format = '$(FNOEXT)_input$(TCNUM).txt',
-        testcases_output_file_format = '$(FNOEXT)_output$(TCNUM).txt',
-
-        companion_port = 27121,
-        receive_print_message = true,
-        start_receiving_persistently_on_setup = false,
-        template_file = false,
-        evaluate_template_modifiers = false,
-        date_format = '%c',
-        received_files_extension = 'cpp',
-        received_problems_path = '$(CWD)/$(PROBLEM).$(FEXT)',
-        received_problems_prompt_path = true,
-        received_contests_directory = '$(CWD)',
-        received_contests_problems_path = '$(PROBLEM).$(FEXT)',
-        received_contests_prompt_directory = true,
-        received_contests_prompt_extension = true,
-        open_received_problems = true,
-        open_received_contests = true,
-        replace_received_testcases = false,
-      }
+      require('dapui').setup()
+      -- Automatically open/close UI when debugging starts/stops
+      local dap, dapui = require 'dap', require 'dapui'
+      dap.listeners.before.attach.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.launch.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated.dapui_config = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited.dapui_config = function()
+        dapui.close()
+      end
     end,
   },
+  {
+    'p00f/clangd_extensions.nvim',
+    lazy = true,
+    config = function()
+      require('clangd_extensions').setup {
+        extensions = {
+          autoSetHints = true,
+          hover_with_actions = true,
+        },
+      }
+    end,
+    ast = {
+      role_icons = {
+        type = '',
+        declaration = '',
+        expression = '',
+        specifier = '',
+        statement = '',
+        ['template argument'] = '',
+      },
+      kind_icons = {
+        Compound = '',
+        Recovery = '',
+        TranslationUnit = '',
+        PackExpansion = '',
+        TemplateTypeParm = '',
+        TemplateTemplateParm = '',
+        TemplateParamObject = '',
+      },
+    },
+  },
+  -- {
+  --   'simrat3/rust-tools.nvim',
+  --   url = 'git@github.com:simrat3/rust-tools.nvim.git',
+  --   ft = 'rust', -- Only load for Rust files
+  --   config = function()
+  --     require('rust-tools').setup()
+  --   end
+  -- },
+  -------------------
+  -- {
+  --   'xeluxee/competitest.nvim',
+  --   dependencies = 'MunifTanjim/nui.nvim',
+  --   config = function()
+  --     require('competitest').setup {
+  --       local_config_file_name = '.competitest.lua',
+  --
+  --       floating_border = 'rounded',
+  --       floating_border_highlight = 'FloatBorder',
+  --       picker_ui = {
+  --         width = 0.2,
+  --         height = 0.3,
+  --         mappings = {
+  --           focus_next = { 'j', '<down>', '<Tab>' },
+  --           focus_prev = { 'k', '<up>', '<S-Tab>' },
+  --           close = { '<esc>', '<C-c>', 'q', 'Q' },
+  --           submit = '<cr>',
+  --         },
+  --       },
+  --       editor_ui = {
+  --         popup_width = 0.4,
+  --         popup_height = 0.6,
+  --         show_nu = true,
+  --         show_rnu = false,
+  --         normal_mode_mappings = {
+  --           switch_window = { '<C-h>', '<C-l>', '<C-i>' },
+  --           save_and_close = '<C-s>',
+  --           cancel = { 'q', 'Q' },
+  --         },
+  --         insert_mode_mappings = {
+  --           switch_window = { '<C-h>', '<C-l>', '<C-i>' },
+  --           save_and_close = '<C-s>',
+  --           cancel = '<C-q>',
+  --         },
+  --       },
+  --       runner_ui = {
+  --         interface = 'popup',
+  --         selector_show_nu = false,
+  --         selector_show_rnu = false,
+  --         show_nu = true,
+  --         show_rnu = false,
+  --         mappings = {
+  --           run_again = 'R',
+  --           run_all_again = '<C-r>',
+  --           kill = 'K',
+  --           kill_all = '<C-k>',
+  --           view_input = { 'i', 'I' },
+  --           view_output = { 'a', 'A' },
+  --           view_stdout = { 'o', 'O' },
+  --           view_stderr = { 'e', 'E' },
+  --           toggle_diff = { 'd', 'D' },
+  --           close = { 'q', 'Q' },
+  --         },
+  --         viewer = {
+  --           width = 0.5,
+  --           height = 0.5,
+  --           show_nu = true,
+  --           show_rnu = false,
+  --         },
+  --       },
+  --       popup_ui = {
+  --         total_width = 0.8,
+  --         total_height = 0.8,
+  --         layout = {
+  --           { 4, 'tc' },
+  --           { 5, { { 1, 'so' }, { 1, 'si' } } },
+  --           { 5, { { 1, 'eo' }, { 1, 'se' } } },
+  --         },
+  --       },
+  --       split_ui = {
+  --         position = 'right',
+  --         relative_to_editor = true,
+  --         total_width = 0.3,
+  --         vertical_layout = {
+  --           { 1, 'tc' },
+  --           { 1, { { 1, 'so' }, { 1, 'eo' } } },
+  --           { 1, { { 1, 'si' }, { 1, 'se' } } },
+  --         },
+  --         total_height = 0.4,
+  --         horizontal_layout = {
+  --           { 2, 'tc' },
+  --           { 3, { { 1, 'so' }, { 1, 'si' } } },
+  --           { 3, { { 1, 'eo' }, { 1, 'se' } } },
+  --         },
+  --       },
+  --
+  --       save_current_file = true,
+  --       save_all_files = false,
+  --       compile_directory = '.',
+  --       compile_command = {
+  --         c = { exec = 'gcc', args = { '-Wall', '$(FNAME)', '-o', '$(FNOEXT)' } },
+  --         cpp = { exec = 'g++', args = { '-Wall', '$(FNAME)', '-o', '$(FNOEXT)' } },
+  --         rust = { exec = 'rustc', args = { '$(FNAME)' } },
+  --         java = { exec = 'javac', args = { '$(FNAME)' } },
+  --       },
+  --       running_directory = '.',
+  --       run_command = {
+  --         c = { exec = './$(FNOEXT)' },
+  --         cpp = { exec = './$(FNOEXT)' },
+  --         rust = { exec = './$(FNOEXT)' },
+  --         python = { exec = 'python', args = { '$(FNAME)' } },
+  --         java = { exec = 'java', args = { '$(FNOEXT)' } },
+  --       },
+  --       multiple_testing = -1,
+  --       maximum_time = 5000,
+  --       output_compare_method = 'squish',
+  --       view_output_diff = false,
+  --
+  --       testcases_directory = '.',
+  --       testcases_use_single_file = false,
+  --       testcases_auto_detect_storage = true,
+  --       testcases_single_file_format = '$(FNOEXT).testcases',
+  --       testcases_input_file_format = '$(FNOEXT)_input$(TCNUM).txt',
+  --       testcases_output_file_format = '$(FNOEXT)_output$(TCNUM).txt',
+  --
+  --       companion_port = 27121,
+  --       receive_print_message = true,
+  --       start_receiving_persistently_on_setup = false,
+  --       template_file = false,
+  --       evaluate_template_modifiers = false,
+  --       date_format = '%c',
+  --       received_files_extension = 'cpp',
+  --       received_problems_path = '$(CWD)/$(PROBLEM).$(FEXT)',
+  --       received_problems_prompt_path = true,
+  --       received_contests_directory = '$(CWD)',
+  --       received_contests_problems_path = '$(PROBLEM).$(FEXT)',
+  --       received_contests_prompt_directory = true,
+  --       received_contests_prompt_extension = true,
+  --       open_received_problems = true,
+  --       open_received_contests = true,
+  --       replace_received_testcases = false,
+  --     }
+  --   end,
+  -- },
+
   -- Debug Adapter Protocol
   {
     'mfussenegger/nvim-dap',
+    optional = true,
     dependencies = {
-      'rcarriga/nvim-dap-ui',
-      'theHamsta/nvim-dap-virtual-text',
+      -- Ensure C/C++ debugger is installed
+      'williamboman/mason.nvim',
+      optional = true,
+      opts = { ensure_installed = { 'codelldb' } },
     },
-    config = function()
+    opts = function()
       local dap = require 'dap'
-      local dapui = require 'dapui'
-
-      dap.adapters.cppdbg = {
-        id = 'cppdbg',
-        type = 'executable',
-        command = '/path/to/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
-      }
-
-      dap.configurations.cpp = {
-        {
-          name = 'Launch',
-          type = 'cppdbg',
-          request = 'launch',
-          program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-          end,
-          cwd = '${workspaceFolder}',
-          stopAtEntry = true,
-          setupCommands = {
-            {
-              text = '-enable-pretty-printing',
-              description = 'enable pretty printing',
-              ignoreFailures = false,
+      if not dap.adapters['codelldb'] then
+        require('dap').adapters['codelldb'] = {
+          type = 'server',
+          host = 'localhost',
+          port = '${port}',
+          executable = {
+            command = 'codelldb',
+            args = {
+              '--port',
+              '${port}',
             },
           },
-        },
-      }
-
-      dapui.setup()
-      require('nvim-dap-virtual-text').setup()
-
-      -- Keymaps for debugging
-      vim.keymap.set('n', '<F5>', dap.continue)
-      vim.keymap.set('n', '<F10>', dap.step_over)
-      vim.keymap.set('n', '<F11>', dap.step_into)
-      vim.keymap.set('n', '<F12>', dap.step_out)
-      vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint)
-      vim.keymap.set('n', '<leader>B', function()
-        dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-      end)
+        }
+      end
+      for _, lang in ipairs { 'c', 'cpp' } do
+        dap.configurations[lang] = {
+          {
+            type = 'codelldb',
+            request = 'launch',
+            name = 'Launch file',
+            program = function()
+              return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            end,
+            cwd = '${workspaceFolder}',
+          },
+          {
+            type = 'codelldb',
+            request = 'attach',
+            name = 'Attach to process',
+            pid = require('dap.utils').pick_process,
+            cwd = '${workspaceFolder}',
+          },
+        }
+      end
     end,
   },
   -- C++ Snippets
@@ -608,8 +695,7 @@ require('lazy').setup({
         local file = io.open(cpp_template, 'w')
         if file then
           file:write [[
-// Competitive Programming Template
-#include <bits/stdc++.h>
+//stdc++.h>
 using namespace std;
 
 #define DEBUG(x) cerr << #x << " = " << x << '\n'
@@ -683,7 +769,7 @@ int main() {
             vim.cmd '0r ~/.config/nvim/templates/cpp.tpl'
             -- Position cursor inside solve() function
             vim.cmd 'normal! gg'
-            vim.cmd '/solve()'
+            -- vim.cmd '/solve()'
             vim.cmd 'normal! j'
           end
         end,
@@ -1536,6 +1622,14 @@ vim.api.nvim_create_autocmd('BufNewFile', {
     end
   end,
 })
-
+vim.api.nvim_create_autocmd('BufNewFile', {
+  pattern = '*.c',
+  callback = function()
+    if vim.fn.line '$' == 1 and vim.fn.getline(1) == '' then
+      vim.cmd '0r ~/.config/nvim/templates/c.tpl'
+      vim.cmd 'normal! Gk'
+    end
+  end,
+})
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
