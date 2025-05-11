@@ -1,25 +1,24 @@
+-- leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
+-- nerd fonts
 vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+--  NOTE: For more options, you can see `:help option-list`
+
 -- Make line numbers default
 vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
+-- mouse enabled
 vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
+-- make vim clipboard same as system clipboard
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
@@ -66,150 +65,7 @@ vim.opt.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.opt.confirm = true
-
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Keymaps for notes and tasks
-local map = vim.keymap.set
-
--- Note management
-map('n', '<leader>nn', ':e ~/notes/scratch.md<CR>', { desc = 'New [N]ote' })
-map('n', '<leader>nt', ':Template<CR>', { desc = '[N]ote [T]emplate' })
-map('n', '<leader>nf', ':Goyo<CR>', { desc = '[N]ote [F]ocus mode' })
-map('n', '<leader>nl', ':Limelight!!<CR>', { desc = '[N]ote [L]imelight' })
-
--- Task management
-map('n', '<leader>tt', ':TodoTelescope<CR>', { desc = '[T]odo list' })
-map('n', '<leader>td', ':TodoQuickFix<CR>', { desc = '[T]odo [D]etails' })
-map('n', '<leader>ta', ':TodoTrouble<CR>', { desc = '[T]odo [A]ll' })
-
--- CP keymaps
-vim.keymap.set('n', '<leader>cc', ':w | !g++ -std=c++17 -O2 -Wall -Wshadow -Wno-sign-compare -DLOCAL -o %:r %<CR>', { desc = 'Tourist-style compile' })
-vim.keymap.set('n', '<leader>cr', ':!./%:r<CR>', { desc = '[C]++ [R]un' })
-vim.keymap.set('n', '<leader>ct', ':w | !g++ -std=c++17 -Wall -Wextra -Wshadow -g -o %:r %<CR>', { desc = '[C]++ [T]est build (debug)' })
-
--- For quick testing with input files
-vim.keymap.set('n', '<leader>ci', function()
-  vim.cmd 'w'
-  local filename = vim.fn.expand '%:r'
-
-  -- Create input.txt if it doesn't exist
-  if vim.fn.filereadable 'input.txt' == 0 then
-    vim.fn.writefile({}, 'input.txt')
-    print 'Created empty input.txt'
-  end
-
-  local cmd = 'g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o ' .. filename .. ' % && ./' .. filename .. ' < input.txt'
-  vim.cmd('belowright split | terminal ' .. cmd)
-  vim.cmd 'startinsert'
-end, { desc = '[C]++ run with [I]nput (clean terminal)' })
-vim.keymap.set('n', '<leader>co', ':e output.txt<CR>', { desc = '[C]++ open [O]utput' })
-
--- mapping to compare against expected output
-vim.keymap.set('n', '<leader>co', function()
-  vim.cmd 'w'
-  local filename = vim.fn.expand '%:r'
-  vim.cmd('silent !g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o ' .. filename .. ' %')
-  vim.cmd('silent !./' .. filename .. ' < input.txt > output.txt')
-  vim.cmd 'vsplit output.txt'
-end, { desc = '[C]ompile and save [O]utput' })
--- Create input/output files if they don't exist
-vim.keymap.set('n', '<leader>ii', function()
-  if vim.fn.filereadable 'input.txt' == 0 then
-    vim.fn.writefile({}, 'input.txt')
-    print 'Created input.txt'
-  else
-    print 'input.txt already exists'
-  end
-end, { desc = '[I]nitialize [I]nput file' })
-
-vim.keymap.set('n', '<leader>io', function()
-  if vim.fn.filereadable 'output.txt' == 0 then
-    vim.fn.writefile({}, 'output.txt')
-    print 'Created output.txt'
-  else
-    print 'output.txt already exists'
-  end
-end, { desc = '[I]nitialize [O]utput file' })
-
--- Quickly open input/output files
-vim.keymap.set('n', '<leader>vi', ':e input.txt<CR>', { desc = '[V]iew [I]nput' })
-vim.keymap.set('n', '<leader>vo', ':e output.txt<CR>', { desc = '[V]iew [O]utput' })
-------
-
-vim.keymap.set('n', '<leader>ri', function()
-  -- Save and compile
-  vim.cmd 'w | !g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o %:r %'
-
-  -- Run with input.txt and show clean output
-  local output = vim.fn.system('./' .. vim.fn.expand '%:r' .. ' < input.txt')
-  print('\nProgram output:\n' .. output)
-end, { desc = '[R]un with [I]nput (clean output)' })
------------------------------------------
--- C-specific keymaps
-vim.keymap.set('n', '<leader>gc', ':w | !gcc -Wall -Wextra -Werror -g -o %:r %<CR>', { desc = '[G]CC [C]ompile' })
-vim.keymap.set('n', '<leader>gr', ':!./%:r<CR>', { desc = '[G]CC [R]un' })
-
--- Debugger keymaps
-vim.keymap.set('n', '<F5>', function()
-  require('dap').continue()
-end, { desc = 'Debug: Start/Continue' })
-vim.keymap.set('n', '<F10>', function()
-  require('dap').step_over()
-end, { desc = 'Debug: Step Over' })
-vim.keymap.set('n', '<F11>', function()
-  require('dap').step_into()
-end, { desc = 'Debug: Step Into' })
-vim.keymap.set('n', '<F12>', function()
-  require('dap').step_out()
-end, { desc = 'Debug: Step Out' })
-vim.keymap.set('n', '<leader>lp', function()
-  require('dap').set_breakpoint(nil, nil, vim.fn.input 'Log point message: ')
-end, { desc = 'Debug: Set Log Point' })
-vim.keymap.set('n', '<leader>dr', function()
-  require('dap').repl.open()
-end, { desc = 'Debug: Open REPL' })
-vim.keymap.set('n', '<leader>dl', function()
-  require('dap').run_last()
-end, { desc = 'Debug: Run Last' })
-
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
--- NOTE: Some terminals have coliding keymaps or are not able to send distinct keycodes
--- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
--- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
--- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
--- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
-
+--------------------------------------------------
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -279,6 +135,25 @@ vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  -- cursor animation
+  {
+    'gen740/SmoothCursor.nvim',
+    config = function()
+      require('smoothcursor').setup {
+        type = 'default', -- "default", "exp", "matrix", etc.
+        fancy = {
+          enable = true,
+          head = { cursor = '', texthl = 'SmoothCursor', linehl = nil },
+          body = {
+            { cursor = '●', texthl = 'SmoothCursorRed' },
+            { cursor = '●', texthl = 'SmoothCursorOrange' },
+            { cursor = '●', texthl = 'SmoothCursorYellow' },
+          },
+          tail = { cursor = nil, texthl = 'SmoothCursor' },
+        },
+      }
+    end,
+  },
   -- C plugins
   -- debugger UI
   {
@@ -1177,6 +1052,7 @@ int main() {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        bashls = {},
         clangd = {
           capabilities = {
             offsetEncoding = 'utf-8',
@@ -1294,6 +1170,7 @@ int main() {
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        sh = { 'shfmt' },
       },
     },
   },
@@ -1633,3 +1510,148 @@ vim.api.nvim_create_autocmd('BufNewFile', {
 })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Keymaps
+-- See `:help vim.keymap.set()`
+
+-- Clear highlights on search when pressing <Esc> in normal mode
+--  See `:help hlsearch`
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, { desc = 'Signature Help' })
+-- Keymaps for notes and tasks
+local map = vim.keymap.set
+
+-- Note management
+map('n', '<leader>nn', ':e ~/notes/scratch.md<CR>', { desc = 'New [N]ote' })
+map('n', '<leader>nt', ':Template<CR>', { desc = '[N]ote [T]emplate' })
+map('n', '<leader>nf', ':Goyo<CR>', { desc = '[N]ote [F]ocus mode' })
+map('n', '<leader>nl', ':Limelight!!<CR>', { desc = '[N]ote [L]imelight' })
+
+-- Task management
+map('n', '<leader>tt', ':TodoTelescope<CR>', { desc = '[T]odo list' })
+map('n', '<leader>td', ':TodoQuickFix<CR>', { desc = '[T]odo [D]etails' })
+map('n', '<leader>ta', ':TodoTrouble<CR>', { desc = '[T]odo [A]ll' })
+
+-- CP keymaps
+vim.keymap.set('n', '<leader>cc', ':w | !g++ -std=c++17 -O2 -Wall -Wshadow -Wno-sign-compare -DLOCAL -o %:r %<CR>', { desc = 'Tourist-style compile' })
+vim.keymap.set('n', '<leader>cr', ':!./%:r<CR>', { desc = '[C]++ [R]un' })
+vim.keymap.set('n', '<leader>ct', ':w | !g++ -std=c++17 -Wall -Wextra -Wshadow -g -o %:r %<CR>', { desc = '[C]++ [T]est build (debug)' })
+
+-- For quick testing with input files
+vim.keymap.set('n', '<leader>ci', function()
+  vim.cmd 'w'
+  local filename = vim.fn.expand '%:r'
+
+  -- Create input.txt if it doesn't exist
+  if vim.fn.filereadable 'input.txt' == 0 then
+    vim.fn.writefile({}, 'input.txt')
+    print 'Created empty input.txt'
+  end
+
+  local cmd = 'g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o ' .. filename .. ' % && ./' .. filename .. ' < input.txt'
+  vim.cmd('belowright split | terminal ' .. cmd)
+  vim.cmd 'startinsert'
+end, { desc = '[C]++ run with [I]nput (clean terminal)' })
+vim.keymap.set('n', '<leader>co', ':e output.txt<CR>', { desc = '[C]++ open [O]utput' })
+
+-- mapping to compare against expected output
+vim.keymap.set('n', '<leader>co', function()
+  vim.cmd 'w'
+  local filename = vim.fn.expand '%:r'
+  vim.cmd('silent !g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o ' .. filename .. ' %')
+  vim.cmd('silent !./' .. filename .. ' < input.txt > output.txt')
+  vim.cmd 'vsplit output.txt'
+end, { desc = '[C]ompile and save [O]utput' })
+-- Create input/output files if they don't exist
+vim.keymap.set('n', '<leader>ii', function()
+  if vim.fn.filereadable 'input.txt' == 0 then
+    vim.fn.writefile({}, 'input.txt')
+    print 'Created input.txt'
+  else
+    print 'input.txt already exists'
+  end
+end, { desc = '[I]nitialize [I]nput file' })
+
+vim.keymap.set('n', '<leader>io', function()
+  if vim.fn.filereadable 'output.txt' == 0 then
+    vim.fn.writefile({}, 'output.txt')
+    print 'Created output.txt'
+  else
+    print 'output.txt already exists'
+  end
+end, { desc = '[I]nitialize [O]utput file' })
+
+-- Quickly open input/output files
+vim.keymap.set('n', '<leader>vi', ':e input.txt<CR>', { desc = '[V]iew [I]nput' })
+vim.keymap.set('n', '<leader>vo', ':e output.txt<CR>', { desc = '[V]iew [O]utput' })
+------
+
+vim.keymap.set('n', '<leader>ri', function()
+  -- Save and compile
+  vim.cmd 'w | !g++ -std=c++17 -Wall -Wextra -Wshadow -O2 -o %:r %'
+
+  -- Run with input.txt and show clean output
+  local output = vim.fn.system('./' .. vim.fn.expand '%:r' .. ' < input.txt')
+  print('\nProgram output:\n' .. output)
+end, { desc = '[R]un with [I]nput (clean output)' })
+-----------------------------------------
+
+-- C-specific keymaps
+vim.keymap.set('n', '<leader>gc', ':w | !gcc -Wall -Wextra -Werror -g -o %:r %<CR>', { desc = '[G]CC [C]ompile' })
+vim.keymap.set('n', '<leader>gr', ':!./%:r<CR>', { desc = '[G]CC [R]un' })
+
+-- Debugger keymaps
+vim.keymap.set('n', '<F5>', function()
+  require('dap').continue()
+end, { desc = 'Debug: Start/Continue' })
+vim.keymap.set('n', '<F10>', function()
+  require('dap').step_over()
+end, { desc = 'Debug: Step Over' })
+vim.keymap.set('n', '<F11>', function()
+  require('dap').step_into()
+end, { desc = 'Debug: Step Into' })
+vim.keymap.set('n', '<F12>', function()
+  require('dap').step_out()
+end, { desc = 'Debug: Step Out' })
+vim.keymap.set('n', '<leader>lp', function()
+  require('dap').set_breakpoint(nil, nil, vim.fn.input 'Log point message: ')
+end, { desc = 'Debug: Set Log Point' })
+vim.keymap.set('n', '<leader>dr', function()
+  require('dap').repl.open()
+end, { desc = 'Debug: Open REPL' })
+vim.keymap.set('n', '<leader>dl', function()
+  require('dap').run_last()
+end, { desc = 'Debug: Run Last' })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
+-- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
+-- is not what someone will guess without a bit more experience.
+--
+-- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+-- or just use <C-\><C-n> to exit terminal mode
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- TIP: Disable arrow keys in normal mode
+-- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+-- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+-- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+-- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+
+-- Keybinds to make split navigation easier.
+--  Use CTRL+<hjkl> to switch between windows
+--
+--  See `:help wincmd` for a list of all window commands
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- NOTE: Some terminals have coliding keymaps or are not able to send distinct keycodes
+vim.keymap.set('n', '<C-S-h>', '<C-w>H', { desc = 'Move window to the left' })
+vim.keymap.set('n', '<C-S-l>', '<C-w>L', { desc = 'Move window to the right' })
+vim.keymap.set('n', '<C-S-j>', '<C-w>J', { desc = 'Move window to the lower' })
+vim.keymap.set('n', '<C-S-k>', '<C-w>K', { desc = 'Move window to the upper' })

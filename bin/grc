@@ -4,10 +4,9 @@ set -e
 
 # Check if Git is installed
 if ! command -v git &>/dev/null; then
-    echo "Error: Git is not installed";
+    echo "Error: Git is not installed"
     exit 1
 fi
-
 # Check if GITHUB_TOKEN environment variable is set
 if [ -z "$GITHUB_TOKEN" ]; then
     echo "Error: GITHUB_TOKEN is not set. Please export it using: export GITHUB_TOKEN='your_token_here'"
@@ -20,7 +19,7 @@ if [ -f "$HOME/.git_config" ]; then
 else
     echo "GitHub username is not set."
     read -p "Please enter your GitHub username: " GITHUB_USER
-    echo "$GITHUB_USER" > "$HOME/.git_config"  # Save the username
+    echo "$GITHUB_USER" >"$HOME/.git_config" # Save the username
 fi
 
 # Check if repository name is provided
@@ -47,8 +46,8 @@ fi
 # Create the GitHub repository
 echo "🌍 Creating GitHub repository..."
 response=$(curl -s -w "%{http_code}" -o response.json -u "$GITHUB_USER:$GITHUB_TOKEN" \
-  -X POST https://api.github.com/user/repos \
-  -d "{\"name\":\"$repo_name\", \"private\":$is_private}")
+    -X POST https://api.github.com/user/repos \
+    -d "{\"name\":\"$repo_name\", \"private\":$is_private}")
 
 http_code=$(cat response.json | jq -r '.message // empty')
 if [[ "$http_code" == "Bad credentials" ]]; then
@@ -66,7 +65,7 @@ echo "✅ Repository created: $repo_url"
 
 # Ask for README content
 echo "📄 Enter README content (Press Ctrl+D to save):"
-cat > README.md
+cat >README.md
 
 # Initialize local Git repository
 echo "🚀 Initializing Git repository..."
@@ -81,4 +80,3 @@ git push -u origin main
 rm -f response.json
 
 echo "🎉 Repository successfully created and pushed to GitHub!"
-

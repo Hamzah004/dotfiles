@@ -8,11 +8,11 @@ cargo install starship eza zoxide bat ripgrep
 # open suse setup(not complete)
 # sudo zypper in nodejs npm neovim tmux rofi w3m alacritty gcc-c++ cmake make clang lldb
 
-
 # fedora setup
 sudo dnf install bat npm nodejs neovim git w3m alacritty gcc-c++ make lldb bat
 # cpp shit
-sudo dnf install clang clang-tools-extra cmake gdb ninja-build
+sudo dnf install clang clang-tools-extra cmake gdb ninja-build shfmt
+# shfmt is a shell formater, used to format bash scripts in my case
 # oh my tmux setup
 cd
 git clone --single-branch https://github.com/gpakosz/.tmux.git

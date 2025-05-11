@@ -1,0 +1,64 @@
+@import "./themes/colors.rasi"
+* {
+  background-color: transparent;
+  text-color: @text;
+  margin: 0;
+  padding: 0;
+}
+
+window {
+  transparency: "real";
+  location: center;
+  anchor: center;
+  fullscreen: false;
+  height: 15%;
+  x-offset: 0px;
+  y-offset: 0px;
+  enabled: true;
+  border: 1px solid;
+  border-color: @border;
+  border-radius: 4px;
+  background-color: @background;
+  cursor: "default";
+}
+
+
+listview {
+  enabled: true;
+  row: 1;
+  lines: 5;
+  cycle: true;
+  dynamic: true;
+  scrollbar: false;
+  layout: horizontal;
+  reverse: false;
+  fixed-height: true;
+  fixed-columns: true;
+  margin:  0.5em 0 0.75em;
+  cursor: "default";
+}
+
+element {
+  enabled: true;
+  margin: 0 0.75em;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  orientation: horizontal;
+}
+
+element normal.normal {
+  background-color: inherit;
+  text-color: inherit;
+}
+element selected.normal {
+  border: 1px solid;
+  border-color: @border;
+  border-radius: 8px;
+  background-color: @select;
+}
+element-text {
+  highlight: bold;
+  cursor: inherit;
+  vertical-align: 0.5;
+  horizontal-align: 0.0;
+}
