@@ -10,11 +10,11 @@
     // "custom/rofi",
     "sway/workspaces",
     "sway/window",
-    "hyprland/workspaces",
+    // "hyprland/workspaces",
     "hyprland/window",
   ],
 
-  "modules-center": ["clock"],
+  "modules-center": ["clock","custom/timer"],
 
   "modules-right": [
     // "disk",
@@ -29,7 +29,7 @@
   ],
 
   "custom/rofi": {
-		"format": "<span ></span>",
+		"format": "<span > </span>",
 		"on-click": "rofi -show drun -disable-history -show-icons",
     "on-click-right": "~/.config/custom_scripts/power.sh",
     "escape" : true,
@@ -124,7 +124,7 @@
   },
 
   "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
+    "scroll-step": 1, // %, can be a float
     "format": "<span color='#1e1e2e' bgcolor='#83a598' >   </span> {volume}%",
     "format-muted": "<span color='#1e1e2e' bgcolor='#ea6962' >   </span> {volume}%",
     "format-bluetooth": "<span color='#1e1e2e' bgcolor='#83a598' > 󰂰 </span> {volume}%",
@@ -132,7 +132,7 @@
     "format-source": "{volume}% ",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "tooltip": false,
-    "max-volume": 110
+    "max-volume": 100
   },
 
   "battery#bat2": {
@@ -175,5 +175,15 @@
   "tooltip-format": "Power Mode: {profile}",
   "on-click": "~/.config/custom_scripts/power-profile-switch.sh"
 },
+"custom/timer": {
+    "tooltip": false,
+    "min-length": 5,
+    "exec": "$HOME/.config/custom_scripts/timer.sh",
+    "on-click": "date --date='5 minutes' +%s > /var/tmp/waybar_timer",
+    "on-click-right": "echo READY > /var/tmp/waybar_timer",
+    "on-click-middle": "date --date='1 minute' +%s > /var/tmp/waybar_timer",
+    "on-scroll-up": "date --date='5 seconds' +%s > /var/tmp/waybar_timer",
+    "on-scroll-down": "date --date='30 minutes' +%s > /var/tmp/waybar_timer",
+    "interval": 1
 }
-
+}
