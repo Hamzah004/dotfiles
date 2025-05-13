@@ -1,6 +1,6 @@
 {
   "layer": "top",
-  "height": 25,
+  "height": 28,
   "spacing": 3,
   "margin-top" :2,
   "margin-right" :3,
@@ -174,5 +174,6 @@
   "format": "<span color='#1e1e2e' bgcolor='#689d6a'> {icon} </span>",
   "tooltip-format": "Power Mode: {profile}",
   "on-click": "~/.config/custom_scripts/power-profile-switch.sh"
+},
 }
-}
+
