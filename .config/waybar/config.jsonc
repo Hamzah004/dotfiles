@@ -18,6 +18,7 @@
 
   "modules-right": [
     // "disk",
+    "sway/language",
     "cpu",
     "temperature",
     "backlight",
@@ -124,7 +125,7 @@
   },
 
   "pulseaudio": {
-    "scroll-step": 1, // %, can be a float
+    // "scroll-step": 1, // %, can be a float
     "format": "<span color='#1e1e2e' bgcolor='#83a598' >   </span> {volume}%",
     "format-muted": "<span color='#1e1e2e' bgcolor='#ea6962' >   </span> {volume}%",
     "format-bluetooth": "<span color='#1e1e2e' bgcolor='#83a598' > 󰂰 </span> {volume}%",
@@ -185,5 +186,11 @@
     "on-scroll-up": "date --date='5 seconds' +%s > /var/tmp/waybar_timer",
     "on-scroll-down": "date --date='30 minutes' +%s > /var/tmp/waybar_timer",
     "interval": 1
+},
+
+"sway/language": {
+  "format": "<span color='#1e1e2e' bgcolor='#ea6962'> {short} </span>",
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+    "tooltip": false,
 }
 }

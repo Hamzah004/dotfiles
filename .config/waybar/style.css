@@ -201,3 +201,14 @@ window#waybar.hidden {
 #clock {
   color: #8ec07c;
 }
+
+/* ================================ */
+/*            language              */
+/* ================================ */
+#language {
+
+  margin: 0px 3px;
+  min-width: 25px;
+  font-size: 16px;
+  font-weight: 800;
+}
