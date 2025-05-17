@@ -14,7 +14,7 @@
     "hyprland/window",
   ],
 
-  "modules-center": ["clock","custom/timer"],
+  "modules-center": ["clock","custom/timer",],
 
   "modules-right": [
     // "disk",
@@ -26,6 +26,7 @@
     "pulseaudio",
     "battery",
     "power-profiles-daemon",
+    "custom/swaync",
     "tray"
   ],
 
@@ -88,7 +89,6 @@
 
   "tray": {
     "icon-size": 12,
-    "spacing": 3
   },
 
   "disk": {
@@ -135,7 +135,6 @@
     "tooltip": false,
     "max-volume": 100
   },
-
   "battery#bat2": {
     "bat": "BAT2"
   },
@@ -160,11 +159,32 @@
     "tooltip": false
   },
 
-  "clock": {
-    "format": "<span color='#1e1e2e' bgcolor='#8ec07c' >  </span> {:%a %d %b %H:%M:%S}",
-    "tooltip": false,
-    "interval":1,
-  },
+"clock": {
+ "format": "<span color='#1e1e2e' bgcolor='#8ec07c' >  </span> {:%H:%M}",
+        "interval":1,
+        "format-alt": "<span color='#1e1e2e' bgcolor='#8ec07c' >  </span> {:%a,%d %b,%Y(%H:%M:%S)}",
+        "tooltip-format": "\n<span size='12pt' font='MesloLGMDZ Nerd Font'>{calendar}</span>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-click-forward": "tz_up",
+                    "on-click-backward": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+    },
 
 "power-profiles-daemon": {
   "format-icons": {
@@ -192,5 +212,25 @@
   "format": "<span color='#1e1e2e' bgcolor='#ea6962'> {short} </span>",
     "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
     "tooltip": false,
-}
+},
+    "custom/swaync": {
+        "escape": true,
+        "exec": "swaync-client -swb",
+        "exec-if": "swaync-client",
+        "format": " {icon}",
+        "format-icons": {
+            "dnd-inhibited-none": " ",
+            "dnd-inhibited-notification": " ",
+            "dnd-none": " ",
+            "dnd-notification": " ",
+            "inhibited-none": " ",
+            "inhibited-notification": " ",
+            "none": " ",
+            "notification": " "
+        },
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "return-type": "json",
+        "tooltip": false
+    },
 }

@@ -127,7 +127,7 @@ window#waybar.hidden {
 /* ================================ */
 
 #tray {
-  padding: 0 6px 0 6px;
+  padding: 0 2px 0 6px;
 }
 
 /* ================================ */
@@ -180,6 +180,10 @@ window#waybar.hidden {
 #pulseaudio.muted {
   color: #ea6962;
 }
+#pulseaudio.source{
+
+  color: #83a598;
+}
 
 /* ================================ */
 /*            battery               */
@@ -206,7 +210,6 @@ window#waybar.hidden {
 /*            language              */
 /* ================================ */
 #language {
-
   margin: 0px 3px;
   min-width: 25px;
   font-size: 16px;
