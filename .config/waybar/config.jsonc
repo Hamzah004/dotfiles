@@ -194,17 +194,18 @@
   },
   "format": "<span color='#1e1e2e' bgcolor='#689d6a'> {icon} </span>",
   "tooltip-format": "Power Mode: {profile}",
-  "on-click": "~/.config/custom_scripts/power-profile-switch.sh"
+  // "on-click": "~/.config/custom_scripts/power-profile-switch.sh" // stupid me... yes I didn't need it in the first place
 },
+
 "custom/timer": {
     "tooltip": false,
     "min-length": 5,
     "exec": "$HOME/.config/custom_scripts/timer.sh",
-    "on-click": "date --date='5 minutes' +%s > /var/tmp/waybar_timer",
-    "on-click-right": "echo READY > /var/tmp/waybar_timer",
-    "on-click-middle": "date --date='1 minute' +%s > /var/tmp/waybar_timer",
-    "on-scroll-up": "date --date='5 seconds' +%s > /var/tmp/waybar_timer",
-    "on-scroll-down": "date --date='30 minutes' +%s > /var/tmp/waybar_timer",
+    "on-click": "date --date='30 minutes' +%s > /var/tmp/waybar_timer",
+    "on-click-right": "date --date='5 minutes' +%s > /var/tmp/waybar_timer",
+    "on-click-middle": "echo READY > /var/tmp/waybar_timer",
+    // "on-scroll-up": "date --date='5 seconds' +%s > /var/tmp/waybar_timer",
+    "on-scroll-down": "date --date='1 minute' +%s > /var/tmp/waybar_timer",
     "interval": 1
 },
 
