@@ -1,17 +1,15 @@
 {
   "layer": "top",
   "height": 28,
-  "spacing": 3,
+  "spacing": 1,
   "margin-top" :2,
-  "margin-right" :3,
-  "margin-left" :3,
+  "margin-right" :4,
+  "margin-left" :4,
 
   "modules-left": [
     // "custom/rofi",
     "sway/workspaces",
-    "sway/window",
-    // "hyprland/workspaces",
-    "hyprland/window",
+    "sway/window"
   ],
 
   "modules-center": ["clock","custom/timer",],
@@ -24,6 +22,7 @@
     "backlight",
     "custom/memory",
     "pulseaudio",
+    "pulseaudio#source",
     "battery",
     "power-profiles-daemon",
     "custom/swaync",
@@ -86,10 +85,10 @@
     "separate-outputs": true,
     "icon":false,
   },
-
-  "tray": {
-    "icon-size": 12,
-  },
+    "tray": {
+        "icon-size": 13,
+        "spacing": 10
+    },
 
   "disk": {
     "format": "<span color='#1e1e2e' bgcolor='#ea6962' >  </span> {free}",
@@ -97,7 +96,7 @@
   },
 
   "cpu": {
-    "format": "<span color='#1e1e2e' bgcolor='#e78a4e' >  </span> {usage}%",
+    "format": "<span color='#1e1e2e' bgcolor='#cba6f7' >  {usage}% </span>",
     "tooltip": false,
     "interval": 1
   },
@@ -107,13 +106,14 @@
     "thermal-zone": 2,
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 70,
-    "format": "<span color='#1e1e2e' bgcolor='#d8a657' > 󰴈 </span> {temperatureC}°C",
-    "format-critical": "<span color='#1e1e2e' bgcolor='#cc241d' >  </span> {temperatureC}°C",
+    "format": "<span color='#1e1e2e' bgcolor='#f5c2e7' >  {temperatureC}°C </span>",
+    "format-critical": "<span color='#1e1e2e' bgcolor='#cc241d' >  {temperatureC}°C</span>",
   },
 
   "backlight": {
     // "device": "acpi_video1",
-    "format": "<span color='#1e1e2e' bgcolor='#f6c657' > 󰞏 </span> {percent}%",
+    "format": "<span color='#1e1e2e' bgcolor='#F9A825' > {icon} {percent}% </span>",
+    "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"],
     "tooltip": false
   },
 
@@ -121,20 +121,31 @@
     "exec": "~/.config/custom_scripts/memory_usage.sh",
     "interval": 2,
     "return-type": "json",
-    "format": "<span color='#1e1e2e' bgcolor='#458588' >  </span> {}"
+    "format": "<span color='#1e1e2e' bgcolor='#f38ba8'>   {} </span>"
   },
 
-  "pulseaudio": {
+ "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
-    "format": "<span color='#1e1e2e' bgcolor='#83a598' >   </span> {volume}%",
-    "format-muted": "<span color='#1e1e2e' bgcolor='#ea6962' >   </span> {volume}%",
-    "format-bluetooth": "<span color='#1e1e2e' bgcolor='#83a598' > 󰂰 </span> {volume}%",
-    "format-bluetooth-muted": "<span color='#1e1e2e' bgcolor='#ea6962' > 󰂲 </span> {volume}%",
-    "format-source": "{volume}% ",
+    "format": "<span color='#1e1e2e' bgcolor='#83a598' >   {volume}% </span>",
+    "format-muted": "<span color='#1e1e2e' bgcolor='#ea6962' >   {volume}% </span>",
+    "format-bluetooth": "<span color='#1e1e2e' bgcolor='#83a598' > 󰂰 {volume}% </span>",
+    "format-bluetooth-muted": "<span color='#1e1e2e' bgcolor='#ea6962' > 󰂲 {volume}% </span>",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "tooltip": false,
     "max-volume": 100
   },
+
+    "pulseaudio#source": {
+        "format": "{format_source}",
+        "format-source": "<span color='#1e1e2e' bgcolor='#83a598' >  {volume}% </span>",
+        "format-source-muted": "<span color='#1e1e2e' bgcolor='#ea6962' >   {volume}% </span>",
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-click-right": "/usr/bin/pavucontrol",
+        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
+        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
+        "tooltip": false,
+    },
+
   "battery#bat2": {
     "bat": "BAT2"
   },
@@ -147,22 +158,22 @@
       "critical": 20
     },
     "format-icons": ["󰂎","󰁺","󰁻","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
-    "format": "<span color='#1e1e2e' bgcolor='#689d6a' > {icon} </span> {capacity}%",
-    "format-critical": "<span color='#1e1e2e' bgcolor='#cc241d' > {icon} </span> {capacity}%!!",
-    "format-warning": "<span color='#1e1e2e' bgcolor='#e78a4e' > {icon} </span> {capacity}%",
-    "format-full": "<span color='#1e1e2e' bgcolor='#689d6a' > {icon} </span> {capacity}%",
-    "format-charging": "<span color='#1e1e2e' bgcolor='#689d6a' > 󰂅 </span> {capacity}%",
-    "format-charging-warning": "<span color='#1e1e2e' bgcolor='#e78a4e' > 󰢝 </span> {capacity}%",
-    "format-charging-critical": "<span color='#1e1e2e' bgcolor='#cc241d' > 󰢜 </span> {capacity}%",
-    "format-plugged": "<span color='#1e1e2e' bgcolor='#689d6a' > 󰂅 </span> {capacity}%",
-    "format-alt": "<span color='#1e1e2e' bgcolor='#689d6a' > 󱧥 </span> {time}",
+    "format": "<span color='#1e1e2e' bgcolor='#689d6a' > {icon} {capacity}% </span>",
+    "format-critical": "<span color='#1e1e2e' bgcolor='#cc241d' > {icon} {capacity}% !! </span>",
+    "format-warning": "<span color='#1e1e2e' bgcolor='#e78a4e' > {icon} {capacity}% </span>",
+    "format-full": "<span color='#1e1e2e' bgcolor='#689d6a' > {icon} {capacity}% </span>",
+    "format-charging": "<span color='#1e1e2e' bgcolor='#689d6a' > 󰂅 {capacity}% </span>",
+    "format-charging-warning": "<span color='#1e1e2e' bgcolor='#e78a4e' > 󰢝 {capacity}% </span>",
+    "format-charging-critical": "<span color='#1e1e2e' bgcolor='#cc241d' > 󰢜 {capacity}% </span>",
+    "format-plugged": "<span color='#1e1e2e' bgcolor='#689d6a' > 󰂅 {capacity}% </span>",
+    "format-alt": "<span color='#1e1e2e' bgcolor='#689d6a' > 󱧥 {time} </span>",
     "tooltip": false
   },
 
 "clock": {
- "format": "<span color='#1e1e2e' bgcolor='#8ec07c' >  </span> {:%H:%M}",
+ "format": "<span color='#1e1e2e' bgcolor='#8ec07c' >  {:%H:%M} </span>",
         "interval":1,
-        "format-alt": "<span color='#1e1e2e' bgcolor='#8ec07c' >  </span> {:%a,%d %b,%Y(%H:%M:%S)}",
+        "format-alt": "<span color='#1e1e2e' bgcolor='#8ec07c' >  {:%a,%d %b,%Y(%H:%M:%S)} </span>",
         "tooltip-format": "\n<span size='12pt' font='MesloLGMDZ Nerd Font'>{calendar}</span>",
         "calendar": {
                     "mode"          : "year",
@@ -194,7 +205,6 @@
   },
   "format": "<span color='#1e1e2e' bgcolor='#689d6a'> {icon} </span>",
   "tooltip-format": "Power Mode: {profile}",
-  // "on-click": "~/.config/custom_scripts/power-profile-switch.sh" // stupid me... yes I didn't need it in the first place
 },
 
 "custom/timer": {
@@ -204,13 +214,13 @@
     "on-click": "date --date='30 minutes' +%s > /var/tmp/waybar_timer",
     "on-click-right": "echo READY > /var/tmp/waybar_timer",
     "on-click-middle": "echo READY > /var/tmp/waybar_timer",
-    "on-scroll-up": "date --date='5 minutes' +%s > /var/tmp/waybar_timer",
+    "on-scroll-up": "date --date='5 minute' +%s > /var/tmp/waybar_timer",
     "on-scroll-down": "date --date='1 minute' +%s > /var/tmp/waybar_timer",
     "interval": 1
 },
 
 "sway/language": {
-  "format": "<span color='#1e1e2e' bgcolor='#ea6962'> {short} </span>",
+  "format": "<span color='#1e1e2e' bgcolor='#eba0ac'> {short} </span>",
     "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
     "tooltip": false,
 },

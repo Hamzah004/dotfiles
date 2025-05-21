@@ -1,8 +1,8 @@
+@import url("./colors.css");
 /* ================================ */
 /*            Common CSS            */
 /* ================================ */
 * {
-  /* `otf-font-awesome` is required to be installed for icons */
   padding: 0;
   margin: 0;
   min-height: 0;
@@ -44,15 +44,17 @@ window#waybar.hidden {
 #battery,
 #battery.critical,
 #battery.warning,
+#language,
+#power-profiles-daemon,
 #clock {
   font-family: MesloLGMDZ Nerd Font;
   font-size: 16px;
-  font-weight: 800;
   color: #202020;
   background: #1e1e2e;
   /* border: 3px solid #202020; */
   /* border-radius: 3px; */
 }
+
 
 #window,
 #tray,
@@ -67,6 +69,8 @@ window#waybar.hidden {
 #battery,
 #battery.critical,
 #battery.warning,
+#language,
+#power-profiles-daemon,
 #clock {
   padding-right: 4px;
 }
@@ -79,6 +83,18 @@ window#waybar.hidden {
 /* ================================ */
 /*       workspaces module          */
 /* ================================ */
+
+#window,
+#workspaces button,
+#workspaces button:hover,
+#workspaces button.visible,
+#workspaces button.visible:hover,
+#workspaces button.active,
+#workspaces button.active:hover,
+#workspaces button.urgent{
+  font-weight: 600;
+}
+
 #workspaces {
   margin: 0px;
 }
@@ -127,7 +143,9 @@ window#waybar.hidden {
 /* ================================ */
 
 #tray {
-  padding: 0 2px 0 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	transition: none;
 }
 
 /* ================================ */
@@ -181,8 +199,10 @@ window#waybar.hidden {
   color: #ea6962;
 }
 #pulseaudio.source{
-
   color: #83a598;
+}
+#pulseaudio.source-muted {
+  color: #82a696;
 }
 
 /* ================================ */
@@ -204,14 +224,4 @@ window#waybar.hidden {
 /* ================================ */
 #clock {
   color: #8ec07c;
-}
-
-/* ================================ */
-/*            language              */
-/* ================================ */
-#language {
-  margin: 0px 3px;
-  min-width: 25px;
-  font-size: 16px;
-  font-weight: 800;
 }
