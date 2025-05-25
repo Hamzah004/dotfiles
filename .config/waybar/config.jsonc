@@ -15,6 +15,7 @@
   "modules-center": ["clock","custom/timer",],
 
   "modules-right": [
+    "custom/color-picker",
     // "disk",
     "sway/language",
     "cpu",
@@ -126,10 +127,10 @@
 
  "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
-    "format": "<span color='#1e1e2e' bgcolor='#83a598' >   {volume}% </span>",
-    "format-muted": "<span color='#1e1e2e' bgcolor='#ea6962' >   {volume}% </span>",
-    "format-bluetooth": "<span color='#1e1e2e' bgcolor='#83a598' > 󰂰 {volume}% </span>",
-    "format-bluetooth-muted": "<span color='#1e1e2e' bgcolor='#ea6962' > 󰂲 {volume}% </span>",
+    "format": "<span color='#1e1e2e' bgcolor='#89B4FA' >   {volume}% </span>",
+    "format-muted": "<span color='#1e1e2e' bgcolor='#f38ba8' >   {volume}% </span>",
+    "format-bluetooth": "<span color='#1e1e2e' bgcolor='#89B4FA' > 󰂰 {volume}% </span>",
+    "format-bluetooth-muted": "<span color='#1e1e2e' bgcolor='#f38ba8' > 󰂲 {volume}% </span>",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "tooltip": false,
     "max-volume": 100
@@ -137,8 +138,8 @@
 
     "pulseaudio#source": {
         "format": "{format_source}",
-        "format-source": "<span color='#1e1e2e' bgcolor='#83a598' >  {volume}% </span>",
-        "format-source-muted": "<span color='#1e1e2e' bgcolor='#ea6962' >   {volume}% </span>",
+        "format-source": "<span color='#1e1e2e' bgcolor='#89B4FA' >  {volume}% </span>",
+        "format-source-muted": "<span color='#1e1e2e' bgcolor='#f38ba8' >   {volume}% </span>",
         "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
         "on-click-right": "/usr/bin/pavucontrol",
         "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
@@ -158,22 +159,22 @@
       "critical": 20
     },
     "format-icons": ["󰂎","󰁺","󰁻","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
-    "format": "<span color='#1e1e2e' bgcolor='#689d6a' > {icon} {capacity}% </span>",
+    "format": "<span color='#1e1e2e' bgcolor='#a6da95' > {icon} {capacity}% </span>",
     "format-critical": "<span color='#1e1e2e' bgcolor='#cc241d' > {icon} {capacity}% !! </span>",
     "format-warning": "<span color='#1e1e2e' bgcolor='#e78a4e' > {icon} {capacity}% </span>",
-    "format-full": "<span color='#1e1e2e' bgcolor='#689d6a' > {icon} {capacity}% </span>",
-    "format-charging": "<span color='#1e1e2e' bgcolor='#689d6a' > 󰂅 {capacity}% </span>",
+    "format-full": "<span color='#1e1e2e' bgcolor='#a6da95' > {icon} {capacity}% </span>",
+    "format-charging": "<span color='#1e1e2e' bgcolor='#a6da95' > 󰂅 {capacity}% </span>",
     "format-charging-warning": "<span color='#1e1e2e' bgcolor='#e78a4e' > 󰢝 {capacity}% </span>",
     "format-charging-critical": "<span color='#1e1e2e' bgcolor='#cc241d' > 󰢜 {capacity}% </span>",
-    "format-plugged": "<span color='#1e1e2e' bgcolor='#689d6a' > 󰂅 {capacity}% </span>",
-    "format-alt": "<span color='#1e1e2e' bgcolor='#689d6a' > 󱧥 {time} </span>",
+    "format-plugged": "<span color='#1e1e2e' bgcolor='#a6da95' > 󰂅 {capacity}% </span>",
+    "format-alt": "<span color='#1e1e2e' bgcolor='#a6da95' > 󱧥 {time} </span>",
     "tooltip": false
   },
 
 "clock": {
- "format": "<span color='#1e1e2e' bgcolor='#8ec07c' >  {:%H:%M} </span>",
+ "format": "<span color='#1e1e2e' bgcolor='#a6da95' >  {:%H:%M} </span>",
         "interval":1,
-        "format-alt": "<span color='#1e1e2e' bgcolor='#8ec07c' >  {:%a,%d %b,%Y(%H:%M:%S)} </span>",
+        "format-alt": "<span color='#1e1e2e' bgcolor='#a6da95' >  {:%a,%d %b,%Y(%H:%M:%S)} </span>",
         "tooltip-format": "\n<span size='12pt' font='MesloLGMDZ Nerd Font'>{calendar}</span>",
         "calendar": {
                     "mode"          : "year",
@@ -203,7 +204,7 @@
     "balanced": " ",
     "power-saver": " "
   },
-  "format": "<span color='#1e1e2e' bgcolor='#689d6a'> {icon} </span>",
+  "format": "<span color='#1e1e2e' bgcolor='#a6da95'> {icon} </span>",
   "tooltip-format": "Power Mode: {profile}",
 },
 
@@ -244,4 +245,9 @@
         "return-type": "json",
         "tooltip": false
     },
+  "custom/color-picker" : {
+    "format": "<span color='#1e1e2e' bgcolor='#F9E2AF'> 󰃉 </span>",
+    "on-click": "~/bin/wl-color-picker clipboard",
+    "tooltip": false
+  }
 }

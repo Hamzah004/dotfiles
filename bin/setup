@@ -11,9 +11,18 @@ cargo install starship eza zoxide bat ripgrep
 # fedora setup
 sudo dnf install bat npm nodejs neovim git w3m alacritty gcc-c++ make lldb bat
 # cpp shit
-sudo dnf install clang clang-tools-extra cmake gdb ninja-build shfmt
+sudo dnf install clang \
+	clang-tools-extra \
+	cmake \
+	gdb \
+	ninja-build \
+	shfmt \
+	lshw
 # shfmt is a shell formater, used to format bash scripts in my case
+# lshw is a tool to show all the info about the device things like network, hardware... everything
 # oh my tmux setup
 cd
 git clone --single-branch https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
+# in gnome
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
