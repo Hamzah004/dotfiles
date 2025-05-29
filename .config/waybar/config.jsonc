@@ -1,6 +1,6 @@
 {
   "layer": "top",
-  "height": 28,
+  "height": 26,
   "spacing": 1,
   "margin-top" :2,
   "margin-right" :4,
@@ -15,7 +15,7 @@
   "modules-center": ["clock","custom/timer",],
 
   "modules-right": [
-    "custom/color-picker",
+    // "custom/color-picker",
     // "disk",
     "sway/language",
     "cpu",
@@ -33,7 +33,7 @@
   "custom/rofi": {
 		"format": "<span > </span>",
 		"on-click": "rofi -show drun -disable-history -show-icons",
-    "on-click-right": "~/.config/custom_scripts/power.sh",
+    "on-click-right": "$HOME/.config/custom_scripts/power.sh",
     "escape" : true,
     "tooltip" : false
 	},
@@ -119,7 +119,7 @@
   },
 
   "custom/memory": {
-    "exec": "~/.config/custom_scripts/memory_usage.sh",
+    "exec": "$HOME/.config/custom_scripts/memory_usage.sh",
     "interval": 2,
     "return-type": "json",
     "format": "<span color='#1e1e2e' bgcolor='#f38ba8'>   {} </span>"
@@ -247,7 +247,7 @@
     },
   "custom/color-picker" : {
     "format": "<span color='#1e1e2e' bgcolor='#F9E2AF'> 󰃉 </span>",
-    "on-click": "~/bin/wl-color-picker clipboard",
+    "on-click": "$HOME/bin/wl-color-picker clipboard",
     "tooltip": false
   }
 }

@@ -87,8 +87,6 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
 # alias l='ls -CF'
 
 # Alias definitions.
@@ -121,12 +119,18 @@ if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
 	export PATH="$HOME/bin:$PATH"
 fi
 
+if [[ ":$PATH:" != *":/usr/local/go/bin:"* ]]; then
+	export PATH=$PATH:/usr/local/go/bin
+fi
+
 # for Rust's Cargo toolchain to work correctly
 . "$HOME/.cargo/env"
 
-# source /home/hamzah/alacritty/extra/completions/alacritty.bash
-eval -- "$(/home/hamzah/.cargo/bin/starship init bash --print-full-init)"
-export STARSHIP_CONFIG="/home/hamzah/starship/starship.toml"
+# alacritty completion
+# source $HOME\alacritty/extra/completions/alacritty.bash
+
+eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
+export STARSHIP_CONFIG="$HOME/starship/starship.toml"
 
 # Use nvim for editing everywhere
 export EDITOR='nvim'
@@ -145,17 +149,21 @@ alias bat="/usr/bin/bat"
 
 alias ls="eza --icons=always"
 
-alias lsa="eza --icons=always --all"
+alias ll='ls -l'
 
-alias lslsg="eza --long -G --total-size --icons=always"
+alias la='ls -A'
 
-alias lslsga="eza --long -G --total-size --icons=always --all"
+alias lsa="ls --icons=always --all"
 
-alias lsls="eza --long --total-size --icons=always"
+alias lslsg="ls --long -G --total-size --icons=always -i"
 
-alias lslsa="eza --long --total-size --icons=always --all"
+alias lslsga="ls --long -G --total-size --icons=always --all -i"
 
-# ---- Zoxide (better cd) ----
+alias lsls="ls --long --total-size --icons=always -i"
+
+alias lslsa="ls --long --total-size --icons=always --all -i"
+
+# # ---- Zoxide (better cd) ----
 eval "$(zoxide init bash)"
 
 alias cd="z"
@@ -165,7 +173,7 @@ alias c="clear"
 
 # to manage dotfiles
 
-alias dotfiles='/usr/bin/git --git-dir=/home/hamzah/.dotfiles/ --work-tree=/home/hamzah'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias q="exit"
 

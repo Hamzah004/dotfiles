@@ -26,3 +26,12 @@ git clone --single-branch https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 # in gnome
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+# font
+# wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip \
+# 	cd ~/.local/share/fonts/ \
+# 	unzip Meslo.zip \
+# 	rm Meslo.zip \
+# 	fc-cahe -vf
+
+# markdown
+npm install -g markdownlint-cli

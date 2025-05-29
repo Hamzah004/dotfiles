@@ -493,7 +493,7 @@ require('lazy').setup({
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('obsidian').setup {
-        dir = '~/notes',
+        dir = '$HOME/notes',
         -- notes_subdir = 'notes',
         -- daily_notes = {
         --   folder = 'journal',
@@ -559,7 +559,7 @@ require('lazy').setup({
     'aperezdc/vim-template',
     config = function()
       -- Set template directory and ensure it exists
-      local template_dir = vim.fn.expand '~/.config/nvim/templates'
+      local template_dir = vim.fn.expand '$HOME/.config/nvim/templates'
       if vim.fn.isdirectory(template_dir) == 0 then
         vim.fn.mkdir(template_dir, 'p')
       end
@@ -641,7 +641,7 @@ int main() {
         pattern = '*.cpp',
         callback = function()
           if vim.fn.line '$' == 1 and vim.fn.getline(1) == '' then
-            vim.cmd '0r ~/.config/nvim/templates/cpp.tpl'
+            vim.cmd '0r $HOME/.config/nvim/templates/cpp.tpl'
             -- Position cursor inside solve() function
             vim.cmd 'normal! gg'
             -- vim.cmd '/solve()'
@@ -1492,7 +1492,7 @@ vim.api.nvim_create_autocmd('BufNewFile', {
   callback = function()
     -- Only insert template if file is empty
     if vim.fn.line '$' == 1 and vim.fn.getline(1) == '' then
-      vim.cmd '0r ~/.config/nvim/templates/cpp.tpl'
+      vim.cmd '0r $HOME/.config/nvim/templates/cpp.tpl'
       -- Move cursor to solve() function
       vim.cmd '/solve()'
       vim.cmd 'normal! j'
@@ -1503,7 +1503,7 @@ vim.api.nvim_create_autocmd('BufNewFile', {
   pattern = '*.c',
   callback = function()
     if vim.fn.line '$' == 1 and vim.fn.getline(1) == '' then
-      vim.cmd '0r ~/.config/nvim/templates/c.tpl'
+      vim.cmd '0r $HOME/.config/nvim/templates/c.tpl'
       vim.cmd 'normal! Gk'
     end
   end,
@@ -1523,7 +1523,7 @@ vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, { desc = 'Signature Hel
 local map = vim.keymap.set
 
 -- Note management
-map('n', '<leader>nn', ':e ~/notes/scratch.md<CR>', { desc = 'New [N]ote' })
+map('n', '<leader>nn', ':e $HOME/notes/scratch.md<CR>', { desc = 'New [N]ote' })
 map('n', '<leader>nt', ':Template<CR>', { desc = '[N]ote [T]emplate' })
 map('n', '<leader>nf', ':Goyo<CR>', { desc = '[N]ote [F]ocus mode' })
 map('n', '<leader>nl', ':Limelight!!<CR>', { desc = '[N]ote [L]imelight' })

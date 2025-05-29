@@ -84,8 +84,8 @@ family = "MesloLGMDZ Nerd Font"
 style = "Regular"
 
 [window]
-decorations = "none"
-opacity = 0.6
+# decorations = "none"
+# opacity = 0.6
 
 [window.dimensions]
 columns = 70
