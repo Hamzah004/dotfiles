@@ -2,9 +2,9 @@
 
 # Detect whether we're running on Xorg or Wayland
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-	suspend="systemctl suspend && swaylock -i ~/Picture/cool_wallpaper.png"
+	suspend="systemctl suspend && swaylock -i $HOME/Pictures/cool_wallpaper.png"
 else
-	suspend="systemctl suspend && i3lock -i ~/Pictures/cool_wallpaper.png"
+	suspend="systemctl suspend && i3lock -i $HOME/Pictures/cool_wallpaper.png"
 fi
 
 # special method for loggin out :(
@@ -23,7 +23,7 @@ fi
 # if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 #     chosen=$(printf "Log Out\nSuspend\nRestart\nPower OFF" |  fuzzel --dmenu -l 4 --width 10 --anchor top-left -p "menu : ")
 #   elif [ "$XDG_SESSION_TYPE" = "x11" ]; then
-#     chosen=$(printf "Log Out\nSuspend\nRestart\nPower OFF" | rofi -dmenu -i -theme-str '@import "~/.config/rofi/powermenu.rasi"')
+#     chosen=$(printf "Log Out\nSuspend\nRestart\nPower OFF" | rofi -dmenu -i -theme-str '@import "$HOME/.config/rofi/powermenu.rasi"')
 # fi
 
 chosen=$(printf "Log Out\nSuspend\nRestart\nPower OFF" | rofi -dmenu -i -theme-str '@import "~/.config/rofi/powermenu.rasi"')
