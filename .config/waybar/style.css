@@ -22,7 +22,7 @@ window#waybar {
 window#waybar.hidden {
   opacity: 1;
 }
-
+#custom-night-color,
 #custom-rofi,
 #custom-color-picker,
 #workspaces button,

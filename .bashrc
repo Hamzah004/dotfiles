@@ -177,4 +177,4 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias q="exit"
 
-alias w3m="w3m duckduckgo.com"
+# alias w3m="w3m duckduckgo.com"
