@@ -119,6 +119,7 @@ if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
 	export PATH="$HOME/bin:$PATH"
 fi
 
+# go lang
 if [[ ":$PATH:" != *":/usr/local/go/bin:"* ]]; then
 	export PATH=$PATH:/usr/local/go/bin
 fi
@@ -129,6 +130,7 @@ fi
 # alacritty completion
 # source $HOME\alacritty/extra/completions/alacritty.bash
 
+# starship
 eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
 export STARSHIP_CONFIG="$HOME/starship/starship.toml"
 
@@ -167,6 +169,7 @@ alias lslsa="ls --long --total-size --icons=always --all -i"
 eval "$(zoxide init bash)"
 
 alias cd="z"
+alias cdf="zi"
 
 # ---- alias for clear ----
 alias c="clear"
@@ -178,3 +181,5 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias q="exit"
 
 # alias w3m="w3m duckduckgo.com"
+
+export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"

@@ -1,9 +1,7 @@
--- leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- nerd fonts
-vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`

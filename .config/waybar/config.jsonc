@@ -59,7 +59,7 @@
   },
 
   "sway/window": {
-    "format": "<span color='#1e1e2e' bgcolor='#d3869b' > 󰣆 </span> {app_id}",
+    "format": "<span color='#1e1e2e' bgcolor='#eba0ac' > 󰣆 </span> {app_id}",
     "separate-outputs": true,
     "icon":false,
   },

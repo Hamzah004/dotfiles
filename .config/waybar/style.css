@@ -121,7 +121,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-  background: #8ec07c;
+  background: #a6da95;
 }
 
 #workspaces button.active:hover {
@@ -145,8 +145,8 @@ window#waybar.hidden {
 /* ================================ */
 
 #tray {
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 8px;
+	padding-right: 8px;
 	transition: none;
 }
 
