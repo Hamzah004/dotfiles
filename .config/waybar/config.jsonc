@@ -15,7 +15,7 @@
   "modules-center": ["clock","custom/timer",],
 
   "modules-right": [
-    // "custom/color-picker",
+    "custom/color-picker",
     // "custom/night-color",
     // "disk",
     "sway/language",

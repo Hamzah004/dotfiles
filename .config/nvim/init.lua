@@ -543,15 +543,38 @@ require('lazy').setup({
   },
 
   -- Markdown support
+  -- {
+  --   'preservim/vim-markdown',
+  --   ft = 'markdown',
+  --   init = function()
+  --     vim.g.vim_markdown_conceal = 1
+  --     vim.g.vim_markdown_conceal_code_blocks = 0
+  --   end,
+  -- },
   {
-    'preservim/vim-markdown',
+    'plasticboy/vim-markdown',
     ft = 'markdown',
-    init = function()
-      vim.g.vim_markdown_conceal = 1
+    dependencies = {
+      'godlygeek/tabular', -- Required for vim-markdown tables
+    },
+    config = function()
+      vim.g.vim_markdown_folding_disabled = 1 -- Disable folding
+      vim.g.vim_markdown_conceal = 1 -- Enable concealing
       vim.g.vim_markdown_conceal_code_blocks = 0
     end,
   },
-
+  {
+    'iamcco/markdown-preview.nvim',
+    ft = 'markdown',
+    build = function()
+      vim.fn['mkdp#util#install']()
+    end,
+    config = function()
+      vim.g.mkdp_auto_start = 0
+      vim.g.mkdp_auto_close = 1
+      vim.g.mkdp_refresh_slow = 0
+    end,
+  },
   -- Templates
   {
     'aperezdc/vim-template',
@@ -1296,6 +1319,8 @@ int main() {
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+
+    -- catppuccin
     'catppuccin/nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
@@ -1354,6 +1379,23 @@ int main() {
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'catppuccin'
     end,
+    -- TokyoNight
+
+    -- 'folke/tokyonight.nvim',
+    -- priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- config = function()
+    --   ---@diagnostic disable-next-line: missing-fields
+    --   require('tokyonight').setup {
+    --     styles = {
+    --       comments = { italic = false }, -- Disable italics in comments
+    --     },
+    --   }
+    --
+    --   -- Load the colorscheme here.
+    --   -- Like many other themes, this one has different styles, and you could load
+    --   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+    --   vim.cmd.colorscheme 'tokyonight-night'
+    -- end,
   },
 
   -- Highlight todo, notes, etc in comments
@@ -1426,7 +1468,7 @@ int main() {
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
+        additional_vim_regex_highlighting = { 'markdown' },
       },
       indent = { enable = true, disable = { 'ruby' } },
     },

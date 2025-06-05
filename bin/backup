@@ -1,13 +1,11 @@
 #!/bin/bash
 
-if [[ $# != 2 ]]
-then
+if [[ $# != 2 ]]; then
   echo "Usage: backup.sh target_directory_name destination_directory_name"
   exit
 fi
 
-if [[ ! -d $1 ]] || [[ ! -d $2 ]]
-then
+if [[ ! -d $1 ]] || [[ ! -d $2 ]]; then
   echo "Invalid directory path provided"
   exit
 fi
@@ -34,11 +32,9 @@ yesterdayTS=$(($currentTS - 24 * 60 * 60))
 
 declare -a toBackup
 
-for file in $(ls) 
-do
+for file in $(ls); do
   file_last_modified=$(date -r "$file" +%s)
-  if (( $file_last_modified > $yesterdayTS ))
-  then
+  if (($file_last_modified > $yesterdayTS)); then
     toBackup+=("$file")
   fi
 done

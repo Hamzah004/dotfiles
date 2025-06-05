@@ -95,4 +95,6 @@ element-text {
   vertical-align: 0.5;
   horizontal-align: 0.0;
 }
+//@theme "/home/liva/.config/rofi/themes/cat-mocha.rasi"
+
 @theme "/home/liva/.config/rofi/themes/cat-mocha.rasi"

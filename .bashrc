@@ -183,3 +183,10 @@ alias q="exit"
 # alias w3m="w3m duckduckgo.com"
 
 export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+
+RED='\033[0;31m'
+NC='\033[0m'
+
+printf "\n\t\t\t\t\t\t\t${RED}if you're tired of starting over...STOP GIVING UP${NC}\n"
+
+. "$HOME/.local/bin/env"
