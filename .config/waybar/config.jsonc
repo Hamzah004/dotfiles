@@ -16,7 +16,6 @@
 
   "modules-right": [
     "custom/color-picker",
-    // "custom/night-color",
     // "disk",
     "sway/language",
     "cpu",
@@ -251,9 +250,4 @@
     "on-click": "$HOME/bin/wl-color-picker clipboard",
     "tooltip": false
   },
-// "custom/night-color": {
-//   "exec": "~/.config/custom_scripts/night-color.sh",
-//   "on-click": "~/.config/custom_scripts/night-color.sh --click",
-//   "tooltip": false
-// }
 }
