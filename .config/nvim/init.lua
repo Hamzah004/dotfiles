@@ -8,8 +8,8 @@ vim.opt.undofile = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+vim.opt.updatetime = 750
+vim.opt.timeoutlen = 000
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.inccommand = 'split'
@@ -55,60 +55,129 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+
   {
-    'gbprod/substitute.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
-    config = function()
-      local map = vim.keymap.set
-      local substitute = require 'substitute'
-      substitute.setup()
-      map('n', 's', substitute.operator, { desc = 'Substitute with motion', noremap = true, silent = true })
-      map('n', 'ss', substitute.line, { desc = 'Substitute line', noremap = true, silent = true })
-      map('n', 'S', substitute.eol, { desc = 'Substitute to end of line', noremap = true, silent = true })
-      map('x', 's', substitute.visual, { desc = 'Substitute in visual mode', noremap = true, silent = true })
+    'lewis6991/gitsigns.nvim',
+    opts = {
+      signs = {
+        add = { text = '+' },
+        change = { text = '~' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
+        changedelete = { text = '~' },
+      },
+    },
+  },
+  -- 42 header
+  {
+    'Diogo-ss/42-header.nvim',
+    cmd = { 'Stdheader' },
+    keys = { '<F1>' },
+    opts = {
+      default_map = true, -- Default mapping <F1> in normal mode.
+      auto_update = true, -- Update header when saving.
+      user = 'hbani-at', -- Your user.
+      mail = 'marvin@42.fr', -- Your mail.
+      -- add other options.
+    },
+    config = function(_, opts)
+      require('42header').setup(opts)
     end,
   },
+
+  -- Neotree
   {
-    'echasnovski/mini.files',
-    version = '*',
-    event = 'VeryLazy',
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+    },
     config = function()
-      local map = vim.keymap.set
-      require('mini.files').setup {
-        options = {
-          permanent_delete = false,
-          use_as_default_explorer = true,
+      require('neo-tree').setup {
+        close_if_last_window = true,
+        popup_border_style = 'rounded',
+        enable_git_status = true,
+        enable_diagnostics = true,
+        default_component_configs = {
+          indent = {
+            indent_size = 2,
+            padding = 1,
+            with_markers = true,
+            indent_marker = '│',
+            last_indent_marker = '└',
+            highlight = 'NeoTreeIndentMarker',
+          },
+          icon = {
+            folder_closed = '',
+            folder_open = '',
+            folder_empty = '',
+            default = '',
+          },
+          modified = {
+            symbol = '[+]',
+            highlight = 'NeoTreeModified',
+          },
+          name = {
+            trailing_slash = false,
+            use_git_status_colors = true,
+          },
         },
-        mappings = {
-          close = 'q',
-          go_in = '',
-          go_in_plus = 'L',
-          go_out = '',
-          go_out_plus = 'H',
-          mark_goto = "'",
-          mark_set = 'm',
-          reset = '<BS>',
-          reveal_cwd = '.',
-          show_help = 'g?',
-          synchronize = 'S',
-          trim_left = '<',
-          trim_right = '>',
+        window = {
+          position = 'left',
+          width = 40,
+          mappings = {
+            ['<space>'] = 'none', -- disable space as it's used as leader key
+            ['<2-LeftMouse>'] = 'open',
+            ['<cr>'] = 'open',
+            ['o'] = 'open',
+            ['<esc>'] = 'cancel', -- close floating window
+            ['P'] = { 'toggle_preview', config = { use_float = true } },
+            ['l'] = 'focus_preview',
+            ['S'] = 'open_split',
+            ['s'] = 'open_vsplit',
+            ['t'] = 'open_tabnew',
+            ['w'] = 'open_with_window_picker',
+            ['C'] = 'close_node',
+            ['a'] = 'add',
+            ['A'] = 'add_directory',
+            ['d'] = 'delete',
+            ['r'] = 'rename',
+            ['y'] = 'copy_to_clipboard',
+            ['x'] = 'cut_to_clipboard',
+            ['p'] = 'paste_from_clipboard',
+            ['c'] = 'copy', -- takes text input for destination
+            ['m'] = 'move', -- takes text input for destination
+            ['q'] = 'close_window',
+            ['R'] = 'refresh',
+            ['?'] = 'show_help',
+          },
         },
-        windows = {
-          preview = true,
-          max_number = math.huge,
-          width_focus = 50,
-          width_nofocus = 50,
-          width_preview = 50,
+        filesystem = {
+          filtered_items = {
+            visible = false, -- when true, they will just be displayed differently
+            hide_dotfiles = false,
+            hide_gitignored = false,
+            hide_by_name = {
+              'node_modules',
+            },
+            never_show = { -- remains hidden even if visible is toggled to true
+              '.DS_Store',
+              'thumbs.db',
+            },
+          },
+          follow_current_file = {
+            enabled = true, -- This will find and focus the file in the active buffer every time
+          },
+          hijack_netrw_behavior = 'open_current', -- netrw disabled, opening a directory opens neo-tree
+          use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
         },
       }
 
-      map('n', '<leader>ec', ':e ~/.config/nvim/<cr>', { desc = 'Config Dir', noremap = true, silent = true })
-      -- map('n', '<leader>et', ':e ~/.local/share/nvim/mini.files/trash/<cr>', { desc = 'MiniFiles Trash', noremap = true, silent = true })
-      map('n', '<leader>eo', ':lua MiniFiles.open(vim.api.nvim_buf_get_name(0),true)<cr>', { desc = 'MiniFiles Current', noremap = true, silent = false })
-      map('n', '<leader>ee', ':lua MiniFiles.open()<cr>', { desc = 'MiniFiles Open', noremap = true, silent = false })
-      map('n', '<leader>er', ':lua MiniFiles.reset()<cr>', { desc = 'MiniFiles Reset', noremap = true, silent = false })
-      -- map('n', '<leader>es', ':e ~/Pictures/screenshots/<cr>', { desc = 'screenshots', noremap = true, silent = false })
+      -- Keymaps for neo-tree
+      vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<CR>', { desc = 'Toggle [E]xplorer (Neo-Tree)' })
+      vim.keymap.set('n', '<leader>o', '<cmd>Neotree focus<CR>', { desc = 'Focus [O]pen file in Neo-Tree' })
     end,
   },
   -- C plugins
@@ -1148,8 +1217,8 @@ vim.api.nvim_create_autocmd('BufNewFile', {
 -- See `:help vim.keymap.set()`
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, { desc = 'Signature Help' })
-
+vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, { desc = 'Signature Help' })
+vim.keymap.set('n', '<x>', '<Cmd>Neotree toggle<CR>')
 -- Keymaps for notes and tasks
 local map = vim.keymap.set
 
@@ -1229,8 +1298,9 @@ end, { desc = '[R]un with [I]nput (clean output)' })
 -----------------------------------------
 
 -- C-specific keymaps
-vim.keymap.set('n', '<leader>gc', ':w | !gcc -Wall -Wextra -Werror -g -o %:r %<CR>', { desc = '[G]CC [C]ompile' })
+vim.keymap.set('n', '<leader>gc', ':w | !clang -Wall -Wextra -Werror -g -o %:r %<CR>', { desc = '[G]CC [C]ompile' })
 vim.keymap.set('n', '<leader>gr', ':!./%:r<CR>', { desc = '[G]CC [R]un' })
+vim.keymap.set('n', '<leader>ga', ':w | !clang -Wall -Wextra -Werror -g -o %:r % && ./%:r<CR>', { desc = '[G]CC [C]ompile and Run' })
 
 -- Debugger keymaps
 vim.keymap.set('n', '<F5>', function()

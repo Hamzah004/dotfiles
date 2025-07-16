@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $# == 0 ]] then
+if [[ $# == 0 ]]; then
 	echo "this shit is worng Enter file name... please"
 	exit
 fi

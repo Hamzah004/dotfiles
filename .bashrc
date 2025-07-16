@@ -151,19 +151,19 @@ alias bat="/usr/bin/bat"
 
 alias ls="eza --icons=always"
 
-alias ll='ls -l'
+alias ll='ls -lh'
 
-alias la='ls -A'
+alias la='ls -Ah'
 
-alias lsa="ls --icons=always --all"
+alias lsa="ls --icons=always --all -h"
 
-alias lslsg="ls --long -G --total-size --icons=always -i"
+alias lslsg="ls --long -G --total-size --icons=always -i -h"
 
-alias lslsga="ls --long -G --total-size --icons=always --all -i"
+alias lslsga="ls --long -G --total-size --icons=always --all -i -h"
 
-alias lsls="ls --long --total-size --icons=always -i"
+alias lsls="ls --long --total-size --icons=always -i -h"
 
-alias lslsa="ls --long --total-size --icons=always --all -i"
+alias lslsa="ls --long --total-size --icons=always --all -i -h"
 
 # # ---- Zoxide (better cd) ----
 eval "$(zoxide init bash)"
@@ -184,3 +184,12 @@ alias q="exit"
 
 export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 fastfetch
+
+alias ascii="man ascii"
+alias cc="clang -Wall -Werror -Wextra"
+alias m='~/mini-moulinette/mini-moul.sh'
+alias n="norminette"
+alias nm="norminette; ~/mini-moulinette/mini-moul.sh 2> /dev/null"
+alias f="c_formatter_42"
+export HISTCONTROL=ignoreboth:erasedups
+alias open="xdg-open"
