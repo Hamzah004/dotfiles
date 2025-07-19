@@ -19,7 +19,6 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 HISTTIMEFORMAT="%F %T "
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -194,3 +193,9 @@ alias nm="norminette; ~/mini-moulinette/mini-moul.sh 2> /dev/null"
 alias f="c_formatter_42"
 export HISTCONTROL=ignoreboth:erasedups
 alias open="xdg-open"
+
+# git shit
+alias gs='git status'
+alias gd='git add'
+alias gt='git commit -m'
+alias gp='git push'
