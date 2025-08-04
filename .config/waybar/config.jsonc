@@ -2,18 +2,18 @@
   "layer": "top",
   "height": 26,
   "spacing": 1,
-  "margin-top" :2,
-  "margin-right" :4,
-  "margin-left" :4,
-
+  "margin-top": 2,
+  "margin-right": 4,
+  "margin-left": 4,
   "modules-left": [
     // "custom/rofi",
     "sway/workspaces",
     "sway/window"
   ],
-
-  "modules-center": ["clock","custom/timer",],
-
+  "modules-center": [
+    "clock",
+    "custom/timer"
+  ],
   "modules-right": [
     "custom/color-picker",
     // "disk",
@@ -29,15 +29,13 @@
     "custom/swaync",
     "tray"
   ],
-
   "custom/rofi": {
-		"format": "<span > </span>",
-		"on-click": "rofi -show drun -disable-history -show-icons",
+    "format": "<span > </span>",
+    "on-click": "rofi -show drun -disable-history -show-icons",
     "on-click-right": "$HOME/.config/custom_scripts/power.sh",
-    "escape" : true,
-    "tooltip" : false
-	},
-
+    "escape": true,
+    "tooltip": false
+  },
   // Modules configuration
   "sway/workspaces": {
     "disable-scroll": true,
@@ -56,13 +54,11 @@
       "8": "<span >󰚀</span>"
     }
   },
-
   "sway/window": {
     "format": "<span color='#1e1e2e' bgcolor='#eba0ac' > 󰣆 </span> {app_id}",
     "separate-outputs": true,
-    "icon":false,
+    "icon": false
   },
-
   "hyprland/workspaces": {
     "disable-scroll": true,
     "active-only": false,
@@ -80,52 +76,51 @@
       "8": "<span >󰚀</span>"
     }
   },
-
   "hyprland/window": {
     "format": "<span color='#1e1e2e' bgcolor='#d3869b' > 󰣆 </span> {class}",
     "separate-outputs": true,
-    "icon":false,
+    "icon": false
   },
-    "tray": {
-        "icon-size": 13,
-        "spacing": 10
-    },
-
+  "tray": {
+    "icon-size": 13,
+    "spacing": 10
+  },
   "disk": {
     "format": "<span color='#1e1e2e' bgcolor='#ea6962' >  </span> {free}",
     "interval": 20
   },
-
   "cpu": {
     "format": "<span color='#1e1e2e' bgcolor='#cba6f7' >  {usage}% </span>",
     "tooltip": false,
     "interval": 1
   },
-
   "temperature": {
-    "tooltip":false,
+    "tooltip": false,
     "thermal-zone": 2,
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 70,
     "format": "<span color='#1e1e2e' bgcolor='#f5c2e7' >  {temperatureC}°C </span>",
-    "format-critical": "<span color='#1e1e2e' bgcolor='#cc241d' >  {temperatureC}°C</span>",
+    "format-critical": "<span color='#1e1e2e' bgcolor='#cc241d' >  {temperatureC}°C</span>"
   },
-
   "backlight": {
     // "device": "acpi_video1",
     "format": "<span color='#1e1e2e' bgcolor='#F9A825' > {icon} {percent}% </span>",
-    "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"],
+    "format-icons": [
+      "🌑",
+      "🌘",
+      "🌗",
+      "🌖",
+      "🌕"
+    ],
     "tooltip": false
   },
-
   "custom/memory": {
     "exec": "$HOME/.config/custom_scripts/memory_usage.sh",
     "interval": 2,
     "return-type": "json",
     "format": "<span color='#1e1e2e' bgcolor='#f38ba8'>   {} </span>"
   },
-
- "pulseaudio": {
+  "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
     "format": "<span color='#1e1e2e' bgcolor='#89B4FA' >   {volume}% </span>",
     "format-muted": "<span color='#1e1e2e' bgcolor='#f38ba8' >   {volume}% </span>",
@@ -135,22 +130,19 @@
     "tooltip": false,
     "max-volume": 100
   },
-
-    "pulseaudio#source": {
-        "format": "{format_source}",
-        "format-source": "<span color='#1e1e2e' bgcolor='#89B4FA' >  {volume}% </span>",
-        "format-source-muted": "<span color='#1e1e2e' bgcolor='#f38ba8' >   {volume}% </span>",
-        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-        "on-click-right": "/usr/bin/pavucontrol",
-        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
-        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
-        "tooltip": false,
-    },
-
+  "pulseaudio#source": {
+    "format": "{format_source}",
+    "format-source": "<span color='#1e1e2e' bgcolor='#89B4FA' >  {volume}% </span>",
+    "format-source-muted": "<span color='#1e1e2e' bgcolor='#f38ba8' >   {volume}% </span>",
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-click-right": "/usr/bin/pavucontrol",
+    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
+    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
+    "tooltip": false
+  },
   "battery#bat2": {
     "bat": "BAT2"
   },
-
   "battery": {
     "interval": 1,
     "states": {
@@ -158,7 +150,18 @@
       "warning": 30,
       "critical": 20
     },
-    "format-icons": ["󰂎","󰁺","󰁻","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
     "format": "<span color='#1e1e2e' bgcolor='#a6da95' > {icon} {capacity}% </span>",
     "format-critical": "<span color='#1e1e2e' bgcolor='#cc241d' > {icon} {capacity}% !! </span>",
     "format-warning": "<span color='#1e1e2e' bgcolor='#e78a4e' > {icon} {capacity}% </span>",
@@ -170,84 +173,80 @@
     "format-alt": "<span color='#1e1e2e' bgcolor='#a6da95' > 󱧥 {time} </span>",
     "tooltip": false
   },
-
-"clock": {
- "format": "<span color='#1e1e2e' bgcolor='#a6da95' >  {:%H:%M} </span>",
-        "interval":1,
-        "format-alt": "<span color='#1e1e2e' bgcolor='#a6da95' >  {:%a,%d %b,%Y(%H:%M:%S)} </span>",
-        "tooltip-format": "\n<span size='12pt' font='MesloLGMDZ Nerd Font'>{calendar}</span>",
-        "calendar": {
-                    "mode"          : "year",
-                    "mode-mon-col"  : 3,
-                    "weeks-pos"     : "right",
-                    "on-scroll"     : 1,
-                    "format": {
-                              "months":     "<span color='#ffead3'><b>{}</b></span>",
-                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
-                              }
-                    },
-        "actions":  {
-                    "on-click-right": "mode",
-                    "on-click-forward": "tz_up",
-                    "on-click-backward": "tz_down",
-                    "on-scroll-up": "shift_up",
-                    "on-scroll-down": "shift_down"
-                    }
+  "clock": {
+    "format": "<span color='#1e1e2e' bgcolor='#a6da95' >  {:%H:%M} </span>",
+    "interval": 1,
+    "format-alt": "<span color='#1e1e2e' bgcolor='#a6da95' >  {:%a,%d %b,%Y(%H:%M:%S)} </span>",
+    "tooltip-format": "\n<span size='12pt' font='MesloLGMDZ Nerd Font'>{calendar}</span>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
     },
-
-"power-profiles-daemon": {
-  "format-icons": {
-    "performance": "",
-    "balanced": " ",
-    "power-saver": " "
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
   },
-  "format": "<span color='#1e1e2e' bgcolor='#a6da95'> {icon} </span>",
-  "tooltip-format": "Power Mode: {profile}",
-},
-
-"custom/timer": {
+  "power-profiles-daemon": {
+    "format-icons": {
+      "performance": "",
+      "balanced": " ",
+      "power-saver": " "
+    },
+    "format": "<span color='#1e1e2e' bgcolor='#a6da95'> {icon} </span>",
+    "tooltip-format": "Power Mode: {profile}"
+  },
+  "custom/timer": {
     "tooltip": false,
     "min-length": 5,
     "exec": "$HOME/.config/custom_scripts/timer.sh",
-    "on-click": "date --date='30 minutes' +%s > /var/tmp/waybar_timer",
+    "on-click": "date --date='45 minutes' +%s > /var/tmp/waybar_timer",
     "on-click-right": "echo READY > /var/tmp/waybar_timer",
     "on-click-middle": "echo READY > /var/tmp/waybar_timer",
-    "on-scroll-up": "date --date='5 minute' +%s > /var/tmp/waybar_timer",
+    "on-scroll-up": "date --date='8 minute' +%s > /var/tmp/waybar_timer",
     "on-scroll-down": "date --date='1 minute' +%s > /var/tmp/waybar_timer",
     "interval": 1
-},
-
-"sway/language": {
-  "format": "<span color='#1e1e2e' bgcolor='#eba0ac'> {short} </span>",
+  },
+  "sway/language": {
+    "format": "<span color='#1e1e2e' bgcolor='#eba0ac'> {short} </span>",
     "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
-    "tooltip": false,
-},
-    "custom/swaync": {
-        "escape": true,
-        "exec": "swaync-client -swb",
-        "exec-if": "swaync-client",
-        "format": " {icon}",
-        "format-icons": {
-            "dnd-inhibited-none": " ",
-            "dnd-inhibited-notification": " ",
-            "dnd-none": " ",
-            "dnd-notification": " ",
-            "inhibited-none": " ",
-            "inhibited-notification": " ",
-            "none": " ",
-            "notification": " "
-        },
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-        "return-type": "json",
-        "tooltip": false
+    "tooltip": false
+  },
+  "custom/swaync": {
+    "escape": true,
+    "exec": "swaync-client -swb",
+    "exec-if": "swaync-client",
+    "format": " {icon}",
+    "format-icons": {
+      "dnd-inhibited-none": " ",
+      "dnd-inhibited-notification": " ",
+      "dnd-none": " ",
+      "dnd-notification": " ",
+      "inhibited-none": " ",
+      "inhibited-notification": " ",
+      "none": " ",
+      "notification": " "
     },
-  "custom/color-picker" : {
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "return-type": "json",
+    "tooltip": false
+  },
+  "custom/color-picker": {
     "format": "<span color='#1e1e2e' bgcolor='#F9E2AF'> 󰃉 </span>",
     "on-click": "$HOME/bin/wl-color-picker clipboard",
     "tooltip": false
-  },
+  }
 }

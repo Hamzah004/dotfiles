@@ -186,10 +186,10 @@ export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p
 fastfetch
 
 alias ascii="man ascii"
-alias cc="clang -Wall -Werror -Wextra"
+alias cc="clang -Wall -Wextra -Werror"
 alias m='~/mini-moulinette/mini-moul.sh'
 alias n="norminette"
-alias nm="norminette; ~/mini-moulinette/mini-moul.sh 2> /dev/null"
+alias nm="norminette; ~/mini-moulinette/mini-moul.sh"
 alias f="c_formatter_42"
 export HISTCONTROL=ignoreboth:erasedups
 alias open="xdg-open"
@@ -197,5 +197,8 @@ alias open="xdg-open"
 # git shit
 alias gs='git status'
 alias gd='git add'
-alias gt='git commit -m'
+alias gc='git commit -m'
 alias gp='git push'
+
+alias r="nvim ~/.bashrc"
+alias s="source ~/.bashrc"
