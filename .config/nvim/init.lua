@@ -1298,9 +1298,15 @@ end, { desc = '[R]un with [I]nput (clean output)' })
 -----------------------------------------
 
 -- C-specific keymaps
-vim.keymap.set('n', '<leader>gc', ':w | !clang -Wall -Wextra -Werror -g -o %:r %<CR>', { desc = '[G]CC [C]ompile' })
-vim.keymap.set('n', '<leader>gr', ':!./%:r<CR>', { desc = '[G]CC [R]un' })
-vim.keymap.set('n', '<leader>ga', ':w | !clang -Wall -Wextra -Werror -g -o %:r % && ./%:r<CR>', { desc = '[G]CC [C]ompile and Run' })
+--
+-- Compile current file
+vim.keymap.set('n', '<leader>gc', ':w | !clang -Wall -Wextra -Werror -g -o %:r %<CR>', { desc = '[G]CC [C]ompile current file' })
+
+-- Run current file binary
+vim.keymap.set('n', '<leader>gr', ':!./%:r<CR>', { desc = '[G]CC [R]un current binary' })
+
+-- Compile current and run
+vim.keymap.set('n', '<leader>ga', ':w | !clang -Wall -Wextra -Werror -g -o %:r % && ./%:r<CR>', { desc = '[G]CC [C]ompile and Run current' })
 
 -- Debugger keymaps
 vim.keymap.set('n', '<F5>', function()
@@ -1340,3 +1346,94 @@ vim.keymap.set('n', '<C-S-h>', '<C-w>H', { desc = 'Move window to the left' })
 vim.keymap.set('n', '<C-S-l>', '<C-w>L', { desc = 'Move window to the right' })
 vim.keymap.set('n', '<C-S-j>', '<C-w>J', { desc = 'Move window to the lower' })
 vim.keymap.set('n', '<C-S-k>', '<C-w>K', { desc = 'Move window to the upper' })
+
+-- Function to compile custom C files
+local actions = require 'telescope.actions'
+local action_state = require 'telescope.actions.state'
+local pickers = require 'telescope.pickers'
+local finders = require 'telescope.finders'
+local conf = require('telescope.config').values
+
+local function compile_selected_c_files()
+  -- Get list of .c files in current directory
+  local files = vim.fn.glob('*.c', false, true)
+  if vim.tbl_isempty(files) then
+    vim.notify('No .c files found.', vim.log.levels.WARN)
+    return
+  end
+
+  pickers
+    .new({}, {
+      prompt_title = 'Select C files to compile',
+      finder = finders.new_table { results = files },
+      sorter = conf.generic_sorter {},
+      attach_mappings = function(prompt_bufnr, map)
+        actions.select_default:replace(function()
+          actions.close(prompt_bufnr)
+          local selected_entries = action_state.get_selected_entry()
+          local selection = selected_entries and { selected_entries[1] } or {}
+          vim.notify('Only one file selected. Use <Tab> to select multiple.', vim.log.levels.WARN)
+        end)
+
+        map('i', '<Tab>', actions.toggle_selection + actions.move_selection_next)
+        map('n', '<Tab>', actions.toggle_selection + actions.move_selection_next)
+
+        map('i', '<CR>', function()
+          local picker = action_state.get_current_picker(prompt_bufnr)
+          local selected = picker:get_multi_selection()
+
+          if vim.tbl_isempty(selected) then
+            local single = action_state.get_selected_entry()
+            if single then
+              table.insert(selected, single)
+            end
+          end
+
+          actions.close(prompt_bufnr)
+
+          local selected_files = vim.tbl_map(function(entry)
+            return entry.value
+          end, selected)
+
+          if vim.tbl_isempty(selected_files) then
+            vim.notify('No files selected.', vim.log.levels.WARN)
+            return
+          end
+
+          local current_file = vim.fn.expand '%:t:r' -- get current file name without extension
+          vim.ui.input({ prompt = 'Enter output binary name (default: ' .. current_file .. '): ' }, function(output)
+            output = (output and output ~= '') and output or current_file
+            local cmd = string.format('clang -Wall -Wextra -Werror -g -o %s %s', output, table.concat(selected_files, ' '))
+            vim.cmd 'write'
+
+            vim.fn.jobstart(cmd, {
+              stdout_buffered = true,
+              stderr_buffered = true,
+              on_stdout = function(_, data)
+                if data and data[1] ~= '' then
+                  vim.notify(table.concat(data, '\n'), vim.log.levels.INFO)
+                end
+              end,
+              on_stderr = function(_, data)
+                if data and data[1] ~= '' then
+                  vim.notify(table.concat(data, '\n'), vim.log.levels.ERROR)
+                end
+              end,
+              on_exit = function(_, code)
+                if code == 0 then
+                  vim.notify('✅ Compilation succeeded!', vim.log.levels.INFO)
+                else
+                  vim.notify('❌ Compilation failed with exit code ' .. code, vim.log.levels.ERROR)
+                end
+              end,
+            })
+          end)
+        end)
+
+        return true
+      end,
+    })
+    :find()
+end
+
+vim.keymap.set('n', '<leader>gC', compile_selected_c_files, { desc = '[G]CC [C]ompile selected C files' })

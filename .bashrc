@@ -196,7 +196,7 @@ alias open="xdg-open"
 
 # git shit
 alias gs='git status'
-alias gd='git add'
+alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push'
 

@@ -16,8 +16,8 @@ sudo dnf install clang \
 	cmake \
 	gdb \
 	ninja-build \
-	shfmt \
-	lshw
+	shfmt
+lshw
 # shfmt is a shell formater, used to format bash scripts in my case
 # lshw is a tool to show all the info about the device things like network, hardware... everything
 # oh my tmux setup
