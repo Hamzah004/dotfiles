@@ -119,6 +119,11 @@ if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
 	export PATH="$HOME/bin:$PATH"
 fi
 
+# add ~/libft-war-machine/ to the PATH env variable
+if [[ ":$PATH:" != *":~/libft-war-machine/:"* ]]; then
+	export PATH=$PATH:~/libft-war-machine/
+fi
+
 # go lang
 if [[ ":$PATH:" != *":/usr/local/go/bin:"* ]]; then
 	export PATH=$PATH:/usr/local/go/bin
@@ -191,6 +196,7 @@ alias m='~/mini-moulinette/mini-moul.sh'
 alias n="norminette"
 alias nm="norminette; ~/mini-moulinette/mini-moul.sh"
 alias f="c_formatter_42"
+alias fa="c_formatter_42 *.[ch]"
 export HISTCONTROL=ignoreboth:erasedups
 alias open="xdg-open"
 
