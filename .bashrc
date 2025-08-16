@@ -208,3 +208,4 @@ alias gp='git push'
 
 alias r="nvim ~/.bashrc"
 alias s="source ~/.bashrc"
+alias deepthink="nvim $HOME/libft-war-machine/deepthought"
