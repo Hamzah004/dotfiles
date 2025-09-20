@@ -1,5 +1,5 @@
-# "$schema" = 'https://starship.rs/config-schema.json'
-
+#####################################################################################################
+"$schema" = 'https://starship.rs/config-schema.json'
 format = """
 [](color_red)\
 $os\
@@ -41,6 +41,7 @@ disabled = false
 style = "bg:color_red fg:color_fg0"
 
 [os.symbols]
+Redhat = "󱄛"
 Ubuntu = "󰕈"
 SUSE = ""
 Raspbian = "󰐿"
@@ -58,7 +59,6 @@ Artix = "󰣇"
 EndeavourOS = ""
 CentOS = ""
 Debian = "󰣚 "
-Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 Pop = ""
 
@@ -172,6 +172,7 @@ command = "~/bin/countdown"
 when = "test -x ~/bin/countdown"
 format = "[$output ](bg:color_red fg:color_fg0)"
 
+#################################################################################################
 # format = """
 # [╭](fg:current_line)\
 # $os\
@@ -215,7 +216,7 @@ format = "[$output ](bg:color_red fg:color_fg0)"
 # CentOS = ''
 # Debian = ''
 # EndeavourOS = ''
-# Fedora = ''
+# Fedora = ' '
 # FreeBSD = ''
 # Garuda = ''
 # Gentoo = ''

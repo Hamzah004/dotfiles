@@ -1,4 +1,4 @@
-@import url("./colors.css");
+@import url("colors.css");
 /* ================================ */
 /*            Common CSS            */
 /* ================================ */
@@ -16,13 +16,12 @@
 /* the whole window */
 window#waybar {
   color: #fff4d2;
-  background: #1e1e2e;
+  background: @base;
 }
 
 window#waybar.hidden {
   opacity: 1;
 }
-/* #custom-night-color, */
 #custom-rofi,
 #custom-color-picker,
 #workspaces button,
@@ -51,7 +50,6 @@ window#waybar.hidden {
   font-family: MesloLGMDZ Nerd Font;
   font-size: 16px;
   color: #202020;
-  background: #1e1e2e;
   /* border: 3px solid #202020; */
   /* border-radius: 3px; */
 }
@@ -113,7 +111,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.visible {
-  background: #8ec07c;
+  background: @rosewater;
 }
 
 #workspaces button.visible:hover {
@@ -130,14 +128,6 @@ window#waybar.hidden {
 
 #workspaces button.urgent {
   background: #ea6962;
-}
-
-/* ================================ */
-/*            window                 */
-/* ================================ */
-
-#window {
-  color: #d3869b;
 }
 
 /* ================================ */
@@ -226,4 +216,16 @@ window#waybar.hidden {
 /* ================================ */
 #clock {
   color: #8ec07c;
+}
+
+#power-profiles-daemon {
+  color: #689d6a;
+}
+
+#custom-color-picker {
+	color: @yellow;
+}
+
+#language {
+color: @peach;
 }

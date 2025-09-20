@@ -44,42 +44,15 @@
     "warp-on-scroll": false,
     "format": "{icon}",
     "format-icons": {
-      "1": "<span >󰧨</span>",
-      "2": "<span >󰈹</span>",
-      "3": "<span ></span>",
-      "4": "<span ></span>",
-      "5": "<span ></span>",
-      "6": "<span >󰭛</span>",
-      "7": "<span >󱓷</span>",
-      "8": "<span >󰚀</span>"
+      "1": "󰧨",
+      "2": "󰈹",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "󰭛",
+      "7": "󱓷",
+      "8": "󰚀"
     }
-  },
-  "sway/window": {
-    "format": "<span color='#1e1e2e' bgcolor='#eba0ac' > 󰣆 </span> {app_id}",
-    "separate-outputs": true,
-    "icon": false
-  },
-  "hyprland/workspaces": {
-    "disable-scroll": true,
-    "active-only": false,
-    "all-outputs": true,
-    "warp-on-scroll": false,
-    "format": "{icon}",
-    "format-icons": {
-      "1": "<span >󰧨</span>",
-      "2": "<span >󰈹</span>",
-      "3": "<span ></span>",
-      "4": "<span ></span>",
-      "5": "<span ></span>",
-      "6": "<span >󰭛</span>",
-      "7": "<span >󱓷</span>",
-      "8": "<span >󰚀</span>"
-    }
-  },
-  "hyprland/window": {
-    "format": "<span color='#1e1e2e' bgcolor='#d3869b' > 󰣆 </span> {class}",
-    "separate-outputs": true,
-    "icon": false
   },
   "tray": {
     "icon-size": 13,
@@ -90,7 +63,7 @@
     "interval": 20
   },
   "cpu": {
-    "format": "<span color='#1e1e2e' bgcolor='#cba6f7' >  {usage}% </span>",
+    "format": "  {usage}%",
     "tooltip": false,
     "interval": 1
   },
@@ -99,12 +72,11 @@
     "thermal-zone": 2,
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 70,
-    "format": "<span color='#1e1e2e' bgcolor='#f5c2e7' >  {temperatureC}°C </span>",
-    "format-critical": "<span color='#1e1e2e' bgcolor='#cc241d' >  {temperatureC}°C</span>"
+    "format": "  {temperatureC}°C",
+    "format-critical": "  {temperatureC}°C</span>"
   },
   "backlight": {
-    // "device": "acpi_video1",
-    "format": "<span color='#1e1e2e' bgcolor='#F9A825' > {icon} {percent}% </span>",
+    "format": " {icon} {percent}%",
     "format-icons": [
       "🌑",
       "🌘",
@@ -118,22 +90,21 @@
     "exec": "$HOME/.config/custom_scripts/memory_usage.sh",
     "interval": 2,
     "return-type": "json",
-    "format": "<span color='#1e1e2e' bgcolor='#f38ba8'>   {} </span>"
+    "format": "   {}"
   },
   "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
-    "format": "<span color='#1e1e2e' bgcolor='#89B4FA' >   {volume}% </span>",
-    "format-muted": "<span color='#1e1e2e' bgcolor='#f38ba8' >   {volume}% </span>",
-    "format-bluetooth": "<span color='#1e1e2e' bgcolor='#89B4FA' > 󰂰 {volume}% </span>",
-    "format-bluetooth-muted": "<span color='#1e1e2e' bgcolor='#f38ba8' > 󰂲 {volume}% </span>",
+    "format": "   {volume}%",
+    "format-muted": "   {volume}% ",
+    "format-bluetooth": " 󰂰 {volume}% ",
+    "format-bluetooth-muted": " 󰂲 {volume}% ",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "tooltip": false,
     "max-volume": 100
   },
   "pulseaudio#source": {
     "format": "{format_source}",
-    "format-source": "<span color='#1e1e2e' bgcolor='#89B4FA' >  {volume}% </span>",
-    "format-source-muted": "<span color='#1e1e2e' bgcolor='#f38ba8' >   {volume}% </span>",
+    "format-source": "  {volume}%",
+    "format-source-muted": "   {volume}%",
     "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
     "on-click-right": "/usr/bin/pavucontrol",
     "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
@@ -162,21 +133,21 @@
       "󰂂",
       "󰁹"
     ],
-    "format": "<span color='#1e1e2e' bgcolor='#a6da95' > {icon} {capacity}% </span>",
-    "format-critical": "<span color='#1e1e2e' bgcolor='#cc241d' > {icon} {capacity}% !! </span>",
-    "format-warning": "<span color='#1e1e2e' bgcolor='#e78a4e' > {icon} {capacity}% </span>",
-    "format-full": "<span color='#1e1e2e' bgcolor='#a6da95' > {icon} {capacity}% </span>",
-    "format-charging": "<span color='#1e1e2e' bgcolor='#a6da95' > 󰂅 {capacity}% </span>",
-    "format-charging-warning": "<span color='#1e1e2e' bgcolor='#e78a4e' > 󰢝 {capacity}% </span>",
-    "format-charging-critical": "<span color='#1e1e2e' bgcolor='#cc241d' > 󰢜 {capacity}% </span>",
-    "format-plugged": "<span color='#1e1e2e' bgcolor='#a6da95' > 󰂅 {capacity}% </span>",
-    "format-alt": "<span color='#1e1e2e' bgcolor='#a6da95' > 󱧥 {time} </span>",
+    "format": " {icon} {capacity}%",
+    "format-critical": " {icon} {capacity}% !!",
+    "format-warning": " {icon} {capacity}%",
+    "format-full": " {icon} {capacity}%",
+    "format-charging": " 󰂅 {capacity}%",
+    "format-charging-warning": " 󰢝 {capacity}%",
+    "format-charging-critical": " 󰢜 {capacity}%",
+    "format-plugged": " 󰂅 {capacity}%",
+    "format-alt": " 󱧥 {time}",
     "tooltip": false
   },
   "clock": {
-    "format": "<span color='#1e1e2e' bgcolor='#a6da95' >  {:%H:%M} </span>",
+    "format": "  {:%H:%M} ",
     "interval": 1,
-    "format-alt": "<span color='#1e1e2e' bgcolor='#a6da95' >  {:%a,%d %b,%Y(%H:%M:%S)} </span>",
+    "format-alt": "  {:%a,%d %b,%Y(%H:%M:%S)} ",
     "tooltip-format": "\n<span size='12pt' font='MesloLGMDZ Nerd Font'>{calendar}</span>",
     "calendar": {
       "mode": "year",
@@ -205,7 +176,7 @@
       "balanced": " ",
       "power-saver": " "
     },
-    "format": "<span color='#1e1e2e' bgcolor='#a6da95'> {icon} </span>",
+    "format": " {icon}",
     "tooltip-format": "Power Mode: {profile}"
   },
   "custom/timer": {
@@ -220,7 +191,7 @@
     "interval": 1
   },
   "sway/language": {
-    "format": "<span color='#1e1e2e' bgcolor='#eba0ac'> {short} </span>",
+    "format": " {short} ",
     "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
     "tooltip": false
   },
@@ -245,7 +216,7 @@
     "tooltip": false
   },
   "custom/color-picker": {
-    "format": "<span color='#1e1e2e' bgcolor='#F9E2AF'> 󰃉 </span>",
+    "format": "󰃉 ",
     "on-click": "$HOME/bin/wl-color-picker clipboard",
     "tooltip": false
   }
