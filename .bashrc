@@ -153,24 +153,6 @@ alias rm="trash-put"
 # ---- bat (better cat) ----
 alias bat="/usr/bin/bat"
 
-# ---- Eza (better ls) -----
-
-alias ls="eza --icons=always"
-
-alias ll='ls -lh'
-
-alias la='ls -Ah'
-
-alias lsa="ls --icons=always --all -h"
-
-alias lslsg="ls --long -G --total-size --icons=always -i -h"
-
-alias lslsga="ls --long -G --total-size --icons=always --all -i -h"
-
-alias lsls="ls --long --total-size --icons=always -i -h"
-
-alias lslsa="ls --long --total-size --icons=always --all -i -h"
-
 # # ---- Zoxide (better cd) ----
 eval "$(zoxide init bash)"
 
@@ -223,3 +205,21 @@ export NVM_DIR="$HOME/.nvm"
 # shellcheck source=.config/nvim-Lazyman/.nvimsbind
 [ -f ~/.config/nvim-Lazyman/.nvimsbind ] && source ~/.config/nvim-Lazyman/.nvimsbind
 alias lazy="nvim-LazyVim"
+
+# ---- Eza (better ls) -----
+
+alias ls="eza --icons=always"
+
+alias ll='ls -lh'
+
+alias la='ls -Ah'
+
+alias lsa="ls --icons=always --all -h"
+
+alias lslsg="ls --long -G --total-size --icons=always -i -h"
+
+alias lslsga="ls --long -G --total-size --icons=always --all -i -h"
+
+alias lsls="ls --long --total-size --icons=always -i -h"
+
+alias lslsa="ls --long --total-size --icons=always --all -i -h"
