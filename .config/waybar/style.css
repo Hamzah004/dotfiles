@@ -16,7 +16,7 @@
 /* the whole window */
 window#waybar {
   color: #fff4d2;
-  background: @base;
+  background: #1B182C;
 }
 
 window#waybar.hidden {

@@ -6,15 +6,29 @@ index = 16
 color = "#f5e0dc"
 index = 17
 
+[colors.primary]
+background = "0x1b182c"
+foreground = "0xcbe3e7"
+
+[colors.normal]
+black   = "0x100e23"
+red     = "0xff8080"
+green   = "0x95ffa4"
+yellow  = "0xffe9aa"
+blue    = "0x91ddff"
+magenta = "0xc991e1"
+cyan    = "0xaaffe4"
+white   = "0xcbe3e7"
+
 [colors.bright]
-black = "#000814"
-blue = "#89b4fa"
-cyan = "#94e2d5"
-green = "#a6e3a1"
-magenta = "#f5c2e7"
-red = "#f38ba8"
-white = "#a6adc8"
-yellow = "#f9e2af"
+black   = "0x565575"
+red     = "0xff5458"
+green   = "0x62d196"
+yellow  = "0xffb378"
+blue    = "0x65b2ff"
+magenta = "0x906cff"
+cyan    = "0x63f2f1"
+white   = "0xa6b3cc"
 
 [colors.cursor]
 cursor = "#f5e0dc"
@@ -31,22 +45,6 @@ foreground = "#1e1e2e"
 [colors.hints.start]
 background = "#f9e2af"
 foreground = "#1e1e2e"
-
-[colors.normal]
-black = "#45475a"
-blue = "#89b4fa"
-cyan = "#94e2d5"
-green = "#a6e3a1"
-magenta = "#f5c2e7"
-red = "#f38ba8"
-white = "#bac2de"
-yellow = "#f9e2af"
-
-[colors.primary]
-background = "#1e1e2e"
-bright_foreground = "#cdd6f4"
-dim_foreground = "#7f849c"
-foreground = "#cdd6f4"
 
 [colors.search.focused_match]
 background = "#a6e3a1"
@@ -68,7 +66,7 @@ text = "#1e1e2e"
 term = "xterm-256color"
 
 [font]
-size = 14
+size = 12
 
 [font.bold]
 family = "MesloLGMDZ Nerd Font"

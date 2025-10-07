@@ -1,26 +1,15 @@
 #####################################################################################################
 "$schema" = 'https://starship.rs/config-schema.json'
 format = """
-[](color_red)\
-$os\
-$custom\
-[](bg:color_yellow fg:color_red)\
 $directory\
-[](fg:color_yellow bg:color_aqua)\
 $git_branch\
-[](fg:color_aqua bg:color_blue)\
+$git_status\
 $c\
 $java\
 $kotlin\
 $python\
 $dart\
-[](fg:color_blue bg:color_bg3)\
 $docker_context\
-[](fg:color_bg3 bg:color_bg1)\
-$time\
-[](fg:color_bg1)\
-$fill\
-$cmd_duration\
 $line_break$character"""
 
 palette = 'catppuccin'
@@ -40,7 +29,7 @@ color_black = '#080808'
 
 [os]
 disabled = false
-style = "bg:color_red fg:color_fg0"
+style = "fg:color_red"
 
 [os.symbols]
 Redhat = "󱄛"
@@ -71,7 +60,7 @@ style_root = "bg:color_orange fg:color_fg0"
 format = '[ $user ]($style)'
 
 [directory]
-style = "fg:color_fg0 bg:color_yellow"
+style = "fg:color_yellow"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -86,11 +75,11 @@ truncation_symbol = "…/"
 [git_branch]
 symbol = ""
 style = "bg:color_aqua"
-format = '[[ $symbol $branch ](fg:color_fg0 bg:color_aqua)]($style)'
+format = '[[ $symbol $branch ](fg:color_aqua)]($style)'
 
 [git_status]
 style = "bg:color_aqua"
-format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)'
+format = '[[($all_status$ahead_behind )](fg:color_aqua)]($style)'
 
 [nodejs]
 symbol = ""
@@ -100,7 +89,7 @@ format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 [c]
 symbol = " "
 style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+format = '[[ $symbol( $version) ](fg:color_blue)]($style)'
 
 [rust]
 symbol = ""
@@ -135,12 +124,12 @@ format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 [python]
 symbol = ""
 style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+format = '[[ $symbol( $version) ](fg:color_blue)]($style)'
 
 [dart]
 symbol = ""
 style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+format = '[[ $symbol( $version) ](fg:color_blue)]($style)'
 
 [docker_context]
 symbol = ""
@@ -155,7 +144,7 @@ format = '[[ $symbol( $environment) ](fg:#83a598 bg:color_bg3)]($style)'
 disabled = false
 time_format = "%R"
 style = "bg:color_bg1"
-format = '[[  $time ](fg:color_fg0 bg:color_bg1)]($style)'
+format = '[[  $time ](fg:white)]($style)'
 
 [line_break]
 disabled = false
@@ -172,7 +161,7 @@ vimcmd_visual_symbol = '[](bold fg:color_yellow)'
 [custom.countdown]
 command = "~/bin/countdown"
 when = "test -x ~/bin/countdown"
-format = "[$output ](bg:color_red fg:color_fg0)"
+format = "[$output ](fg:color_red)"
 
 [cmd_duration]
 min_time = 500

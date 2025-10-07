@@ -140,11 +140,11 @@ eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
 export STARSHIP_CONFIG="$HOME/starship/starship.toml"
 
 # Use nvim for editing everywhere
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='nvim-LazyVim'
+export VISUAL='nvim-LazyVim'
 
 # Use vim-style editing in the shell
-set -o vi
+# set -o vi
 
 alias brightup="brightnessctl set +5%"
 alias brightdown="brightnessctl set 5%-"
@@ -188,23 +188,23 @@ alias gc='git commit -m'
 alias gp='git push'
 alias gd='git diff'
 
-alias r="nvim ~/.bashrc"
+alias r="nvim-LazyVim ~/.bashrc"
 alias s="source ~/.bashrc"
 alias deepthink="nvim $HOME/libft-war-machine/deepthought"
 
 # alias for freeCad
 alias freecad="flatpak run org.freecad.FreeCAD"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 # Source the Lazyman shell initialization for aliases and nvims selector
 # shellcheck source=.config/nvim-Lazyman/.lazymanrc
 [ -f ~/.config/nvim-Lazyman/.lazymanrc ] && source ~/.config/nvim-Lazyman/.lazymanrc
 # Source the Lazyman .nvimsbind for nvims key binding
 # shellcheck source=.config/nvim-Lazyman/.nvimsbind
 [ -f ~/.config/nvim-Lazyman/.nvimsbind ] && source ~/.config/nvim-Lazyman/.nvimsbind
-alias lazy="nvim-LazyVim"
+alias shit="nvim-LazyVim"
 
 # ---- Eza (better ls) -----
 
