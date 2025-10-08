@@ -224,6 +224,7 @@
   "custom/countdown": {
     "tooltip": false,
     "min-length": 5,
-    "exec": "$HOME/bin/countdown",
+	"interval": 86400,
+    "exec": "$HOME/bin/countdown"
   },
 }
