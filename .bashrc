@@ -204,7 +204,7 @@ alias freecad="flatpak run org.freecad.FreeCAD"
 # Source the Lazyman .nvimsbind for nvims key binding
 # shellcheck source=.config/nvim-Lazyman/.nvimsbind
 [ -f ~/.config/nvim-Lazyman/.nvimsbind ] && source ~/.config/nvim-Lazyman/.nvimsbind
-alias shit="nvim-LazyVim"
+alias lazy="nvim-LazyVim"
 
 # ---- Eza (better ls) -----
 
