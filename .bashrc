@@ -223,3 +223,5 @@ alias lslsga="ls --long -G --total-size --icons=always --all -i -h"
 alias lsls="ls --long --total-size --icons=always -i -h"
 
 alias lslsa="ls --long --total-size --icons=always --all -i -h"
+  export PATH=/home/liva/.cargo/bin:/home/liva/bin:/home/liva/development/flutter/bin:/usr/local/bin:/usr/bin:/var/lib/snapd/snap/bin:/home/liva/libft-war-machine/:/usr/local/go/bin:/home/liva/.local/bin:/home/liva/.pub-cache/bin
+

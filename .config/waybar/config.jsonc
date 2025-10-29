@@ -7,8 +7,8 @@
   "margin-left": 4,
   "modules-left": [
     // "custom/rofi",
-    "sway/workspaces",
-	"custom/countdown"
+    "sway/workspaces"
+	// "custom/countdown"
     // "sway/window"
   ],
   "modules-center": [

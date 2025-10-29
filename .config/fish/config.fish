@@ -86,12 +86,9 @@ if test -x $HOME/.cargo/bin/starship
     set -gx STARSHIP_CONFIG $HOME/starship/starship.toml
 end
 
-# Set default editor to nvim
-set -gx EDITOR nvim
-set -gx VISUAL nvim
-
-# Set vi mode editing in Fish
-fish_vi_key_bindings
+# # Set default editor to nvim
+# set -gx EDITOR nvim
+# set -gx VISUAL nvim
 
 # Aliases
 alias brightup='brightnessctl set +5%'
