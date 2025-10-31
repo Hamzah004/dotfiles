@@ -137,7 +137,7 @@
         "break",
         {
             "type": "custom",
-            "format": "if you're tired of starting over...STOP GIVING UP",
+            "format": "“If you want to be extraordinary, you have to do extraordinary things.”",
             "outputColor": "blue"
         },
     ]

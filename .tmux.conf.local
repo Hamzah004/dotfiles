@@ -103,7 +103,7 @@ tmux_conf_theme_colour_14="#080808"   # dark gray
 tmux_conf_theme_colour_15="#080808"   # dark gray
 tmux_conf_theme_colour_16="#D62828"   # red
 tmux_conf_theme_colour_17="#e4e4e4"   # white
-tmux_conf_theme_colour_18="#1E1E2E"
+tmux_conf_theme_colour_18="#1B182C"
 tmux_conf_theme_colour_19="#89B4FA"
 
 # default theme (ansi)
