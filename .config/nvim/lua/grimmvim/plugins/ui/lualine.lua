@@ -1,18 +1,18 @@
 -- define colors
 local colors = {
-	blue = "#83a598",
-	green = "#8ec07c",
-	violet = "#d3869b",
-	yellow = "#d8a657",
-	red = "#FF4A4A",
-	cream = "#fff4d2",
-	black = "#1d1d1d",
-	grey = "#393939",
-	dark = "#292929",
+  blue = "#7aa2f7",
+  green = "#9ece6a",
+  violet = "#bb9af7",
+  yellow = "#e0af68",
+  red = "#f7768e",
+  cream = "#c0caf5",
+  black = "#1a1b26",
+  grey = "#414868",
+  dark = "#24283b",
 }
 
 -- custom modifications
-local gruv_material = {
+local tokyonight = {
 	normal = {
 		a = { bg = colors.dark, fg = colors.cream, gui = "bold" },
 		b = { bg = colors.grey, fg = colors.cream, gui = "bold" },
@@ -51,7 +51,7 @@ return {
 	event = { "VeryLazy" },
 	opts = {
 		options = {
-			theme = gruv_material,
+			theme = tokyonight,
 			component_separators = { left = "│", right = "│" },
 			section_separators = { left = "", right = "" },
 			disabled_filetypes = { "snacks_dashboard" },
@@ -92,7 +92,7 @@ return {
 			lualine_y = {
 				"searchcount",
 				"selectioncount",
-				"encoding",
+				-- "encoding",
 				"filetype",
 			},
 			lualine_z = {
