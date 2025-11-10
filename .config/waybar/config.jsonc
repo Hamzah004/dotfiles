@@ -16,9 +16,9 @@
     "custom/timer"
   ],
   "modules-right": [
-    "custom/color-picker",
     // "disk",
     "sway/language",
+    "custom/color-picker",
     "cpu",
     "temperature",
     "backlight",
@@ -42,18 +42,18 @@
     "disable-scroll": true,
     "active-only": false,
     "all-outputs": true,
-    "warp-on-scroll": false,
-    "format": "{icon}",
-    "format-icons": {
-      "1": "󰧨",
-      "2": "󰈹",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "󰭛",
-      "7": "󱓷",
-      "8": "󰚀"
-    }
+    "warp-on-scroll": false
+    // "format": "{icon}"
+    // "format-icons": {
+    //   "1": "󰧨",
+    //   "2": "󰈹",
+    //   "3": "",
+    //   "4": "",
+    //   "5": "",
+    //   "6": "󰭛",
+    //   "7": "󱓷",
+    //   "8": "󰚀"
+    // }
   },
   "tray": {
     "icon-size": 13,
@@ -192,7 +192,7 @@
     "interval": 1
   },
   "sway/language": {
-    "format": " {short} ",
+    "format": "{short}",
     "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
     "tooltip": false
   },
@@ -217,14 +217,14 @@
     "tooltip": false
   },
   "custom/color-picker": {
-    "format": "󰃉 ",
+    "format": " 󰃉",
     "on-click": "$HOME/bin/wl-color-picker clipboard",
     "tooltip": false
   },
   "custom/countdown": {
     "tooltip": false,
     "min-length": 5,
-	"interval": 1,
+		"interval": 1,
     "exec": "$HOME/bin/countdown"
   }
 }
