@@ -16,7 +16,7 @@ return {
     end,
   },
 
-  { 'junegunn/limelight.vim' },
+
   { 'junegunn/goyo.vim' },
 
   {

@@ -90,7 +90,7 @@ map("n", "<leader>px", ":close<CR>", { desc = "Close split", noremap = true, sil
 map("n", "<leader>po", ":only<CR>", { desc = "Single Pane", noremap = true, silent = false })
 
 -- Toggle Term
-map("n", "<leader>t", ":sp<bar>term<cr>:resize 10<cr>", { desc = "Split Terminal", noremap = true, silent = true })
+map("n", "<leader>t", ":ToggleTerm<cr>", { desc = "Toggle Floating Terminal", noremap = true, silent = true })
 
 -- add ; at the end of the line
 map("i", "<C-;>", "<esc>A;<esc>i", { desc = "semicolon at the end", noremap = true, silent = true })
@@ -128,9 +128,9 @@ map(
 -- Keymaps for notes and tasks
 -- Note management
 map("n", "<leader>nn", ":e ~/notes/scratch.md<CR>", { desc = "New [N]ote" })
-map("n", "<leader>nt", ":Template<CR>", { desc = "[N]ote [T]emplate" })
+
 map("n", "<leader>nf", ":Goyo<CR>", { desc = "[N]ote [F]ocus mode" })
-map("n", "<leader>nl", ":Limelight!!<CR>", { desc = "[N]ote [L]imelight" })
+
 
 -- 42 C Formatter
 map("n", "<leader>Ff", ":CFormat42<cr>", { desc = "42 Format", noremap = true, silent = true })
