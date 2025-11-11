@@ -1,3 +1,16 @@
+
+-- toggle virtual_text for LSP diagnostics
+function ToggleVirtualText()
+	local config = vim.diagnostic.config()
+	config.virtual_text = not config.virtual_text
+	vim.diagnostic.config(config)
+	if config.virtual_text then
+		print("Virtual text enabled")
+	else
+		print("Virtual text disabled")
+	end
+end
+
 -- toggle conceallevel
 function ToggleConcealLevel()
 	if vim.wo.conceallevel == 0 then

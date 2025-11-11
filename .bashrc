@@ -170,7 +170,7 @@ alias q="exit"
 # alias w3m="w3m duckduckgo.com"
 
 export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-fastfetch
+# fastfetch
 
 alias ascii="man ascii"
 alias gg="clang -Wall -Wextra -Werror"
@@ -188,23 +188,23 @@ alias gc='git commit -m'
 alias gp='git push'
 alias gd='git diff'
 
-alias r="nvim-LazyVim ~/.bashrc"
+alias r="nvim ~/.bashrc"
 alias s="source ~/.bashrc"
 alias deepthink="nvim $HOME/libft-war-machine/deepthought"
 
 # alias for freeCad
 alias freecad="flatpak run org.freecad.FreeCAD"
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-# Source the Lazyman shell initialization for aliases and nvims selector
-# shellcheck source=.config/nvim-Lazyman/.lazymanrc
-[ -f ~/.config/nvim-Lazyman/.lazymanrc ] && source ~/.config/nvim-Lazyman/.lazymanrc
-# Source the Lazyman .nvimsbind for nvims key binding
-# shellcheck source=.config/nvim-Lazyman/.nvimsbind
-[ -f ~/.config/nvim-Lazyman/.nvimsbind ] && source ~/.config/nvim-Lazyman/.nvimsbind
-alias lazy="nvim-LazyVim"
+# # export NVM_DIR="$HOME/.nvm"
+# # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+# # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# # Source the Lazyman shell initialization for aliases and nvims selector
+# # shellcheck source=.config/nvim-Lazyman/.lazymanrc
+# [ -f ~/.config/nvim-Lazyman/.lazymanrc ] && source ~/.config/nvim-Lazyman/.lazymanrc
+# # Source the Lazyman .nvimsbind for nvims key binding
+# # shellcheck source=.config/nvim-Lazyman/.nvimsbind
+# [ -f ~/.config/nvim-Lazyman/.nvimsbind ] && source ~/.config/nvim-Lazyman/.nvimsbind
+# # alias lazy="nvim-LazyVim"
 
 # ---- Eza (better ls) -----
 
@@ -223,5 +223,5 @@ alias lslsga="ls --long -G --total-size --icons=always --all -i -h"
 alias lsls="ls --long --total-size --icons=always -i -h"
 
 alias lslsa="ls --long --total-size --icons=always --all -i -h"
-  export PATH=/home/liva/.cargo/bin:/home/liva/bin:/home/liva/development/flutter/bin:/usr/local/bin:/usr/bin:/var/lib/snapd/snap/bin:/home/liva/libft-war-machine/:/usr/local/go/bin:/home/liva/.local/bin:/home/liva/.pub-cache/bin
 
+# export PATH=/home/liva/.cargo/bin:/home/liva/bin:/home/liva/development/flutter/bin:/usr/local/bin:/usr/bin:/var/lib/snapd/snap/bin:/home/liva/libft-war-machine/:/usr/local/go/bin:/home/liva/.local/bin:/home/liva/.pub-cache/bin

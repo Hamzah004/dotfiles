@@ -68,6 +68,12 @@ map(
 	":lua ToggleConcealLevel()<cr>",
 	{ desc = "Toggle Conceallevel", noremap = true, silent = false }
 )
+map(
+	"n",
+	"<leader>ov",
+	":lua ToggleVirtualText()<cr>",
+	{ desc = "Toggle Virtual Text", noremap = true, silent = false }
+)
 
 -- Buffers
 map("n", "<Tab>", ":bnext<cr>", { desc = "Next Buffer", noremap = true, silent = true })

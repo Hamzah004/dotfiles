@@ -189,13 +189,14 @@ window#waybar.hidden {
 }
 
 #pulseaudio.muted {
-  color: @volume-muted;
+  color: #ea6962;
 }
 #pulseaudio.source{
   color: @primary;
 }
+
 #pulseaudio.source-muted {
-  color: @volume-muted;
+  color: @primary;
 }
 
 /* ================================ */
@@ -234,5 +235,4 @@ color: @foreground-alt;
 #custom-countdown {
    padding: 0 5px;
 	 margin: 1px;
-	color: @tertiary;
 }
