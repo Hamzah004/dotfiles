@@ -7,6 +7,41 @@ return {
 
 		local set = vim.keymap.set
 
+		local mouse_enabled = false
+		local function enable_mouse_support()
+			set("n", "<c-leftmouse>", mc.handleMouse)
+			set("n", "<c-leftdrag>", mc.handleMouseDrag)
+			set("n", "<c-leftrelease>", mc.handleMouseRelease)
+			mouse_enabled = true
+			vim.notify("Multicursor mouse support enabled", vim.log.levels.INFO, { title = "Multicursor" })
+		end
+
+		local function disable_mouse_support()
+			pcall(vim.keymap.del, "n", "<c-leftmouse>")
+			pcall(vim.keymap.del, "n", "<c-leftdrag>")
+			pcall(vim.keymap.del, "n", "<c-leftrelease>")
+			mouse_enabled = false
+			vim.notify("Multicursor mouse support disabled", vim.log.levels.INFO, { title = "Multicursor" })
+		end
+
+		local function toggle_mouse_support()
+			if mouse_enabled then
+				disable_mouse_support()
+			else
+				enable_mouse_support()
+			end
+		end
+
+		set("n", "<leader>mm", toggle_mouse_support, { desc = "Multi-cursor toggle mouse" })
+
+		set("n", "<A-j>", function()
+			mc.lineAddCursor(1)
+		end, { desc = "Multi-cursor add cursor below" })
+		set("n", "<A-k>", function()
+			mc.lineAddCursor(-1)
+		end, { desc = "Multi-cursor add cursor above" })
+
+
 		-- Add or skip adding a new cursor by matching word/selection
 		set({ "n", "x" }, "<leader>mn", function()
 			mc.matchAddCursor(1)
@@ -20,11 +55,6 @@ return {
 		set({ "n", "x" }, "<leader>mS", function()
 			mc.matchSkipCursor(-1)
 		end, { desc = "Multi-cursor skip prev match" })
-
-		-- Add and remove cursors with control + left click.
-		set("n", "<c-leftmouse>", mc.handleMouse)
-		set("n", "<c-leftdrag>", mc.handleMouseDrag)
-		set("n", "<c-leftrelease>", mc.handleMouseRelease)
 
 		-- Disable and enable cursors.
 		set({ "n", "x" }, "<leader>mq", mc.toggleCursor, { desc = "Multi-cursor toggle" })
