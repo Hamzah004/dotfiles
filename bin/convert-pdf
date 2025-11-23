@@ -1,13 +1,15 @@
 #!/bin/bash
 
-if [[ $# == 0 ]]; then
-	echo "this shit is worng Enter file name... please"
-	exit
-fi
+set -e
 
-echo "starting convert process..."
+# if [[ $# == 0 ]]; then
+# 	echo "this shit is worng Enter file name... please"
+# 	exit
+# fi
+#
+# echo "starting convert process..."
+#
+# file=$1
 
-file=$1
-
-libreoffice --headless --convert-to pdf $file
+libreoffice --headless --convert-to pdf *.{doc,docx,ppt,pptx} 2> /dev/null
 echo "Done!!!"
