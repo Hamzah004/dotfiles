@@ -66,7 +66,7 @@ text = "#1e1e2e"
 term = "xterm-256color"
 
 [font]
-size = 12
+size = 11
 
 [font.bold]
 family = "MesloLGMDZ Nerd Font"

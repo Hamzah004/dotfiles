@@ -22,7 +22,7 @@ opt.virtualedit = "block"
 
 opt.wrap = false
 opt.number = true
-opt.relativenumber = true
+-- opt.relativenumber = true
 opt.cursorline = false
 opt.cursorcolumn = false
 opt.signcolumn = "yes"

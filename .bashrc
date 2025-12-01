@@ -144,7 +144,7 @@ export EDITOR='nvim-LazyVim'
 export VISUAL='nvim-LazyVim'
 
 # Use vim-style editing in the shell
-# set -o vi
+set -o vi
 
 alias brightup="brightnessctl set +5%"
 alias brightdown="brightnessctl set 5%-"
@@ -225,8 +225,8 @@ alias lsls="ls --long --total-size --icons=always -i -h"
 alias lslsa="ls --long --total-size --icons=always --all -i -h"
 
 # export PATH=/home/liva/.cargo/bin:/home/liva/bin:/home/liva/development/flutter/bin:/usr/local/bin:/usr/bin:/var/lib/snapd/snap/bin:/home/liva/libft-war-machine/:/usr/local/go/bin:/home/liva/.local/bin:/home/liva/.pub-cache/bin
-alias copilot="copilot --banner"
-alias icat="kitten icat"
+# alias copilot="copilot --banner"
+# alias icat="kitten icat"
 
 # uv
 export PATH="/home/liva/.local/bin:$PATH"

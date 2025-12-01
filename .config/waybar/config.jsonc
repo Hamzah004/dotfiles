@@ -1,27 +1,22 @@
 {
   "layer": "top",
-  "height": 26,
-  "spacing": 1,
-  "margin-top": 2,
-  "margin-right": 4,
-  "margin-left": 4,
+  "height": 28,
+  "spacing": 2,
+  // "margin-top": 4,
+  // "margin-right": 8,
+  // "margin-left": 8,
   "modules-left": [
-    // "custom/rofi",
     "sway/workspaces"
-	// "custom/countdown"
-    // "sway/window"
   ],
   "modules-center": [
     "clock",
     "custom/timer"
   ],
   "modules-right": [
-    // "disk",
-    "sway/language",
     "custom/color-picker",
-    "cpu",
-    "temperature",
+    "sway/language",
     "backlight",
+    "cpu",
     "custom/memory",
     "pulseaudio",
     "pulseaudio#source",
@@ -30,95 +25,59 @@
     "custom/swaync",
     "tray"
   ],
-  "custom/rofi": {
-    "format": "<span > </span>",
-    "on-click": "rofi -show drun -disable-history -show-icons",
-    "on-click-right": "$HOME/.config/custom_scripts/power.sh",
-    "escape": true,
-    "tooltip": false
-  },
-  // Modules configuration
   "sway/workspaces": {
     "disable-scroll": true,
-    "active-only": false,
     "all-outputs": true,
     "warp-on-scroll": false
-    // "format": "{icon}"
-    // "format-icons": {
-    //   "1": "󰧨",
-    //   "2": "󰈹",
-    //   "3": "",
-    //   "4": "",
-    //   "5": "",
-    //   "6": "󰭛",
-    //   "7": "󱓷",
-    //   "8": "󰚀"
-    // }
   },
   "tray": {
-    "icon-size": 13,
-    "spacing": 10
-  },
-  "disk": {
-    "format": "<span color='#1e1e2e' bgcolor='#ea6962' >  </span> {free}",
-    "interval": 20
+    "icon-size": 14,
+    "spacing": 8
   },
   "cpu": {
-    "format": "  {usage}%",
+    "format": "󰻠 {usage}%",
     "tooltip": false,
-    "interval": 1
+    "interval": 2
   },
   "temperature": {
     "tooltip": false,
     "thermal-zone": 2,
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 70,
-    "format": "  {temperatureC}°C",
-    "format-critical": "  {temperatureC}°C</span>"
+    "format": "󰔏 {temperatureC}°C"
   },
   "backlight": {
-    "format": " {icon} {percent}%",
-    "format-icons": [
-      "🌑",
-      "🌘",
-      "🌗",
-      "🌖",
-      "🌕"
-    ],
+    "format": "󰃠 {percent}%",
     "tooltip": false
   },
   "custom/memory": {
     "exec": "$HOME/.config/custom_scripts/memory_usage.sh",
     "interval": 2,
     "return-type": "json",
-    "format": "   {}"
+    "format": "󰍛 {}"
   },
-"pulseaudio": {
-    "format": "   {volume}%",
-    "format-muted": "   {volume}% ",
-    "format-bluetooth": " 󰂰 {volume}% ",
-    "format-bluetooth-muted": " 󰂲 {volume}% ",
+  "pulseaudio": {
+    "format": "󰕾 {volume}%",
+    "format-muted": "󰖁 {volume}%",
+    "format-bluetooth": "󰂰 {volume}%",
+    "format-bluetooth-muted": "󰂲 {volume}%",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "tooltip": false,
     "max-volume": 100
   },
   "pulseaudio#source": {
     "format": "{format_source}",
-    "format-source": "  {volume}%",
-    "format-source-muted": "   {volume}%",
+    "format-source": "󰍬 {volume}%",
+    "format-source-muted": "󰍭 {volume}%",
     "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
     "on-click-right": "/usr/bin/pavucontrol",
     "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
     "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
     "tooltip": false
   },
-  "battery#bat2": {
-    "bat": "BAT2"
-  },
   "battery": {
     "interval": 1,
     "states": {
-      "good": 99,
       "warning": 30,
       "critical": 20
     },
@@ -126,6 +85,7 @@
       "󰂎",
       "󰁺",
       "󰁻",
+      "󰁼",
       "󰁽",
       "󰁾",
       "󰁿",
@@ -134,21 +94,21 @@
       "󰂂",
       "󰁹"
     ],
-    "format": " {icon} {capacity}%",
-    "format-critical": " {icon} {capacity}% !!",
-    "format-warning": " {icon} {capacity}%",
-    "format-full": " {icon} {capacity}%",
-    "format-charging": " 󰂅 {capacity}%",
-    "format-charging-warning": " 󰢝 {capacity}%",
-    "format-charging-critical": " 󰢜 {capacity}%",
-    "format-plugged": " 󰂅 {capacity}%",
-    "format-alt": " 󱧥 {time}",
+    "format": "{icon} {capacity}%",
+    "format-critical": "{icon} {capacity}%",
+    "format-warning": "{icon} {capacity}%",
+    "format-full": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-charging-warning": "󰂄 {capacity}%",
+    "format-charging-critical": "󰂄 {capacity}%",
+    "format-plugged": "󰂄 {capacity}%",
+    "format-alt": "󱧥 {time}",
     "tooltip": false
   },
   "clock": {
-    "format": "  {:%H:%M} ",
+    "format": "{:%H:%M}",
     "interval": 1,
-    "format-alt": "  {:%a,%d %b,%Y(%H:%M:%S)} ",
+    "format-alt": "{:%a,%d %b,%Y(%H:%M:%S)}",
     "tooltip-format": "\n<span size='12pt' font='MesloLGMDZ Nerd Font'>{calendar}</span>",
     "calendar": {
       "mode": "year",
@@ -156,11 +116,11 @@
       "weeks-pos": "right",
       "on-scroll": 1,
       "format": {
-        "months": "<span color='#ffead3'><b>{}</b></span>",
-        "days": "<span color='#ecc6d9'><b>{}</b></span>",
-        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+        "months": "<span color='#7FB3D3'><b>{}</b></span>",
+        "days": "<span color='#7FB3D3'><b>{}</b></span>",
+        "weeks": "<span color='#90C695'><b>W{}</b></span>",
+        "weekdays": "<span color='#90C695'><b>{}</b></span>",
+        "today": "<span color='#90C695'><b><u>{}</u></b></span>"
       }
     },
     "actions": {
@@ -173,11 +133,11 @@
   },
   "power-profiles-daemon": {
     "format-icons": {
-      "performance": "",
-      "balanced": " ",
-      "power-saver": " "
+      "performance": "󰓅",
+      "balanced": "󰾅",
+      "power-saver": "󰾆"
     },
-    "format": " {icon}",
+    "format": "{icon}",
     "tooltip-format": "Power Mode: {profile}"
   },
   "custom/timer": {
@@ -200,16 +160,16 @@
     "escape": true,
     "exec": "swaync-client -swb",
     "exec-if": "swaync-client",
-    "format": " {icon}",
+    "format": "{icon}",
     "format-icons": {
-      "dnd-inhibited-none": " ",
-      "dnd-inhibited-notification": " ",
-      "dnd-none": " ",
-      "dnd-notification": " ",
-      "inhibited-none": " ",
-      "inhibited-notification": " ",
-      "none": " ",
-      "notification": " "
+      "dnd-inhibited-none": "󰂚",
+      "dnd-inhibited-notification": "󰂚",
+      "dnd-none": "󰂚",
+      "dnd-notification": "󰂚",
+      "inhibited-none": "󰂜",
+      "inhibited-notification": "󰂜",
+      "none": "󰂜",
+      "notification": "󰂞"
     },
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
@@ -217,14 +177,8 @@
     "tooltip": false
   },
   "custom/color-picker": {
-    "format": " 󰃉",
+    "format": "󰃉",
     "on-click": "$HOME/bin/wl-color-picker clipboard",
     "tooltip": false
-  },
-  "custom/countdown": {
-    "tooltip": false,
-    "min-length": 5,
-		"interval": 1,
-    "exec": "$HOME/bin/countdown"
   }
 }

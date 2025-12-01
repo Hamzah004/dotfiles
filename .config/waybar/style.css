@@ -22,62 +22,35 @@ window#waybar {
 window#waybar.hidden {
   opacity: 1;
 }
-#custom-rofi,
-#custom-color-picker,
+/* All other modules use relaxing blue and green colors */
+#workspaces,
 #workspaces button,
-#workspaces button:hover,
-#workspaces button.visible,
-#workspaces button.visible:hover,
-#workspaces button.active,
-#workspaces button.active:hover,
-#workspaces button.urgent,
-#window,
-#tray,
-#disk,
 #cpu,
 #temperature,
-#temperature.critical,
 #backlight,
 #custom-memory,
 #pulseaudio,
-#pulseaudio.muted,
 #battery,
-#battery.critical,
-#battery.warning,
+#tray,
 #language,
 #power-profiles-daemon,
-#clock {
-  font-family: MesloLGMDZ Nerd Font;
-  font-size: 16px;
-  color: @foreground;
-  /* border: 3px solid #202020; */
-  /* border-radius: 3px; */
-}
-
-
+#custom-swaync,
 #custom-color-picker,
-#window,
-#tray,
-#disk,
-#cpu,
-#temperature,
-#temperature.critical,
-#backlight,
-#custom-memory,
-#pulseaudio,
-#pulseaudio.muted,
-#battery,
-#battery.critical,
-#battery.warning,
-#language,
-#power-profiles-daemon,
-#clock {
-  padding-right: 4px;
+#custom-timer {
+  background-color: transparent;
+  color: #7FB3D3;
+  padding: 2px 6px;
+  margin: 0 1px;
 }
 
-#custom-rofi {
-  background: @primary;
-  padding: 0 6px;
+/* Clock gets special pod styling */
+#clock {
+  background-color: rgba(127, 179, 211, 0.2);
+  color: #7FB3D3;
+  padding: 4px 12px;
+  margin: 0 6px;
+  border-radius: 12px;
+  border: 1px solid rgba(127, 179, 211, 0.3);
 }
 
 /* ================================ */
@@ -102,19 +75,20 @@ window#waybar.hidden {
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #ADD8E6;
+    color: #7FB3D3;
     border-bottom: 2px solid transparent;
 }
 
 #workspaces button.active {
     background-color: transparent;
-    border-bottom: 2px solid #FFB6C1; /* Light Pink */
-    color: #FFB6C1; /* Light Pink */
+    border-bottom: 2px solid #90C695;
+    color: #90C695;
 }
 
 #workspaces button.focused {
-    color: #90EE90; /* Light Green */
-    border-bottom: 2px solid #90EE90; /* Light Green */
+    color: #7FB3D3;
+    border-bottom: 1px solid #90EE90; 
+		/* Light Green */
 }
 
 #workspaces button.urgent {
@@ -127,112 +101,29 @@ window#waybar.hidden {
 }
 
 #workspaces button:hover {
-    background: #89B4FA;
-    border-bottom: 2px solid #FFB6C1; /* Light Pink */
+    background: rgba(127, 179, 211, 0.2);
+    /* border-bottom: 2px solid #90C695; */
+    color: #7FB3D3;
 }
 
-/* ================================ */
-/*            tray                 */
-/* ================================ */
-
-#tray {
-	padding-left: 8px;
-	padding-right: 8px;
-	transition: none;
-}
-
-/* ================================ */
-/*            disk                 */
-/* ================================ */
-
-#disk {
-  color: @error;
-}
-
-/* ================================ */
-/*            cpu                  */
-/* ================================ */
-#cpu {
-  color: @warning;
-}
-
-/* ================================ */
-/*            temp                  */
-/* ================================ */
-#temperature {
-  color: @tertiary;
-}
-
-#temperature.critical {
-  color: @error;
-}
-
-/* ================================ */
-/*            backlight             */
-/* ================================ */
-#backlight {
-  color: @tertiary;
-}
-
-/* ================================ */
-/*            memory                */
-/* ================================ */
-#custom-memory {
-  color: @secondary;
-}
-
-/* ================================ */
-/*         pulseaudio               */
-/* ================================ */
-#pulseaudio {
-  color: @primary;
-}
-
-#pulseaudio.muted {
-  color: #ea6962;
-}
-#pulseaudio.source{
-  color: @primary;
-}
-
-#pulseaudio.source-muted {
-  color: @primary;
-}
-
-/* ================================ */
-/*            battery               */
-/* ================================ */
-#battery {
-  color: @battery-full;
-}
-
+/* Critical and warning states with green accent */
+#temperature.critical,
 #battery.critical {
-  color: @battery-low;
+  color: #90C695;
+  font-weight: bold;
 }
 
 #battery.warning {
-  color: @battery-low;
-}
-/* ================================ */
-/*            clock                 */
-/* ================================ */
-#clock {
-  color: @secondary;
+  color: #90C695;
+  opacity: 0.9;
 }
 
-#power-profiles-daemon {
-  color: @secondary;
+#pulseaudio.muted {
+  color: #7FB3D3;
+  opacity: 0.7;
 }
 
-#custom-color-picker {
-	color: @tertiary;
-}
-
-#language {
-color: @foreground-alt;
-}
-
-#custom-countdown {
-   padding: 0 5px;
-	 margin: 1px;
+#pulseaudio.source-muted {
+  color: #7FB3D3;
+  opacity: 0.7;
 }
