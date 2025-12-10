@@ -109,21 +109,27 @@ window#waybar.hidden {
 /* Critical and warning states with green accent */
 #temperature.critical,
 #battery.critical {
-  color: #90C695;
+  color: #C82909;
   font-weight: bold;
 }
 
 #battery.warning {
-  color: #90C695;
+  color: #C82909;
   opacity: 0.9;
 }
 
 #pulseaudio.muted {
-  color: #7FB3D3;
-  opacity: 0.7;
+  color: #C82909;
+  /* opacity: 0.7; */
+}
+
+#pulseaudio.source{
+    color: #7FB3D3;
+		/* opacity: 0.7; */
 }
 
 #pulseaudio.source-muted {
-  color: #7FB3D3;
-  opacity: 0.7;
+    color: #7FB3D3;
+		/* opacity: 0.7; */
 }
+

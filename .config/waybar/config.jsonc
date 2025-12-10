@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "height": 28,
-  "spacing": 2,
+  "spacing": 3,
   // "margin-top": 4,
   // "margin-right": 8,
   // "margin-left": 8,
@@ -13,8 +13,8 @@
     "custom/timer"
   ],
   "modules-right": [
+		"sway/language",
     "custom/color-picker",
-    "sway/language",
     "backlight",
     "cpu",
     "custom/memory",
@@ -120,7 +120,7 @@
         "days": "<span color='#7FB3D3'><b>{}</b></span>",
         "weeks": "<span color='#90C695'><b>W{}</b></span>",
         "weekdays": "<span color='#90C695'><b>{}</b></span>",
-        "today": "<span color='#90C695'><b><u>{}</u></b></span>"
+        "today": "<span color='#1E1E2E' bgcolor='#90C695'><b><u>{}</u></b></span>"
       }
     },
     "actions": {
