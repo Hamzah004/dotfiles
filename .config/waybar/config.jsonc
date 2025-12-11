@@ -6,7 +6,8 @@
   // "margin-right": 8,
   // "margin-left": 8,
   "modules-left": [
-    "sway/workspaces"
+    "sway/workspaces",
+		"custom/countdown"
   ],
   "modules-center": [
     "clock",
@@ -180,5 +181,11 @@
     "format": "󰃉",
     "on-click": "$HOME/bin/wl-color-picker clipboard",
     "tooltip": false
+  },
+  "custom/countdown": {
+    "tooltip": false,
+    "min-length": 5,
+		"interval": 1,
+    "exec": "$HOME/bin/countdown"
   }
 }
