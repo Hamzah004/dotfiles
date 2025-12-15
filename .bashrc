@@ -170,15 +170,18 @@ alias q="exit"
 # alias w3m="w3m duckduckgo.com"
 
 export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-# fastfetch
 
 alias ascii="man ascii"
+
 alias gg="clang -Wall -Wextra -Werror"
+
 alias m='~/mini-moulinette/mini-moul.sh'
 alias n="norminette"
 alias f="c_formatter_42"
 alias fa="c_formatter_42 *.[ch]"
+
 export HISTCONTROL=ignoreboth:erasedups
+
 alias open="xdg-open"
 
 # git shit
@@ -188,8 +191,11 @@ alias gc='git commit -m'
 alias gp='git push'
 alias gd='git diff'
 
+# bashrc
 alias r="nvim ~/.bashrc"
 alias s="source ~/.bashrc"
+
+# deepthink
 alias deepthink="nvim $HOME/libft-war-machine/deepthought"
 
 # alias for freeCad
@@ -215,10 +221,6 @@ alias ll='ls -lh'
 alias la='ls -Ah'
 
 alias lsa="ls --icons=always --all -h"
-
-# export PATH=/home/liva/.cargo/bin:/home/liva/bin:/home/liva/development/flutter/bin:/usr/local/bin:/usr/bin:/var/lib/snapd/snap/bin:/home/liva/libft-war-machine/:/usr/local/go/bin:/home/liva/.local/bin:/home/liva/.pub-cache/bin
-# alias copilot="copilot --banner"
-# alias icat="kitten icat"
 
 # uv
 export PATH="/home/liva/.local/bin:$PATH"
