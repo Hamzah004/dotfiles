@@ -85,26 +85,26 @@ tmux_conf_24b_colour=auto
 #   - tmux_conf_theme_synchronized
 tmux_conf_theme=enabled
 
-# Deep Tokyo Night theme with darker tones
-tmux_conf_theme_colour_1="#11121d"    # deep dark bg
-tmux_conf_theme_colour_2="#1a1b26"    # dark bg
-tmux_conf_theme_colour_3="#3b4261"    # muted comment
-tmux_conf_theme_colour_4="#4a5568"    # muted blue
-tmux_conf_theme_colour_5="#8b7355"    # muted yellow
-tmux_conf_theme_colour_6="#11121d"    # deep dark bg
-tmux_conf_theme_colour_7="#9aa5ce"    # muted fg
-tmux_conf_theme_colour_8="#11121d"    # deep dark bg
-tmux_conf_theme_colour_9="#c53030"    # muted red
-tmux_conf_theme_colour_10="#805ad5"   # muted purple
-tmux_conf_theme_colour_11="#38a169"   # muted green
-tmux_conf_theme_colour_12="#3b4261"   # muted comment
-tmux_conf_theme_colour_13="#9aa5ce"   # muted fg
-tmux_conf_theme_colour_14="#11121d"   # deep dark bg
-tmux_conf_theme_colour_15="#11121d"   # deep dark bg
-tmux_conf_theme_colour_16="#c53030"   # muted red
-tmux_conf_theme_colour_17="#9aa5ce"   # muted fg
-tmux_conf_theme_colour_18="#0d0e18"   # deepest dark
-tmux_conf_theme_colour_19="#4a5568"   # muted cyan
+# Deep Catppuccin Mocha minimal theme
+tmux_conf_theme_colour_1="#11111b"    # deep base
+tmux_conf_theme_colour_2="#1e1e2e"    # base
+tmux_conf_theme_colour_3="#45475a"    # overlay0
+tmux_conf_theme_colour_4="#6b7280"    # muted green
+tmux_conf_theme_colour_5="#78716c"    # muted yellow
+tmux_conf_theme_colour_6="#11111b"    # deep base
+tmux_conf_theme_colour_7="#9ca3af"    # muted text
+tmux_conf_theme_colour_8="#11111b"    # deep base
+tmux_conf_theme_colour_9="#7c2d12"    # deep pink
+tmux_conf_theme_colour_10="#5b21b6"   # deep purple
+tmux_conf_theme_colour_11="#365314"   # deep green
+tmux_conf_theme_colour_12="#45475a"   # overlay0
+tmux_conf_theme_colour_13="#9ca3af"   # muted text
+tmux_conf_theme_colour_14="#11111b"   # deep base
+tmux_conf_theme_colour_15="#11111b"   # deep base
+tmux_conf_theme_colour_16="#7c2d12"   # deep pink
+tmux_conf_theme_colour_17="#9ca3af"   # muted text
+tmux_conf_theme_colour_18="#0c0c0c"   # deepest
+tmux_conf_theme_colour_19="#4b5563"   # muted teal
 
 # default theme (ansi)
 #tmux_conf_theme_colour_1="colour0"
@@ -183,7 +183,7 @@ tmux_conf_theme_status_attr="none"
 #     - #{hostname_full_ssh}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_terminal_title="󰒋 #h │ 󰊠 #S │ #I #W"
+tmux_conf_theme_terminal_title="#h │ #S │ #I #W"
 
 # window status style
 #   - built-in variables are:
@@ -198,7 +198,7 @@ tmux_conf_theme_terminal_title="󰒋 #h │ 󰊠 #S │ #I #W"
 tmux_conf_theme_window_status_fg="$tmux_conf_theme_colour_3"
 tmux_conf_theme_window_status_bg="$tmux_conf_theme_colour_1"
 tmux_conf_theme_window_status_attr="none"
-tmux_conf_theme_window_status_format="#I  #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag, 󰂞,}#{?window_zoomed_flag, 󰍉,}"
+tmux_conf_theme_window_status_format="#I #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag,!,}#{?window_zoomed_flag,*,}"
 
 # window current status style
 #   - built-in variables are:
@@ -213,7 +213,7 @@ tmux_conf_theme_window_status_format="#I  #W#{?#{||:#{window_bell_flag},#{window
 tmux_conf_theme_window_status_current_fg="$tmux_conf_theme_colour_1"
 tmux_conf_theme_window_status_current_bg="$tmux_conf_theme_colour_4"
 tmux_conf_theme_window_status_current_attr="bold"
-tmux_conf_theme_window_status_current_format="#I 󰖯 #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag, 󰂞,}#{?window_zoomed_flag, 󰍉,}"
+tmux_conf_theme_window_status_current_format="#I #W#{?#{||:#{window_bell_flag},#{window_zoomed_flag}}, ,}#{?window_bell_flag,!,}#{?window_zoomed_flag,*,}"
 
 # window activity status style
 tmux_conf_theme_window_status_activity_fg="default"
@@ -231,14 +231,10 @@ tmux_conf_theme_window_status_last_bg="$tmux_conf_theme_colour_2"
 tmux_conf_theme_window_status_last_attr="none"
 
 # status left/right sections separators
-# tmux_conf_theme_left_separator_main=""
-# tmux_conf_theme_left_separator_sub="|"
-# tmux_conf_theme_right_separator_main=""
-# tmux_conf_theme_right_separator_sub="|"
-tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
-tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
-tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
-tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
+tmux_conf_theme_left_separator_main=""
+tmux_conf_theme_left_separator_sub="|"
+tmux_conf_theme_right_separator_main=""
+tmux_conf_theme_right_separator_sub="|"
 
 # status left/right content:
 #   - separate main sections with "|"
@@ -267,8 +263,8 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=" 󰊠 #S | #{pretty_pane_current_path} "
-tmux_conf_theme_status_right="󰃭 %H:%M | 󰌢 #{username}#{root} | 󰒋 #{hostname} "
+tmux_conf_theme_status_left=" #S | #{pretty_pane_current_path} "
+tmux_conf_theme_status_right=" %H:%M | #{username}#{root} | #{hostname} "
 
 # status left style
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_8"
@@ -281,31 +277,31 @@ tmux_conf_theme_status_right_bg="$tmux_conf_theme_colour_18,$tmux_conf_theme_col
 tmux_conf_theme_status_right_attr="none,none,bold"
 
 # pairing indicator
-tmux_conf_theme_pairing="󰐙"                 # Modern pairing icon
+tmux_conf_theme_pairing="pairing"
 tmux_conf_theme_pairing_fg="$tmux_conf_theme_colour_10"
 tmux_conf_theme_pairing_bg="none"
 tmux_conf_theme_pairing_attr="none"
 
 # prefix indicator
-tmux_conf_theme_prefix="󱊷"                  # Modern keyboard icon
+tmux_conf_theme_prefix="prefix"
 tmux_conf_theme_prefix_fg="$tmux_conf_theme_colour_5"
 tmux_conf_theme_prefix_bg="none"
 tmux_conf_theme_prefix_attr="bold"
 
 # mouse indicator
-tmux_conf_theme_mouse="󰍽"                   # Modern mouse icon
+tmux_conf_theme_mouse="mouse"
 tmux_conf_theme_mouse_fg="$tmux_conf_theme_colour_4"
 tmux_conf_theme_mouse_bg="none"
 tmux_conf_theme_mouse_attr="none"
 
 # root indicator
-tmux_conf_theme_root="󰀄"                    # Modern shield icon
+tmux_conf_theme_root="root"
 tmux_conf_theme_root_fg="$tmux_conf_theme_colour_16"
 tmux_conf_theme_root_bg="none"
-tmux_conf_theme_root_attr="bold,blink"
+tmux_conf_theme_root_attr="bold"
 
 # synchronized indicator
-tmux_conf_theme_synchronized="󰓦"            # Modern sync icon
+tmux_conf_theme_synchronized="sync"
 tmux_conf_theme_synchronized_fg="$tmux_conf_theme_colour_11"
 tmux_conf_theme_synchronized_bg="none"
 tmux_conf_theme_synchronized_attr="none"
@@ -349,8 +345,8 @@ tmux_conf_battery_vbar_palette="gradient"
 #tmux_conf_battery_vbar_palette="gradient(#00afff,#47a2ff,#7c91ff,#ac7afb,#d65be2,#e163df,#eb6cdd,#f475db,#ec9ff1,#eac3fe,#efe2ff,#ffffff)"
 
 # symbols used to indicate whether battery is charging or discharging
-tmux_conf_battery_status_charging="󰂄"     # Modern charging icon
-tmux_conf_battery_status_discharging="󱊣"  # Modern battery icon
+tmux_conf_battery_status_charging="↑"
+tmux_conf_battery_status_discharging="↓"
 
 # clock style (when you hit <prefix> + t)
 # you may want to use %I:%M %p in place of %R in tmux_conf_theme_status_right

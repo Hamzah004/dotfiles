@@ -28,9 +28,9 @@ opt.cursorcolumn = false
 opt.signcolumn = "yes"
 opt.wrapscan = false
 
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.shiftwidth = 2
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
 opt.smartindent = false
 opt.autoindent = false
 opt.expandtab = false

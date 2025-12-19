@@ -51,7 +51,7 @@ return {
 	event = { "VeryLazy" },
 	opts = {
 		options = {
-			theme = tokyonight,
+			theme = "catppuccin",
 			component_separators = { left = "│", right = "│" },
 			section_separators = { left = "", right = "" },
 			disabled_filetypes = { "snacks_dashboard" },

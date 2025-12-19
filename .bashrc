@@ -225,3 +225,6 @@ alias lsa="ls --icons=always --all -h"
 # uv
 export PATH="/home/liva/.local/bin:$PATH"
 alias CC="cc -g3 -Wall -Werror -Wextra "
+
+# opencode
+export PATH=/home/liva/.opencode/bin:$PATH
