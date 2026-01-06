@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+# alacritty theme
+cd ~/.config/alacritty/
+sed -i 's|catppuccin_latte|catppuccin_mocha|' alacritty.toml
+
+# nvim theme
+cd ~/.config/nvim/lua/grimmvim/plugins/ui/
+sed -i 's|latte|mocha|' colorscheme.lua
+
+# waybar theme
+cd ~/.config/waybar/
+sed -i 's|#EFF1F5|@background|g' style.css
+swaymsg reload

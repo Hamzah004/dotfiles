@@ -10,6 +10,8 @@ $java\
 $kotlin\
 $python\
 $dart\
+$fill\
+$time\
 $docker_context
 $character"""
 
@@ -133,7 +135,7 @@ format = "[$symbol$context](blue) "
 disabled = false
 time_format = "%R"
 style = "bg:color_bg1"
-format = '[[  $time ](fg:white)]($style)'
+format = '[[ $time](fg:white)]($style)'
 
 [line_break]
 disabled = false

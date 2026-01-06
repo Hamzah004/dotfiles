@@ -228,3 +228,9 @@ alias CC="cc -g3 -Wall -Werror -Wextra "
 
 # opencode
 export PATH=/home/liva/.opencode/bin:$PATH
+
+# devtimer script
+# RED='\033[1;34m'
+# printf "\n	$RED$(countdown status so_long)\n"
+# printf "	$RED$(devtimer status so_long)\n"
+alias brothers="open ~/Documents/Books/karmazoph_brothers.pdf"

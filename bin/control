@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while true; do
+  echo -n "$@ " >>~/control_outfile
+  sleep 5
+done

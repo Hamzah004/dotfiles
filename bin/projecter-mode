@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Change names based on wlr-randr output
+INTERNAL="eDP-1"
+EXTERNAL="HDMI-A-1"
+
+# Mirror screen
+swaymsg output $EXTERNAL enable pos 0 0 scale 1

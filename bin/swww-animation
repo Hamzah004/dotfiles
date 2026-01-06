@@ -1,0 +1,13 @@
+#!/bin/bash
+
+swww init >/dev/null 2>&1
+
+FRAMES_DIR="$HOME/wallpapers/frames"
+DELAY=0.1 # For 10 FPS
+
+while true; do
+  for frame in "$FRAMES_DIR"/*.png; do
+    swww img "$frame" --transition-type any --transition-duration 0.05
+    sleep "$DELAY"
+  done
+done

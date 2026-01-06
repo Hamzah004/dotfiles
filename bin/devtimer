@@ -1,0 +1,167 @@
+#!/bin/bash
+
+BASE="$HOME/.devtimer"
+LOG="$BASE/log"
+CSV="$BASE/log.csv"
+
+mkdir -p "$BASE"
+
+# ---------- Helpers ----------
+
+fmt_time() {
+  printf "%02d:%02d:%02d" \
+    $(( $1 / 3600 )) \
+    $(( ($1 % 3600) / 60 )) \
+    $(( $1 % 60 ))
+}
+
+now=$(date +%s)
+today=$(date '+%F')
+
+git_task() {
+  git rev-parse --show-toplevel 2>/dev/null | xargs -n1 basename
+}
+
+# ---------- Init logs ----------
+
+if [[ ! -f "$LOG" ]]; then
+  printf "%-12s %-8s %-8s %-16s %s\n" \
+    "DATE" "TIME" "STATUS" "TASK" "ACTIVE" > "$LOG"
+  printf "%s\n" "------------------------------------------------------------" >> "$LOG"
+fi
+
+if [[ ! -f "$CSV" ]]; then
+  echo "date,time,status,task,active_seconds" > "$CSV"
+fi
+
+# ---------- Args ----------
+
+cmd="$1"
+task="$2"
+
+if [[ -z "$cmd" ]]; then
+  echo "Usage: devtimer <command> [task]"
+  exit 1
+fi
+
+# Auto-detect task if omitted
+if [[ -z "$task" ]]; then
+  task=$(git_task)
+fi
+
+STATE_FILE="$BASE/$task.state"
+
+load_state() { source "$STATE_FILE"; }
+save_state() {
+  cat > "$STATE_FILE" <<EOF
+STATE=$STATE
+LAST_TS=$LAST_TS
+ACTIVE_SEC=$ACTIVE_SEC
+EOF
+}
+
+log_event() {
+  local status="$1"
+  local active="$2"
+
+  printf "%-12s %-8s %-8s %-16s %s\n" \
+    "$(date '+%F')" "$(date '+%T')" "$status" "$task" "$active" >> "$LOG"
+
+  echo "$(date '+%F'),$(date '+%T'),$status,$task,$active" >> "$CSV"
+}
+
+# ---------- Commands ----------
+
+case "$cmd" in
+  start)
+    [[ -f "$STATE_FILE" ]] && echo "Task already exists." && exit 1
+
+    STATE="RUNNING"
+    LAST_TS=$now
+    ACTIVE_SEC=0
+    save_state
+    log_event "START" "-"
+    echo "Started: $task"
+    ;;
+
+  pause)
+    [[ ! -f "$STATE_FILE" ]] && echo "Task not found." && exit 1
+    load_state
+    [[ "$STATE" != "RUNNING" ]] && echo "Task not running." && exit 1
+
+    ACTIVE_SEC=$((ACTIVE_SEC + now - LAST_TS))
+    STATE="PAUSED"
+    save_state
+    log_event "PAUSE" "$(fmt_time $ACTIVE_SEC)"
+    echo "Paused: $task ($(fmt_time $ACTIVE_SEC))"
+    ;;
+
+  resume)
+    [[ ! -f "$STATE_FILE" ]] && echo "Task not found." && exit 1
+    load_state
+    [[ "$STATE" != "PAUSED" ]] && echo "Task not paused." && exit 1
+
+    STATE="RUNNING"
+    LAST_TS=$now
+    save_state
+    log_event "RESUME" "-"
+    echo "Resumed: $task"
+    ;;
+
+  stop)
+    [[ ! -f "$STATE_FILE" ]] && echo "Task not found." && exit 1
+    load_state
+
+    [[ "$STATE" == "RUNNING" ]] && \
+      ACTIVE_SEC=$((ACTIVE_SEC + now - LAST_TS))
+
+    duration=$(fmt_time $ACTIVE_SEC)
+    log_event "STOP" "$duration"
+    rm "$STATE_FILE"
+
+    echo "Stopped: $task (active: $duration)"
+    ;;
+
+  status)
+    [[ ! -f "$STATE_FILE" ]] && echo "No active task." && exit 0
+    load_state
+
+    if [[ "$STATE" == "RUNNING" ]]; then
+      current=$((ACTIVE_SEC + now - LAST_TS))
+      echo "$task RUNNING $(fmt_time $current)"
+    else
+      echo "$task PAUSED  $(fmt_time $ACTIVE_SEC)"
+    fi
+    ;;
+
+  summary)
+    mode="$task"
+
+    if [[ "$mode" == "today" ]]; then
+      awk -F',' -v d="$today" '
+        $1==d && $3=="STOP" {
+          split($5,t,":")
+          sec+=t[1]*3600+t[2]*60+t[3]
+        }
+        END { printf "Today: %02d:%02d:%02d\n", sec/3600, sec%3600/60, sec%60 }
+      ' "$CSV"
+
+    else
+      awk -F',' -v t="$mode" '
+        $4==t && $3=="STOP" {
+          split($5,x,":")
+          sec+=x[1]*3600+x[2]*60+x[3]
+        }
+        END { printf "%s total: %02d:%02d:%02d\n", t, sec/3600, sec%3600/60, sec%60 }
+      ' "$CSV"
+    fi
+    ;;
+
+  export)
+    echo "CSV exported at: $CSV"
+    ;;
+
+  *)
+    echo "Unknown command."
+    ;;
+esac

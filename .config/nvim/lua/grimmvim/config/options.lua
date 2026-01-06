@@ -22,15 +22,15 @@ opt.virtualedit = "block"
 
 opt.wrap = false
 opt.number = true
--- opt.relativenumber = true
+opt.relativenumber = true
 opt.cursorline = false
 opt.cursorcolumn = false
 opt.signcolumn = "yes"
 opt.wrapscan = false
 
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.shiftwidth = 4
+-- opt.tabstop = 4
+-- opt.softtabstop = 4
+-- opt.shiftwidth = 4
 opt.smartindent = false
 opt.autoindent = false
 opt.expandtab = false

@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+chosen=$(printf "Dark theme\nLight theme" | rofi -dmenu -i -theme-str '@import "~/.config/rofi/powermenu.rasi"')
+
+case "$chosen" in
+"Dark theme") $HOME/bin/dark-theme ;;
+"Light theme") $HOME/bin/light-theme ;;
+*) echo "No theme selected" ;;
+esac
