@@ -73,8 +73,16 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
--- save text on change
+-- save text on change (debounced)
+local save_timer = nil
 vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
 	pattern = "*",
-	command = "silent! write",
+	callback = function()
+		if save_timer then
+			save_timer:stop()
+		end
+		save_timer = vim.defer_fn(function()
+			vim.cmd("silent! write")
+		end, 1000) -- Save after 1s of inactivity
+	end,
 })

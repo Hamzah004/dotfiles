@@ -1,6 +1,6 @@
 return {
 	"folke/which-key.nvim",
-	event = "CursorMoved",
+	event = "VeryLazy",
 	config = function()
 		local wk = require("which-key")
 		-- disable missing-fields warning using lua annotations

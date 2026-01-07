@@ -1,9 +1,9 @@
 * {
    background: #181825;
-   prompt: #1e1e2e;
+   prompt: #45475a;
    border: #89B4FA;
    text: #cdd6f4;
-   stext: #45475a;
+   stext: #cdd6f4;
    select: #1e1e2e;
 }
    

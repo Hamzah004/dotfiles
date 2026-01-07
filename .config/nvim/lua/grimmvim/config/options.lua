@@ -44,7 +44,7 @@ opt.hlsearch = true
 opt.ignorecase = true
 opt.smartcase = true
 
-opt.scrolloff = 999
+opt.scrolloff = 8
 opt.sidescrolloff = 5
 opt.mouse = "n"
 
@@ -57,6 +57,6 @@ opt.inccommand = "split"
 opt.showmode = false
 opt.backup = false
 opt.writebackup = true
-opt.updatetime = 300
-opt.timeoutlen = 500
+opt.updatetime = 500
+opt.timeoutlen = 1000
 opt.swapfile = false

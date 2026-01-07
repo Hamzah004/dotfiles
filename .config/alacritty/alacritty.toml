@@ -10,3 +10,6 @@ size = 12.0
 [font.normal]
 family = "DroidSansMNerdFontMono"
 
+[window]
+# decorations = "none"
+opacity = 0.6

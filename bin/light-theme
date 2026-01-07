@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
 # alacritty theme
-cd ~/.config/alacritty/
-sed -i 's|catppuccin_mocha|catppuccin_latte|' alacritty.toml
+# cd ~/.config/alacritty/
+# sed -i 's|catppuccin_mocha|catppuccin_latte|' alacritty.toml
 
 # nvim theme
 cd ~/.config/nvim/lua/grimmvim/plugins/ui/
@@ -11,4 +11,15 @@ sed -i 's|mocha|latte|' colorscheme.lua
 # waybar theme
 cd ~/.config/waybar/
 sed -i 's|@background|#EFF1F5|g' style.css
+sed -i 's|#7FB3D3|#1E66F5|g' style.css
 swaymsg reload
+
+# rofi
+cd ~/.config/rofi/themes/
+sed -i 's|background: #181825|background: #EFF1F5|' colors.rasi
+sed -i 's|prompt: #1e1e2e|prompt: #cdd6f4|' colors.rasi
+sed -i 's|text: #cdd6f4|text: #45475a|' colors.rasi
+sed -i 's|select: #1e1e2e|select: #cdd6f4|' colors.rasi
+
+# swaync
+cp ~/.config/swaync/catppuccin-latte.css ~/.config/swaync/style.css && swaync-client --reload-css
