@@ -23,3 +23,6 @@ sed -i 's|select: #cdd6f4|select: #1e1e2e|' colors.rasi
 
 # swaync
 cp ~/.config/swaync/catppuccin-mocha.css ~/.config/swaync/style.css && swaync-client --reload-css
+
+# Global Theme
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'

@@ -23,3 +23,6 @@ sed -i 's|select: #1e1e2e|select: #cdd6f4|' colors.rasi
 
 # swaync
 cp ~/.config/swaync/catppuccin-latte.css ~/.config/swaync/style.css && swaync-client --reload-css
+
+# Global Theme
+gsettings set org.gnome.desktop.interface color-scheme 'default'
