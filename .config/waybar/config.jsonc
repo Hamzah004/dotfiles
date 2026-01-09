@@ -6,8 +6,9 @@
   // "margin-right": 8,
   // "margin-left": 8,
   "modules-left": [
-    "sway/workspaces"
-		// "custom/countdown"
+	"custom/menu",
+	"sway/workspaces"
+	// "custom/countdown"
   ],
   "modules-center": [
     "clock",
@@ -187,5 +188,12 @@
     "min-length": 5,
 		"interval": 1,
     "exec": "$HOME/bin/countdown"
+  },
+  "custom/menu": {
+    "format": "<span > </span>",
+    "on-click": "$HOME/.config/custom_scripts/menu",
+    "on-click-right": "clipman pick -t rofi",
+    "escape": true,
+    "tooltip": false
   }
 }

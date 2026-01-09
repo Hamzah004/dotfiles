@@ -24,6 +24,7 @@ window#waybar.hidden {
 }
 /* All other modules use relaxing blue and green colors */
 #workspaces,
+#custom-menu,
 #workspaces button,
 #cpu,
 #temperature,
