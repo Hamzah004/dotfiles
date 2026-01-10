@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+
+WALLPAPER_DIR="$HOME/Pictures/"
+SWAY_CONFIG_PATH="$HOME/.config/sway/output.conf"
+
+WALLPAPER=$(for a in $WALLPAPER_DIR/{*.jpg,*.png}; do echo -en "$(basename "$a")\0icon\x1f$a\n"; done | rofi -dmenu -show-icons)
+if [ -z "$WALLPAPER" ]; then
+  echo "No wallpaper selected"
+  exit 1;
+fi
+ORIGINAL=$(awk 'NR==1 {print $4}' "$SWAY_CONFIG_PATH")
+sed -i "s|$ORIGINAL|\$HOME/Pictures/$WALLPAPER|" "$SWAY_CONFIG_PATH"
+swaymsg reload

@@ -1,9 +1,10 @@
 #!/usr/bin/bash
 
-chosen=$(printf "Dark theme\nLight theme" | rofi -dmenu -i -theme-str '@import "~/.config/rofi/powermenu.rasi"')
+chosen=$(printf "Dark theme\nLight theme\nWallpaper" | rofi -dmenu -i -theme-str '@import "~/.config/rofi/powermenu.rasi"')
 
 case "$chosen" in
 "Dark theme") $HOME/bin/dark-theme ;;
 "Light theme") $HOME/bin/light-theme ;;
+"Wallpaper") $HOME/bin/change_wallpaper ;;
 *) echo "No theme selected" ;;
 esac
