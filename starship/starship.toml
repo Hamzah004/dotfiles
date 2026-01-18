@@ -10,8 +10,6 @@ $java\
 $kotlin\
 $python\
 $dart\
-$fill\
-$time\
 $docker_context
 $character"""
 

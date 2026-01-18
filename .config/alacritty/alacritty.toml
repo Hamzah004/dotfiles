@@ -12,4 +12,4 @@ family = "DroidSansMNerdFontMono"
 
 [window]
 # decorations = "none"
-opacity = 0.6
+# opacity = 0.6

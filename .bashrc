@@ -140,8 +140,8 @@ eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
 export STARSHIP_CONFIG="$HOME/starship/starship.toml"
 
 # Use nvim for editing everywhere
-export EDITOR='nvim-LazyVim'
-export VISUAL='nvim-LazyVim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # Use vim-style editing in the shell
 set -o vi
@@ -224,6 +224,8 @@ alias lsa="ls --icons=always --all -h"
 
 # uv
 export PATH="/home/liva/.local/bin:$PATH"
+
+# Clang
 alias CC="cc -g3 -Wall -Werror -Wextra "
 
 # opencode
