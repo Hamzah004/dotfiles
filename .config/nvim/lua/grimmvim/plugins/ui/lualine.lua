@@ -1,49 +1,3 @@
--- define colors
-local colors = {
-  blue = "#7aa2f7",
-  green = "#9ece6a",
-  violet = "#bb9af7",
-  yellow = "#e0af68",
-  red = "#f7768e",
-  cream = "#c0caf5",
-  black = "#1a1b26",
-  grey = "#414868",
-  dark = "#24283b",
-}
-
--- custom modifications
-local tokyonight = {
-	normal = {
-		a = { bg = colors.dark, fg = colors.cream, gui = "bold" },
-		b = { bg = colors.grey, fg = colors.cream, gui = "bold" },
-		c = { bg = colors.blue, fg = colors.black, gui = "bold" },
-	},
-	insert = {
-		a = { bg = colors.blue, fg = colors.black, gui = "bold" },
-		c = { bg = colors.violet, fg = colors.black, gui = "bold" },
-	},
-	visual = {
-		a = { bg = colors.violet, fg = colors.black, gui = "bold" },
-		c = { bg = colors.dark, fg = colors.cream, gui = "bold" },
-	},
-	command = {
-		a = { bg = colors.green, fg = colors.black, gui = "bold" },
-		c = { bg = colors.black, fg = colors.cream, gui = "bold" },
-	},
-	terminal = {
-		a = { bg = colors.red, fg = colors.black, gui = "bold" },
-		c = { bg = colors.black, fg = colors.cream, gui = "bold" },
-	},
-	replace = {
-		a = { bg = colors.blue, fg = colors.black, gui = "bold" },
-		c = { bg = colors.violet, fg = colors.black, gui = "bold" },
-	},
-	inactive = {
-		a = { bg = colors.green, fg = colors.black, gui = "bold" },
-		c = { bg = colors.black, fg = colors.cream, gui = "bold" },
-	},
-}
-
 -- plugin
 return {
 	"nvim-lualine/lualine.nvim",
@@ -51,7 +5,7 @@ return {
 	event = { "VeryLazy" },
 	opts = {
 		options = {
-			theme = "catppuccin",
+			theme = "auto",
 			component_separators = { left = "│", right = "│" },
 			section_separators = { left = "", right = "" },
 			disabled_filetypes = { "snacks_dashboard" },
@@ -66,14 +20,10 @@ return {
 				"diagnostics",
 				{
 					"buffers",
-					buffers_color = {
-						active = { bg = colors.yellow, fg = colors.black, gui = "bold" },
-						inactive = { bg = colors.grey, fg = colors.cream, gui = "italic" },
-					},
 					symbols = {
 						modified = " ●",
 						alternate_file = "",
-						directory = "",
+						directory = "",
 					},
 					mode = 2,
 				},

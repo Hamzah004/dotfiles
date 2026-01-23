@@ -47,19 +47,6 @@ return {
 			scope = {
 				enabled = false,
 			},
-
-			-- can be a list of hl groups to cycle through
-			indent = {
-				hl = {
-					"SnacksIndent1",
-					"SnacksIndent2",
-					"SnacksIndent3",
-					"SnacksIndent4",
-					"SnacksIndent5",
-					"SnacksIndent6",
-					"SnacksIndent7",
-				},
-			},
 		},
 		-- picker
 		picker = {

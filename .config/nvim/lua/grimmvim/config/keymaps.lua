@@ -140,3 +140,22 @@ map("n", "<leader>nf", ":Goyo<CR>", { desc = "[N]ote [F]ocus mode" })
 
 -- 42 C Formatter
 map("n", "<leader>Ff", ":CFormat42<cr>", { desc = "42 Format", noremap = true, silent = true })
+
+
+-- todo comments
+map("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+map("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+
+-- Jump to next/prev error/warning todos
+map("n", "]w", function()
+  require("todo-comments").jump_next({keywords = { "ERROR", "WARNING" }})
+end, { desc = "Next error/warning todo" })
+
+map("n", "[w", function()
+  require("todo-comments").jump_prev({keywords = { "ERROR", "WARNING" }})
+end, { desc = "Previous error/warning todo" })

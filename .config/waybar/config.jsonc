@@ -7,8 +7,8 @@
   // "margin-left": 8,
   "modules-left": [
 	"custom/menu",
-	"sway/workspaces"
-	// "custom/countdown"
+	"sway/workspaces",
+	"custom/countdown"
   ],
   "modules-center": [
     "clock",
