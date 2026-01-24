@@ -1,7 +1,0 @@
-require("grimmvim.config.keymaps")
-require("grimmvim.config.lazy")
-require("grimmvim.config.options")
-require("grimmvim.config.highlights")
-require("grimmvim.config.autocommands")
-require("grimmvim.config.custom_functions")
-require("grimmvim.config.lsp_diagnostic")
