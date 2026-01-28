@@ -1,199 +1,206 @@
 {
-  "layer": "top",
-  "height": 28,
-  "spacing": 3,
-  // "margin-top": 4,
-  // "margin-right": 8,
-  // "margin-left": 8,
-  "modules-left": [
-	"custom/menu",
-	"sway/workspaces",
-	"custom/countdown"
-  ],
-  "modules-center": [
-    "clock",
-    "custom/timer"
-  ],
-  "modules-right": [
+	"layer": "top",
+	"height": 28,
+	"spacing": 3,
+	// "margin-top": 4,
+	// "margin-right": 8,
+	// "margin-left": 8,
+	"modules-left": [
+		"custom/menu",
+		"sway/workspaces",
+		"custom/countdown"
+	],
+	"modules-center": [
+		"clock",
+		"custom/timer"
+	],
+	"modules-right": [
+		"custom/weather",
 		"sway/language",
-    "custom/color-picker",
-    "backlight",
-    "cpu",
-    "custom/memory",
-    "pulseaudio",
-    "pulseaudio#source",
-    "battery",
-    "power-profiles-daemon",
-    "custom/swaync",
-    "tray"
-  ],
-  "sway/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": true,
-    "warp-on-scroll": false
-  },
-  "tray": {
-    "icon-size": 14,
-    "spacing": 8
-  },
-  "cpu": {
-    "format": "󰻠 {usage}%",
-    "tooltip": false,
-    "interval": 2
-  },
-  "temperature": {
-    "tooltip": false,
-    "thermal-zone": 2,
-    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-    "critical-threshold": 70,
-    "format": "󰔏 {temperatureC}°C"
-  },
-  "backlight": {
-    "format": "󰃠 {percent}%",
-    "tooltip": false
-  },
-  "custom/memory": {
-    "exec": "$HOME/.config/custom_scripts/memory_usage.sh",
-    "interval": 2,
-    "return-type": "json",
-    "format": "󰍛 {}"
-  },
-  "pulseaudio": {
-    "format": "󰕾 {volume}%",
-    "format-muted": "󰖁 {volume}%",
-    "format-bluetooth": "󰂰 {volume}%",
-    "format-bluetooth-muted": "󰂲 {volume}%",
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "tooltip": false,
-    "max-volume": 100
-  },
-  "pulseaudio#source": {
-    "format": "{format_source}",
-    "format-source": "󰍬 {volume}%",
-    "format-source-muted": "󰍭 {volume}%",
-    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-    "on-click-right": "/usr/bin/pavucontrol",
-    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
-    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
-    "tooltip": false
-  },
-  "battery": {
-    "interval": 1,
-    "states": {
-      "warning": 30,
-      "critical": 20
-    },
-    "format-icons": [
-      "󰂎",
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󰁹"
-    ],
-    "format": "{icon} {capacity}%",
-    "format-critical": "{icon} {capacity}%",
-    "format-warning": "{icon} {capacity}%",
-    "format-full": "{icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
-    "format-charging-warning": "󰂄 {capacity}%",
-    "format-charging-critical": "󰂄 {capacity}%",
-    "format-plugged": "󰂄 {capacity}%",
-    "format-alt": "󱧥 {time}",
-    "tooltip": false
-  },
-  "clock": {
-    "format": "{:%H:%M}",
-    "interval": 1,
-    "format-alt": "{:%a,%d %b,%Y(%H:%M:%S)}",
-    "tooltip-format": "\n<span size='12pt' font='MesloLGMDZ Nerd Font'>{calendar}</span>",
-    "calendar": {
-      "mode": "year",
-      "mode-mon-col": 3,
-      "weeks-pos": "right",
-      "on-scroll": 1,
-      "format": {
-        "months": "<span color='#7FB3D3'><b>{}</b></span>",
-        "days": "<span color='#7FB3D3'><b>{}</b></span>",
-        "weeks": "<span color='#90C695'><b>W{}</b></span>",
-        "weekdays": "<span color='#90C695'><b>{}</b></span>",
-        "today": "<span color='#1E1E2E' bgcolor='#90C695'><b><u>{}</u></b></span>"
-      }
-    },
-    "actions": {
-      "on-click-right": "mode",
-      "on-click-forward": "tz_up",
-      "on-click-backward": "tz_down",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
-  },
-  "power-profiles-daemon": {
-    "format-icons": {
-      "performance": "󰓅",
-      "balanced": "󰾅",
-      "power-saver": "󰾆"
-    },
-    "format": "{icon}",
-    "tooltip-format": "Power Mode: {profile}"
-  },
-  "custom/timer": {
-    "tooltip": false,
-    "min-length": 5,
-    "exec": "$HOME/.config/custom_scripts/timer.sh",
-    "on-click": "date --date='60 minutes' +%s > /var/tmp/waybar_timer",
-    "on-click-right": "echo READY > /var/tmp/waybar_timer",
-    "on-click-middle": "echo READY > /var/tmp/waybar_timer",
-    "on-scroll-up": "date --date='8 minute' +%s > /var/tmp/waybar_timer",
-    "on-scroll-down": "date --date='1 minute' +%s > /var/tmp/waybar_timer",
-    "interval": 1
-  },
-  "sway/language": {
-    "format": "{short}",
-    "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
-    "tooltip": false
-  },
-  "custom/swaync": {
-    "escape": true,
-    "exec": "swaync-client -swb",
-    "exec-if": "swaync-client",
-    "format": "{icon}",
-    "format-icons": {
-      "dnd-inhibited-none": "󰂚",
-      "dnd-inhibited-notification": "󰂚",
-      "dnd-none": "󰂚",
-      "dnd-notification": "󰂚",
-      "inhibited-none": "󰂜",
-      "inhibited-notification": "󰂜",
-      "none": "󰂜",
-      "notification": "󰂞"
-    },
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "return-type": "json",
-    "tooltip": false
-  },
-  "custom/color-picker": {
-    "format": "󰃉",
-    "on-click": "$HOME/bin/wl-color-picker clipboard",
-    "tooltip": false
-  },
-  "custom/countdown": {
-    "tooltip": false,
-    "min-length": 5,
+		"custom/color-picker",
+		"backlight",
+		"cpu",
+		"custom/memory",
+		"pulseaudio",
+		"pulseaudio#source",
+		"battery",
+		"power-profiles-daemon",
+		"custom/swaync",
+		"tray"
+	],
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+		"warp-on-scroll": false
+	},
+	"tray": {
+		"icon-size": 14,
+		"spacing": 8
+	},
+	"cpu": {
+		"format": "󰻠 {usage}%",
+		"tooltip": false,
+		"interval": 2
+	},
+	"temperature": {
+		"tooltip": false,
+		"thermal-zone": 2,
+		"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+		"critical-threshold": 70,
+		"format": "󰔏 {temperatureC}°C"
+	},
+	"backlight": {
+		"format": "󰃠 {percent}%",
+		"tooltip": false
+	},
+	"custom/memory": {
+		"exec": "$HOME/.config/custom_scripts/memory_usage.sh",
+		"interval": 2,
+		"return-type": "json",
+		"format": "󰍛 {}"
+	},
+	"pulseaudio": {
+		"format": "󰕾 {volume}%",
+		"format-muted": "󰖁 {volume}%",
+		"format-bluetooth": "󰂰 {volume}%",
+		"format-bluetooth-muted": "󰂲 {volume}%",
+		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"tooltip": false,
+		"max-volume": 100
+	},
+	"pulseaudio#source": {
+		"format": "{format_source}",
+		"format-source": "󰍬 {volume}%",
+		"format-source-muted": "󰍭 {volume}%",
+		"on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+		"on-click-right": "/usr/bin/pavucontrol",
+		"on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
+		"on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
+		"tooltip": false
+	},
+	"battery": {
 		"interval": 1,
-    "exec": "$HOME/bin/countdown"
-  },
-  "custom/menu": {
-    "format": "<span > </span>",
-    "on-click": "$HOME/.config/custom_scripts/menu",
-    "on-click-right": "clipman pick -t rofi",
-    "escape": true,
-    "tooltip": false
-  }
+		"states": {
+			"warning": 30,
+			"critical": 20
+		},
+		"format-icons": [
+			"󰂎",
+			"󰁺",
+			"󰁻",
+			"󰁼",
+			"󰁽",
+			"󰁾",
+			"󰁿",
+			"󰂀",
+			"󰂁",
+			"󰂂",
+			"󰁹"
+		],
+		"format": "{icon} {capacity}%",
+		"format-critical": "{icon} {capacity}%",
+		"format-warning": "{icon} {capacity}%",
+		"format-full": "{icon} {capacity}%",
+		"format-charging": "󰂄 {capacity}%",
+		"format-charging-warning": "󰂄 {capacity}%",
+		"format-charging-critical": "󰂄 {capacity}%",
+		"format-plugged": "󰂄 {capacity}%",
+		"format-alt": "󱧥 {time}",
+		"tooltip": false
+	},
+	"clock": {
+		"format": "{:%H:%M}",
+		"interval": 1,
+		"format-alt": "{:%a,%d %b,%Y(%H:%M:%S)}",
+		"tooltip-format": "\n<span size='12pt' font='MesloLGMDZ Nerd Font'>{calendar}</span>",
+		"calendar": {
+			"mode": "year",
+			"mode-mon-col": 3,
+			"weeks-pos": "right",
+			"on-scroll": 1,
+			"format": {
+				"months": "<span color='#7FB3D3'><b>{}</b></span>",
+				"days": "<span color='#7FB3D3'><b>{}</b></span>",
+				"weeks": "<span color='#90C695'><b>W{}</b></span>",
+				"weekdays": "<span color='#90C695'><b>{}</b></span>",
+				"today": "<span color='#1E1E2E' bgcolor='#90C695'><b><u>{}</u></b></span>"
+			}
+		},
+		"actions": {
+			"on-click-right": "mode",
+			"on-click-forward": "tz_up",
+			"on-click-backward": "tz_down",
+			"on-scroll-up": "shift_up",
+			"on-scroll-down": "shift_down"
+		}
+	},
+	"power-profiles-daemon": {
+		"format-icons": {
+			"performance": "󰓅",
+			"balanced": "󰾅",
+			"power-saver": "󰾆"
+		},
+		"format": "{icon}",
+		"tooltip-format": "Power Mode: {profile}"
+	},
+	"custom/timer": {
+		"tooltip": false,
+		"min-length": 5,
+		"exec": "$HOME/.config/custom_scripts/timer.sh",
+		"on-click": "date --date='60 minutes' +%s > /var/tmp/waybar_timer",
+		"on-click-right": "echo READY > /var/tmp/waybar_timer",
+		"on-click-middle": "echo READY > /var/tmp/waybar_timer",
+		"on-scroll-up": "date --date='8 minute' +%s > /var/tmp/waybar_timer",
+		"on-scroll-down": "date --date='1 minute' +%s > /var/tmp/waybar_timer",
+		"interval": 1
+	},
+	"sway/language": {
+		"format": "{short}",
+		"on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+		"tooltip": false
+	},
+	"custom/swaync": {
+		"escape": true,
+		"exec": "swaync-client -swb",
+		"exec-if": "swaync-client",
+		"format": "{icon}",
+		"format-icons": {
+			"dnd-inhibited-none": "󰂚",
+			"dnd-inhibited-notification": "󰂚",
+			"dnd-none": "󰂚",
+			"dnd-notification": "󰂚",
+			"inhibited-none": "󰂜",
+			"inhibited-notification": "󰂜",
+			"none": "󰂜",
+			"notification": "󰂞"
+		},
+		"on-click": "swaync-client -t -sw",
+		"on-click-right": "swaync-client -d -sw",
+		"return-type": "json",
+		"tooltip": false
+	},
+	"custom/color-picker": {
+		"format": "󰃉",
+		"on-click": "$HOME/bin/wl-color-picker clipboard",
+		"tooltip": false
+	},
+	"custom/countdown": {
+		"tooltip": false,
+		"min-length": 5,
+		"interval": 1,
+		"exec": "$HOME/bin/countdown"
+	},
+	"custom/menu": {
+		"format": "<span > </span>",
+		"on-click": "$HOME/.config/custom_scripts/menu",
+		"on-click-right": "clipman pick -t rofi",
+		"escape": true,
+		"tooltip": false
+	},
+	"custom/weather": {
+		"exec": "python $HOME/bin/weather.py",
+		"restart-interval": 300,
+		"return-type": "json"
+		// "format-alt": "{alt}",
+	}
 }
