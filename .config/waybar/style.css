@@ -39,15 +39,15 @@ window#waybar.hidden {
 #custom-color-picker,
 #custom-timer {
   background-color: transparent;
-  color: #7FB3D3;
+  color: #82AAFF;
   padding: 2px 6px;
   margin: 0 1px;
 }
 
 /* Clock gets special pod styling */
 #clock {
-  background-color: rgba(127, 179, 211, 0.2);
-  color: #7FB3D3;
+  background-color: rgba(130, 170, 255, 0.2);
+  color: #82AAFF;
   padding: 4px 12px;
   margin: 0 6px;
   border-radius: 12px;
@@ -76,7 +76,7 @@ window#waybar.hidden {
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #7FB3D3;
+    color: #82AAFF;
     border-bottom: 2px solid transparent;
 }
 
@@ -87,7 +87,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.focused {
-    color: #7FB3D3;
+    color: #82AAFF;
     border-bottom: 1px solid #90EE90; 
 		/* Light Green */
 }
@@ -104,7 +104,7 @@ window#waybar.hidden {
 #workspaces button:hover {
     background: rgba(127, 179, 211, 0.2);
     /* border-bottom: 2px solid #90C695; */
-    color: #7FB3D3;
+    color: #82AAFF;
 }
 
 /* Critical and warning states with green accent */
@@ -125,17 +125,17 @@ window#waybar.hidden {
 }
 
 #pulseaudio.source{
-    color: #7FB3D3;
+    color: #82AAFF;
 		/* opacity: 0.7; */
 }
 
 #pulseaudio.source-muted {
-    color: #7FB3D3;
+    color: #82AAFF;
 		/* opacity: 0.7; */
 }
 
 #custom-countdown {
-   color: #7FB3D3;
+   color: #82AAFF;
   /* padding: 2px 6px; */
   /* margin: 0 1px; */
 }

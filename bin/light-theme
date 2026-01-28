@@ -11,7 +11,7 @@ sed -i 's|mocha|latte|' colorscheme.lua
 # waybar theme
 cd ~/.config/waybar/
 sed -i 's|@background|#EFF1F5|g' style.css
-sed -i 's|#7FB3D3|#1E66F5|g' style.css
+sed -i 's|#82AAFF|#1E66F5|g' style.css
 swaymsg reload
 
 # rofi

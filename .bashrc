@@ -109,10 +109,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# flutter
-if [[ ":$PATH:" != *":$HOME/development/flutter/bin:"* ]]; then
-  export PATH="$HOME/development/flutter/bin:$PATH"
-fi
+
 
 # add ~/bin/ to the PATH env varriable
 if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then

@@ -11,13 +11,13 @@ window {
   anchor: center;
   fullscreen: false;
   width: 36em;
-  height: 20em;
+  height: 18em;
   x-offset: 0px;
   y-offset: 0px;
   enabled: true;
   border: 1px solid;
   border-color: @border;
-  border-radius: 4px;
+  // border-radius: 4px;
   background-color: @background;
   cursor: "default";
 }
@@ -31,7 +31,7 @@ entry {
   enabled: true;
   padding: 0.75em 1.25em;
   cursor: text;
-  placeholder: "  Search application...";
+  placeholder: " Search...";
   background-color: @background;
   placeholder-color: @stext;
 }
@@ -57,7 +57,7 @@ element {
   orientation: horizontal;
 }
 element-icon {
-  size: 24px;
+  size: 30px;
 }
 element normal.normal {
   background-color: inherit;
@@ -66,7 +66,7 @@ element normal.normal {
 element selected.normal {
   border: 1px solid;
   border-color: @border;
-  border-radius: 8px;
+  // border-radius: 8px;
   background-color: @select;
 }
 element-text {

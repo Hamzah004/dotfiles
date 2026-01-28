@@ -14,7 +14,6 @@ window {
   enabled: true;
   border: 1px solid;
   border-color: @border;
-  border-radius: 4px;
   background-color: @background;
 }
 
@@ -33,25 +32,4 @@ listview {
   reverse: false;
   cursor: "default";
 
-}
-
-element {
-  enabled: true;
-  cursor: pointer;
-  orientation: horizontal;
-}
-
-element normal.normal {
-  background-color: inherit;
-  text-color: inherit;
-}
-element selected.normal {
-  border: 1px solid;
-  border-color: @border;
-  border-radius: 8px;
-  background-color: @select;
-}
-element-text {
-  highlight: bold;
-  cursor: inherit;
 }
