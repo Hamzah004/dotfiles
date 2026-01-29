@@ -15,9 +15,9 @@
 		"custom/timer"
 	],
 	"modules-right": [
-		"custom/weather",
 		"sway/language",
 		"custom/color-picker",
+		"custom/weather",
 		"backlight",
 		"cpu",
 		"custom/memory",

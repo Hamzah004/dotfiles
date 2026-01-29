@@ -217,7 +217,7 @@
 [general]
 
 # Smoothing mode. Can be 'normal', 'scientific' or 'waves'. DEPRECATED as of 0.6.0
-;mode = scientific
+mode = waves
 
 # Accepts only non-negative values.
 ; framerate = 76
@@ -226,11 +226,11 @@
 # new as of 0.6.0 autosens of low values (dynamic range)
 # 'overshoot' allows bars to overshoot (in % of terminal height) without initiating autosens. DEPRECATED as of 0.6.0
  autosens = 1
-; overshoot = 20
+overshoot = 20
 
 # Manual sensitivity in %. If autosens is enabled, this will only be the initial value.
 # 200 means double height. Accepts only non-negative values.
-; sensitivity = 100
+sensitivity = 50
 
 # The number of bars (0-512). 0 sets it to auto (fill up console).
 # Bars' width and space between bars in number of characters.
@@ -238,15 +238,15 @@
  bar_width = 1
  bar_spacing = 1
 # bar_height is only used for output in "noritake" format
- ;bar_height = 25
+bar_height = 20
 
 # For SDL width and space between bars is in pixels, defaults are:
-; bar_width = 20
-; bar_spacing = 5
+bar_width = 1
+bar_spacing = 0
 
 # sdl_glsl have these default values, they are only used to calulate max number of bars.
-; bar_width = 1
-; bar_spacing = 0
+bar_width = 1
+bar_spacing = 1
 
 
 # Lower and higher cutoff frequencies for lowest and highest bars

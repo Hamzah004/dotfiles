@@ -4,7 +4,7 @@
 WALLPAPER_DIR="$HOME/Pictures/wallpapers/"
 SWAY_CONFIG_PATH="$HOME/.config/sway/output.conf"
 
-WALLPAPER=$(for a in $WALLPAPER_DIR/{*.jpg,*.png}; do echo -en "$(basename "$a")\0icon\x1f$a\n"; done | rofi -dmenu -show-icons)
+WALLPAPER=$(for a in $WALLPAPER_DIR/{*.jpg,*.png}; do echo -en "$(basename "$a")\0icon\x1f$a\n"; done | rofi -dmenu -i -theme-str '@import "~/.config/rofi/wallpaper.rasi"')
 if [ -z "$WALLPAPER" ]; then
   echo "No wallpaper selected"
   exit 1;
