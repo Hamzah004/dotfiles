@@ -12,8 +12,8 @@ window {
   fullscreen: false;
   height: 12%;
   enabled: true;
-  border: 1px solid;
-  border-color: @border;
+  border: 0px solid;
+  border-color: transparent;
   background-color: @background;
 }
 
