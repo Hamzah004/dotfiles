@@ -17,7 +17,7 @@
 	"modules-right": [
 		"sway/language",
 		"custom/color-picker",
-		"custom/weather",
+		// "custom/weather",
 		"backlight",
 		"cpu",
 		"custom/memory",
@@ -196,11 +196,11 @@
 		"on-click-right": "clipman pick -t rofi",
 		"escape": true,
 		"tooltip": false
-	},
-	"custom/weather": {
-		"exec": "python $HOME/bin/weather.py",
-		"restart-interval": 300,
-		"return-type": "json"
-		// "format-alt": "{alt}",
 	}
+	// "custom/weather": {
+	// 	"exec": "python $HOME/bin/weather.py",
+	// 	"restart-interval": 300,
+	// 	"return-type": "json"
+	// 	// "format-alt": "{alt}",
+	// }
 }

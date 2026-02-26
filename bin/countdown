@@ -1,12 +1,12 @@
 #!/usr/bin/bash
 
 # Target date
-target_date="2026-4-5"
-project_date="2026-2-5"
+target_date="2026-3-18"
+project_date="2026-2-12"
 
 # Calculate the difference in days
 days_left=$((($(date -d "$target_date" +%s) - $(date +%s)) / (60 * 60 * 24)))
 days_left_project=$((($(date -d "$project_date" +%s) - $(date +%s)) / (60 * 60 * 24)))
 
 # Display the countdown
-echo "Project: $days_left_project Days | Milestone: $days_left Days"
+echo "Milestone: $days_left Days"
