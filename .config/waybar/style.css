@@ -11,6 +11,7 @@
   text-shadow: none;
   transition: none;
   box-shadow: none;
+  /* font-size: 13px; */
 }
 
 /* the whole window */
@@ -75,9 +76,11 @@ window#waybar.hidden {
 
 #workspaces button {
     padding: 0 5px;
+    min-width: 14px;
     background-color: transparent;
     color: #82AAFF;
     border-bottom: 2px solid transparent;
+    margin: 1px;
 }
 
 #workspaces button.active {

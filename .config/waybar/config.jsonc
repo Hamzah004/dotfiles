@@ -7,8 +7,8 @@
 	// "margin-left": 8,
 	"modules-left": [
 		"custom/menu",
-		"sway/workspaces",
-		"custom/countdown"
+		"sway/workspaces"
+		// "custom/countdown"
 	],
 	"modules-center": [
 		"clock",
@@ -111,7 +111,7 @@
 	"clock": {
 		"format": "{:%H:%M}",
 		"interval": 1,
-		"format-alt": "{:%a,%d %b,%Y(%H:%M:%S)}",
+		"format-alt": "{:%a,%d %b,%Y (%H:%M:%S)}",
 		"tooltip-format": "\n<span size='12pt' font='MesloLGMDZ Nerd Font'>{calendar}</span>",
 		"calendar": {
 			"mode": "year",
