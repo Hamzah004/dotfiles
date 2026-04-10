@@ -26,7 +26,7 @@ map({ "n", "v" }, "K", "5k", { desc = "Visual Scroll Up", noremap = true, silent
 map({ "n", "v" }, "L", "5l", { desc = "Visual Scroll Right", noremap = true, silent = false })
 
 -- remapping escape key
-map({ "i", "v" }, "kj", "<Esc>", { desc = "Escape", noremap = true, silent = true })
+map({ "i" }, "kj", "<Esc>", { desc = "Escape", noremap = true, silent = true })
 map("t", "<Esc><Esc>", "<C-\\><C-N>", { desc = "Escape Term Mode", noremap = true, silent = true })
 
 -- Indenting

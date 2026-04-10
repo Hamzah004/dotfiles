@@ -67,6 +67,7 @@
 		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
 		"tooltip": false,
 		"max-volume": 100
+		// "signal": 10
 	},
 	"pulseaudio#source": {
 		"format": "{format_source}",
@@ -150,7 +151,7 @@
 		"on-click": "date --date='60 minutes' +%s > /var/tmp/waybar_timer",
 		"on-click-right": "echo READY > /var/tmp/waybar_timer",
 		"on-click-middle": "echo READY > /var/tmp/waybar_timer",
-		"on-scroll-up": "date --date='8 minute' +%s > /var/tmp/waybar_timer",
+		"on-scroll-up": "date --date='15 minute' +%s > /var/tmp/waybar_timer",
 		"on-scroll-down": "date --date='1 minute' +%s > /var/tmp/waybar_timer",
 		"interval": 1
 	},
