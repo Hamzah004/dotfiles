@@ -4,7 +4,7 @@ return {
 	version = "1.*",
 	opts = {
 		keymap = {
-			preset = "default",
+			preset = "enter",
 			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-e>"] = { "hide", "fallback" },
 			["<C-j>"] = { "snippet_forward", "fallback" },
@@ -20,9 +20,8 @@ return {
 
 			["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
 
-			["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-			["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
-			["<CR>"] = { "accept", "fallback" },
+			["<Tab>"] = { "accept", "fallback" },
+			["<S-Tab>"] = false,
 		},
 		appearance = {
 			nerd_font_variant = "mono",
@@ -45,13 +44,13 @@ return {
 		},
 		snippets = { preset = "luasnip" },
 		sources = {
-			default = { "lsp", "snippets", "path", "buffer", "lazydev" },
+			default = { "lazydev", "lsp", "path", "snippets", "buffer" },
 			providers = {
 				lazydev = {
 					name = "LazyDev",
 					module = "lazydev.integrations.blink",
 					-- make lazydev completions top priority (see `:h blink.cmp`)
-					score_offset = 50,
+					score_offset = 100,
 				},
 			},
 		},

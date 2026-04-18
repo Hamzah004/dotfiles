@@ -5,8 +5,6 @@ return {
 		"neovim/nvim-lspconfig",
 	},
 	config = function()
-		local capabilities = require("blink.cmp").get_lsp_capabilities()
-
 		-- mason lspconfig
 		require("mason-lspconfig").setup({
 			automatic_enable = true,
@@ -37,6 +35,11 @@ return {
 					"typescript",
 					"typescriptreact",
 					"typescript.tsx",
+				},
+				init_options = {
+					preferences = {
+						disableSuggestions = true,
+					},
 				},
 			},
 			-- eslint
@@ -95,7 +98,6 @@ return {
 
 		-- enable lsps
 		for server, config in pairs(servers) do
-			config.capabilities = vim.tbl_deep_extend("force", capabilities, config.capabilities or {})
 			vim.lsp.config(server, config)
 			vim.lsp.enable(server)
 		end

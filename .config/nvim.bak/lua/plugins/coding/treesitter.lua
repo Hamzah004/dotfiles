@@ -46,9 +46,9 @@ return {
 			enable = true,
 			additional_vim_regex_highlighting = false,
 		},
-	indent = {
-		enable = true,
-	},
+		inndent = {
+			enable = true,
+		},
 		incremental_selection = {
 			enable = true,
 			keymaps = {
@@ -59,5 +59,7 @@ return {
 			},
 		},
 	},
-
+	config = function(_, opts)
+		require("nvim-treesitter.configs").setup(opts)
+	end,
 }

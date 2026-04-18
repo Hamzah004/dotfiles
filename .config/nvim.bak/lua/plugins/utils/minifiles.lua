@@ -57,7 +57,7 @@ return {
 		{
 			mode = "n",
 			"<leader>ec",
-			":lua MiniFiles.open(vim.cmd('e ~/.config/nvim/lua/grimmvim/'))<cr>",
+			":lua MiniFiles.open(vim.cmd('e ~/.config/nvim/lua/'))<cr>",
 			desc = "Nvim Config",
 		},
 		{
