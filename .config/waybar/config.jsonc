@@ -148,11 +148,11 @@
 		"tooltip": false,
 		"min-length": 5,
 		"exec": "$HOME/.config/custom_scripts/timer.sh",
-		"on-click": "date --date='60 minutes' +%s > /var/tmp/waybar_timer",
+		"on-click": "date --date='45 minutes' +%s > /var/tmp/waybar_timer",
 		"on-click-right": "echo READY > /var/tmp/waybar_timer",
 		"on-click-middle": "echo READY > /var/tmp/waybar_timer",
-		"on-scroll-up": "date --date='15 minute' +%s > /var/tmp/waybar_timer",
-		"on-scroll-down": "date --date='1 minute' +%s > /var/tmp/waybar_timer",
+		"on-scroll-up": "date --date='10 minute' +%s > /var/tmp/waybar_timer",
+		"on-scroll-down": "date --date='7 minute' +%s > /var/tmp/waybar_timer",
 		"interval": 1
 	},
 	"sway/language": {

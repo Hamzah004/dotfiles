@@ -238,7 +238,7 @@ tmux_conf_theme_right_separator_sub="|"
 
 # clean, minimal status bar
 tmux_conf_theme_status_left=" #S "
-tmux_conf_theme_status_right=" %H:%M "
+tmux_conf_theme_status_right="#{pomodoro_status} %H:%M "
 
 # status left style
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_7"
@@ -300,7 +300,7 @@ tmux_conf_update_plugins_on_launch=false
 # by default, reloading the configuration will update tpm and all plugins
 #   - true (default)
 #   - false
-tmux_conf_update_plugins_on_reload=false
+tmux_conf_update_plugins_on_reload=true
 
 # by default, reloading the configuration will uninstall tpm and plugins when no
 # plugins are enabled
@@ -325,9 +325,21 @@ set -g @plugin 'tmux-plugins/tmux-fpp'
 set -g @plugin 'tmux-plugins/tmux-open'
 set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'wfxr/tmux-fzf-url'
+set -g @plugin 'olimorris/tmux-pomodoro-plus'
 
 # Plugin configurations
 set -g @yank_selection_mouse 'clipboard'
+
+# Pomodoro Plus keybinds (avoid conflicts with window/pane bindings)
+# prefix + g   -> toggle start/pause/resume
+# prefix + C-g -> open pomodoro menu
+# prefix + M-g -> custom pomodoro durations
+set -g @pomodoro_toggle 'g'
+set -g @pomodoro_restart 'G'
+set -g @pomodoro_skip 'N'
+set -g @pomodoro_cancel 'X'
+set -g @pomodoro_interval_display ' (%s/%s)'
+set -g @pomodoro_pause ' [PAUSED] '
 
 
 # -- custom variables ----------------------------------------------------------
@@ -390,5 +402,3 @@ bind -n M-9 select-window -t 9
 bind Space next-layout
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded!"
 bind S setw synchronize-panes
-
- 

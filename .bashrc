@@ -133,8 +133,8 @@ fi
 # source $HOME\alacritty/extra/completions/alacritty.bash
 
 # starship
-eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
-export STARSHIP_CONFIG="$HOME/starship/starship.toml"
+# eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
+# export STARSHIP_CONFIG="$HOME/starship/starship.toml"
 
 # Use nvim for editing everywhere
 export EDITOR='nvim'
@@ -168,8 +168,6 @@ alias q="exit"
 
 # export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 
-alias ascii="man ascii"
-
 alias gg="clang -Wall -Wextra -Werror"
 
 alias m='~/mini-moulinette/mini-moul.sh'
@@ -181,7 +179,7 @@ export HISTCONTROL=ignoreboth:erasedups
 
 alias open="xdg-open"
 
-# git shit
+# git alias
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit -m'
@@ -196,7 +194,7 @@ alias s="source ~/.bashrc"
 alias deepthink="nvim $HOME/libft-war-machine/deepthought"
 
 # alias for freeCad
-alias freecad="flatpak run org.freecad.FreeCAD"
+# alias freecad="flatpak run org.freecad.FreeCAD"
 
 # # export NVM_DIR="$HOME/.nvm"
 # # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
