@@ -20,8 +20,8 @@ return {
 
 			["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
 
-			["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-			["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+			["<Tab>"] = { "select_next", "fallback" },
+			["<S-Tab>"] = { "select_prev", "fallback" },
 			["<CR>"] = { "accept", "fallback" },
 		},
 		appearance = {

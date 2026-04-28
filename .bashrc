@@ -133,8 +133,8 @@ fi
 # source $HOME\alacritty/extra/completions/alacritty.bash
 
 # starship
-# eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
-# export STARSHIP_CONFIG="$HOME/starship/starship.toml"
+eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
+export STARSHIP_CONFIG="$HOME/starship/starship.toml"
 
 # Use nvim for editing everywhere
 export EDITOR='nvim'
@@ -231,3 +231,11 @@ export PATH=/home/liva/.opencode/bin:$PATH
 # printf "\n	$RED$(countdown status so_long)\n"
 # printf "	$RED$(devtimer status so_long)\n"
 alias brothers="open ~/Documents/Books/karmazoph_brothers.pdf"
+
+# pnpm
+export PNPM_HOME="/home/liva/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
