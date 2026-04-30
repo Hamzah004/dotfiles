@@ -96,7 +96,9 @@ map("n", "<leader>px", ":close<CR>", { desc = "Close split", noremap = true, sil
 map("n", "<leader>po", ":only<CR>", { desc = "Single Pane", noremap = true, silent = false })
 
 -- Toggle Term
-map("n", "<leader>t", ":ToggleTerm<cr>", { desc = "Toggle Floating Terminal", noremap = true, silent = true })
+map("n", "<leader>tt", ":term<cr>", { desc = "Terminal", noremap = true, silent = true })
+map("n", "<leader>tv", ":vsplit | term<cr>", { desc = "Vertical Terminal", noremap = true, silent = true })
+map("n", "<leader>th", ":split | term<cr>", { desc = "Horizontal Terminal", noremap = true, silent = true })
 
 -- add ; at the end of the line
 map("i", "<C-;>", "<esc>A;<esc>i", { desc = "semicolon at the end", noremap = true, silent = true })
