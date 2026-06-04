@@ -1,4 +1,5 @@
 @import url("colors.css");
+
 /* ================================ */
 /*            Common CSS            */
 /* ================================ */
@@ -6,172 +7,170 @@
   padding: 0;
   margin: 0;
   min-height: 0;
-  border-radius: 0;
   border: none;
+  border-radius: 0;
   text-shadow: none;
-  transition: none;
   box-shadow: none;
-  /* font-size: 13px; */
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-family: "JetBrainsMono Nerd Font", "MesloLGS Nerd Font", monospace;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 /* the whole window */
 window#waybar {
-  color: @foreground;
-  background: @background;
+  background: @base;
+  color: @text;
 }
 
 window#waybar.hidden {
   opacity: 1;
 }
-/* All other modules use relaxing blue and green colors */
-#workspaces,
+
+/* ================================ */
+/*        Shared module rhythm      */
+/* ================================ */
 #custom-menu,
-#workspaces button,
 #cpu,
 #temperature,
 #backlight,
 #custom-memory,
 #pulseaudio,
+#pulseaudio.source,
 #battery,
 #tray,
 #language,
 #power-profiles-daemon,
 #custom-swaync,
 #custom-color-picker,
-#custom-timer {
-  background-color: transparent;
-  color: #82AAFF;
-  padding: 2px 6px;
+#custom-timer,
+#custom-countdown {
+  background: transparent;
+  padding: 2px 8px;
   margin: 0 1px;
+  border-radius: 8px;
 }
 
-/* Clock gets special pod styling */
+/* Hover affordance for interactive modules */
+#custom-menu:hover,
+#cpu:hover,
+#backlight:hover,
+#custom-memory:hover,
+#pulseaudio:hover,
+#pulseaudio.source:hover,
+#battery:hover,
+#language:hover,
+#power-profiles-daemon:hover,
+#custom-swaync:hover,
+#custom-color-picker:hover,
+#custom-timer:hover {
+  background: @surface0;
+}
+
+/* ================================ */
+/*         Per-module accents       */
+/* ================================ */
+#custom-menu          { color: @mauve; font-size: 15px; }
+#custom-timer         { color: @peach; }
+#language             { color: @sky; }
+#custom-color-picker  { color: @pink; font-size: 15px; }
+#backlight            { color: @yellow; }
+#cpu                  { color: @blue; }
+#custom-memory        { color: @mauve; }
+#temperature          { color: @sapphire; }
+#power-profiles-daemon { color: @teal; }
+#custom-swaync        { color: @lavender; }
+#custom-countdown     { color: @blue; }
+
+/* Audio */
+#pulseaudio          { color: @green; }
+#pulseaudio.muted    { color: @red; }
+#pulseaudio.source        { color: @teal; }
+#pulseaudio.source-muted  { color: @maroon; }
+
+/* Battery */
+#battery                  { color: @green; }
+#battery.charging         { color: @yellow; }
+#battery.warning          { color: @peach; }
+#battery.critical         { color: @red; font-weight: bold; }
+#battery.critical.charging { color: @yellow; }
+
+/* Temperature */
+#temperature.critical { color: @red; font-weight: bold; }
+
+/* Tray */
+#tray                       { color: @subtext1; }
+#tray > .needs-attention    { color: @red; }
+
+/* Notifications */
+#custom-swaync.notification,
+#custom-swaync.dnd-notification { color: @yellow; }
+
+/* ================================ */
+/*          Clock (center pill)     */
+/* ================================ */
 #clock {
-  background-color: rgba(130, 170, 255, 0.2);
-  color: #82AAFF;
-  padding: 4px 12px;
+  background: @surface0;
+  color: @blue;
+  padding: 2px 14px;
   margin: 0 6px;
-  border-radius: 12px;
-  border: 1px solid rgba(127, 179, 211, 0.3);
+  border-radius: 10px;
+  border: 1px solid @surface1;
 }
 
 /* ================================ */
-/*       workspaces module          */
+/*         Workspaces module        */
 /* ================================ */
-
-#window,
-#workspaces button,
-#workspaces button:hover,
-#workspaces button.visible,
-#workspaces button.visible:hover,
-#workspaces button.active,
-#workspaces button.active:hover,
-#workspaces button.urgent{
-  font-weight: 600;
-}
-
 #workspaces {
-  margin: 1px;
+  margin: 1px 2px;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    min-width: 14px;
-    background-color: transparent;
-    color: #82AAFF;
-    border-bottom: 2px solid transparent;
-    margin: 1px;
+  padding: 0 6px;
+  min-width: 14px;
+  background: transparent;
+  color: @subtext0;
+  border-bottom: 2px solid transparent;
+  border-radius: 8px;
+  margin: 1px 2px;
+  font-weight: 600;
 }
 
 #workspaces button.active {
-    background-color: transparent;
-    border-bottom: 2px solid #90C695;
-    color: #90C695;
+  color: @green;
+  border-bottom: 2px solid @green;
 }
 
 #workspaces button.focused {
-    color: #82AAFF;
-    border-bottom: 1px solid #90EE90; 
-		/* Light Green */
+  color: @green;
+  border-bottom: 2px solid @green;
 }
 
 #workspaces button.urgent {
-    background-color: #C71585; /* Medium Violet Red */
+  color: @base;
+  background: @red;
 }
 
 #workspaces button.hidden {
-    opacity: 1; /* Make hidden workspaces visible with a different color */
-    color: #FFFFE0; /* Light Yellow */
+  opacity: 1;
+  color: @surface2;
 }
 
 #workspaces button:hover {
-    background: rgba(127, 179, 211, 0.2);
-    /* border-bottom: 2px solid #90C695; */
-    color: #82AAFF;
+  background: @surface0;
+  color: @blue;
+  border-bottom: 2px solid transparent;
 }
 
-/* Critical and warning states with green accent */
-#temperature.critical,
-#battery.critical {
-  color: #C82909;
-  font-weight: bold;
-}
-
-#battery.warning {
-  color: #C82909;
-  opacity: 0.9;
-}
-
-#pulseaudio.muted {
-  color: #C82909;
-  /* opacity: 0.7; */
-}
-
-#pulseaudio.source{
-    color: #82AAFF;
-		/* opacity: 0.7; */
-}
-
-#pulseaudio.source-muted {
-    color: #82AAFF;
-		/* opacity: 0.7; */
-}
-
-#custom-countdown {
-   color: #82AAFF;
-  /* padding: 2px 6px; */
-  /* margin: 0 1px; */
-}
-
-#custom-weather.severe {
-   color: #82AAFF;
-;
-}
-
-#custom-weather.sunnyDay {
-    color: #c2ca76;
-}
-
-#custom-weather.clearNight {
-    color: #2b2b2a;
-}
-
-#custom-weather.cloudyFoggyDay, #custom-weather.cloudyFoggyNight {
-    color: #c2ddda;
-}
-
-#custom-weather.rainyDay, #custom-weather.rainyNight {
-    color: #5aaca5;
-}
-
-#custom-weather.snowyIcyDay, #custom-weather.snowyIcyNight {
-    color: #d6e7e5;
-}
-
-#custom-weather.default {
-   color: #82AAFF;
-}
-
+/* ================================ */
+/*            Tooltips              */
+/* ================================ */
 tooltip {
-  background-color: rgba(0, 0, 0, 0.8);
+  background: @mantle;
+  border: 1px solid @surface0;
+  border-radius: 8px;
+}
+
+tooltip label {
+  color: @text;
 }
