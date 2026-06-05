@@ -1,3 +1,4 @@
+config-file = ?auto/theme.ghostty
 # This is the configuration file for Ghostty.
 #
 # This template file has been automatically created at the following
@@ -48,4 +49,15 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = Challenger Deep
+# theme = Matrix
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+font-size = 15
+# background-opacity = 0.5
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:down
+keybind = ctrl+k=goto_split:up
+keybind = ctrl+l=goto_split:right
+env = EDITOR=nvim
+env = VISUAL=nvim

@@ -1,19 +1,15 @@
 #!/usr/bin/bash
 
-# alacritty theme
-cd ~/.config/alacritty/
-sed -i 's|catppuccin_latte|catppuccin_mocha|' alacritty.toml
+# ghostty theme
+sed -i 's|Catppuccin Latte|Catppuccin Mocha|' ~/.config/ghostty/auto/theme.ghostty
 
 # nvim theme
-cd ~/.config/nvim/lua/grimmvim/plugins/ui/
+cd ~/.config/nvim/lua/plugins/ui/
 sed -i 's|latte|mocha|' colorscheme.lua
 
 # waybar theme
-cd ~/.config/waybar/
-sed -i 's|#EFF1F5|@background|g' style.css
-sed -i 's|#1E66F5|#82AAFF|g' style.css
+cp ~/.config/waybar/colors-mocha.css ~/.config/waybar/colors.css
 swaymsg reload
-
 # rofi
 cd ~/.config/rofi/themes/
 sed -i 's|background: #EFF1F5|background: #181825|' colors.rasi

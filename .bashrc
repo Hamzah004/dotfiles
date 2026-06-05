@@ -133,15 +133,15 @@ fi
 # source $HOME\alacritty/extra/completions/alacritty.bash
 
 # starship
-eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
-export STARSHIP_CONFIG="$HOME/starship/starship.toml"
+# eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
+# export STARSHIP_CONFIG="$HOME/starship/starship.toml"
 
 # Use nvim for editing everywhere
 export EDITOR='nvim'
 export VISUAL='nvim'
 
 # Use vim-style editing in the shell
-set -o vi
+# set -o vi
 
 alias brightup="brightnessctl set +5%"
 alias brightdown="brightnessctl set 5%-"
@@ -239,3 +239,7 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+export FT_USER="hbani-at"
+export FT_EMAIL="hbani-at@student.42amman.com"
+

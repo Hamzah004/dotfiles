@@ -15,6 +15,7 @@ return {
 				},
 				TODO = { icon = " ", color = "info" },
 				HACK = { icon = " ", color = "warning" },
+				EXPLAIN = { icon = " ", color = "hint", alt = { "EXPLANATION" } },
 				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
 				PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
 				NOTE = { icon = " ", color = "hint", alt = { "INFO" } },

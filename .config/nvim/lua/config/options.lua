@@ -60,3 +60,7 @@ opt.writebackup = true
 opt.updatetime = 500
 opt.timeoutlen = 1000
 opt.swapfile = false
+
+-- 42 header --
+vim.g.user = "hbani-at"
+vim.g.mail = "hbani-at@student.42amman.com"
