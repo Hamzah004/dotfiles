@@ -5,29 +5,31 @@ format = """
 $directory\
 $git_branch\
 $git_status\
-$c\
-$java\
-$kotlin\
-$python\
-$dart\
-$docker_context
 $character"""
 
 palette = 'catppuccin'
 
 [palettes.catppuccin]
-color_fg0 = '#fafdf6'
-color_bg1 = '#282A36'
-color_bg3 = '#665c54'
-color_blue = '#42a5f5'
-color_aqua = '#689d6a'
-color_green = '#50FA7B'
-color_orange = '#e85d04'
-color_purple = '#ff0054'
-color_red = '#d62828'
-color_yellow = '#ffb300'
-color_black = '#080808'
-purple = '#8B5CF6'
+# Synthwave / Vaporwave — neon 80s sunset on deep purple-black
+# Aliases used throughout this config
+color_fg0 = '#f9f871'    # neon yellow text
+color_bg1 = '#1a103c'    # deep purple-black base
+color_bg3 = '#2a1a5e'    # raised purple surface
+color_blue = '#00f0ff'   # electric cyan
+color_aqua = '#00f0ff'   # cyan
+color_green = '#21ffba'  # neon mint
+color_orange = '#ff8b00' # hot orange
+color_purple = '#b026ff' # vivid purple
+color_red = '#ff5fd2'    # hot pink
+color_yellow = '#f9f871' # neon yellow
+color_black = '#0d0721'  # darkest purple-black
+
+# Bare names referenced directly in format strings
+purple = '#b026ff'
+red = '#ff5fd2'
+green = '#21ffba'
+blue = '#00f0ff'
+white = '#f9f871'
 
 [os]
 disabled = false
@@ -140,9 +142,8 @@ disabled = false
 
 [character]
 disabled = false
-success_symbol = '[❯](bold fg:color_green)'
-error_symbol = '[❯](bold fg:color_red)'
-vimcmd_symbol = '[❮](bold fg:color_green)'
+success_symbol = '[➜](bold fg:color_green)'
+error_symbol = '[➜](bold fg:color_red)'
 
 [custom.countdown]
 command = "~/bin/countdown"
