@@ -1,0 +1,7 @@
+require("config.keymaps")
+require("config.lazy")
+require("config.options")
+require("config.highlights")
+require("config.autocommands")
+require("config.custom_functions")
+require("config.lsp_diagnostic")
