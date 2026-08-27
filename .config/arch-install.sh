@@ -62,6 +62,14 @@ PACMAN_PACKAGES=(
   trash-cli
   ranger
   opencode
+  mandb
+  man-pages
+  brightnessctl
+  bat
+  zoxide
+  eza
+  clang
+  pnpm
 
   # --- Sway core ---
   sway

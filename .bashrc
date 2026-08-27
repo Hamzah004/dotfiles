@@ -127,14 +127,15 @@ if [[ ":$PATH:" != *":/usr/local/go/bin:"* ]]; then
 fi
 
 # for Rust's Cargo toolchain to work correctly
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # alacritty completion
 # source $HOME\alacritty/extra/completions/alacritty.bash
 
 # starship
-eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
-export STARSHIP_CONFIG="$HOME/starship/starship.toml"
+eval "$(starship init bash)"
+# eval -- "$($HOME/.cargo/bin/starship init bash --print-full-init)"
+# export STARSHIP_CONFIG="$HOME/starship/starship.toml"
 
 # Use nvim for editing everywhere
 export EDITOR='nvim'
