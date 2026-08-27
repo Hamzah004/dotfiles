@@ -1,6 +1,6 @@
 [general]
 import = [
-    "~/.config/alacritty/themes/themes/material_theme_mod.toml"
+    "~/.config/alacritty/catppuccin-mocha.toml"
 ]
 
 [font]
