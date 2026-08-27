@@ -192,7 +192,7 @@
 		"exec": "$HOME/bin/countdown"
 	},
 	"custom/menu": {
-		"format": "<span > </span>",
+		"format": "<span >󰣇 </span>",
 		"on-click": "$HOME/.config/custom_scripts/menu",
 		"on-click-right": "clipman pick -t rofi",
 		"escape": true,

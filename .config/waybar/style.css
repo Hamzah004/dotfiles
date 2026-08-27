@@ -13,7 +13,7 @@
   box-shadow: none;
   transition: background-color 0.2s ease, color 0.2s ease;
   font-family: "JetBrainsMono Nerd Font", "MesloLGS Nerd Font", monospace;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -70,7 +70,7 @@ window#waybar.hidden {
 /* ================================ */
 /*         Per-module accents       */
 /* ================================ */
-#custom-menu          { color: @mauve; font-size: 15px; }
+#custom-menu          { color: @primary; font-size: 18px; }
 #custom-timer         { color: @peach; }
 #language             { color: @sky; }
 #custom-color-picker  { color: @pink; font-size: 15px; }
@@ -131,7 +131,7 @@ window#waybar.hidden {
   background: transparent;
   color: @subtext0;
   border-bottom: 2px solid transparent;
-  border-radius: 8px;
+  border-radius: 2px;
   margin: 1px 2px;
   font-weight: 600;
 }

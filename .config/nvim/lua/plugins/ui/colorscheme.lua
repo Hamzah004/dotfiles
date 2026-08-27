@@ -21,53 +21,53 @@
 --   end
 -- }
 
-return {
-    "samharju/synthweave.nvim",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000,
-    config = function()
-        vim.cmd.colorscheme("synthweave")
-        -- transparent version
-        -- vim.cmd.colorscheme("synthweave-transparent")
-    end
-}
-
 -- return {
--- 	"catppuccin/nvim",
--- 	name = "catppuccin",
--- 	priority = 1000,
--- 	config = function()
--- 		require("catppuccin").setup({
--- 			flavour = "mocha", -- mocha, frappe, macchiato, mocha
--- 			transparent_background = false,
--- 			term_colors = true,
--- 			integrations = {
--- 				treesitter = true,
--- 				neotree = true,
--- 				telescope = true,
--- 				cmp = true,
--- 				gitsigns = true,
--- 				lsp_trouble = true,
--- 				which_key = true,
--- 				notify = true,
--- 				snacks = true,
--- 			},
--- 			styles = {
--- 				comments = { "italic" },
--- 				keywords = { "bold" },
--- 				functions = { "italic" },
--- 				strings = {},
--- 				variables = {},
--- 			},
--- 		})
---
--- 		vim.api.nvim_create_autocmd("VimEnter", {
--- 			callback = function()
--- 				vim.cmd.colorscheme("catppuccin")
--- 			end,
--- 		})
--- 	end,
+--     "samharju/synthweave.nvim",
+--     lazy = false, -- make sure we load this during startup if it is your main colorscheme
+--     priority = 1000,
+--     config = function()
+--         vim.cmd.colorscheme("synthweave")
+--         -- transparent version
+--         -- vim.cmd.colorscheme("synthweave-transparent")
+--     end
 -- }
+
+return {
+	"catppuccin/nvim",
+	name = "catppuccin",
+	priority = 1000,
+	config = function()
+		require("catppuccin").setup({
+			flavour = "mocha", -- mocha, frappe, macchiato, mocha
+			transparent_background = false,
+			term_colors = true,
+			integrations = {
+				treesitter = true,
+				neotree = true,
+				telescope = true,
+				cmp = true,
+				gitsigns = true,
+				lsp_trouble = true,
+				which_key = true,
+				notify = true,
+				snacks = true,
+			},
+			styles = {
+				comments = { "italic" },
+				keywords = { "bold" },
+				functions = { "italic" },
+				strings = {},
+				variables = {},
+			},
+		})
+
+		vim.api.nvim_create_autocmd("VimEnter", {
+			callback = function()
+				vim.cmd.colorscheme("catppuccin")
+			end,
+		})
+	end,
+}
 
 -- return {
 -- 	"folke/tokyonight.nvim",

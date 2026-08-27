@@ -90,6 +90,7 @@ PACMAN_PACKAGES=(
   eza
   clang
   pnpm
+  npm
 
   # --- Sway core ---
   sway
