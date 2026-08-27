@@ -22,14 +22,7 @@ if [[ "$EUID" -eq 0 ]]; then
 fi
 
 # =============================================================================
-# 1. SYSTEM UPDATE
-# =============================================================================
-header "System Update"
-sudo pacman -Syu --noconfirm
-log "System updated"
-
-# =============================================================================
-# 2. INSTALL YAY (AUR helper)
+# 1. INSTALL YAY (AUR helper)
 # =============================================================================
 header "AUR Helper (yay)"
 if ! command -v yay &>/dev/null; then
@@ -44,7 +37,34 @@ else
 fi
 
 # =============================================================================
-# 3. PACMAN PACKAGES
+# 2. MIRROR SETUP (rate-mirrors)
+# =============================================================================
+header "Mirror Setup"
+
+# Backup the current mirrorlist before making any changes
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+log "Mirrorlist backed up to /etc/pacman.d/mirrorlist.bak"
+
+if ! command -v rate-mirrors &>/dev/null; then
+  yay -S --noconfirm --needed rate-mirrors-bin
+  log "rate-mirrors installed"
+else
+  log "rate-mirrors already installed, skipping"
+fi
+
+# Rank HTTPS-only Arch mirrors and write them to the mirrorlist
+rate-mirrors --allow-root --protocol https arch | grep -v '^#' | sudo tee /etc/pacman.d/mirrorlist
+log "Mirrorlist updated with fastest HTTPS mirrors"
+
+# =============================================================================
+# 3. SYSTEM UPDATE
+# =============================================================================
+header "System Update"
+sudo pacman -Syu --noconfirm
+log "System updated"
+
+# =============================================================================
+# 4. PACMAN PACKAGES
 # =============================================================================
 header "Core Pacman Packages"
 
@@ -157,7 +177,7 @@ sudo pacman -S --noconfirm --needed "${PACMAN_PACKAGES[@]}"
 log "Pacman packages installed"
 
 # =============================================================================
-# 4. AUR PACKAGES
+# 5. AUR PACKAGES
 # =============================================================================
 header "AUR Packages"
 
@@ -174,7 +194,7 @@ yay -S --noconfirm --needed "${AUR_PACKAGES[@]}"
 log "AUR packages installed"
 
 # =============================================================================
-# 5. DISCORD — WAYLAND SCREEN SHARING FIX
+# 6. DISCORD — WAYLAND SCREEN SHARING FIX
 # =============================================================================
 header "Discord Screen Sharing Fix"
 
@@ -191,7 +211,7 @@ else
 fi
 
 # =============================================================================
-# 6. ENABLE SYSTEM SERVICES
+# 7. ENABLE SYSTEM SERVICES
 # =============================================================================
 header "System Services"
 
@@ -216,7 +236,7 @@ systemctl --user enable --now xdg-desktop-portal-wlr
 log "xdg-desktop-portal enabled (screen sharing)"
 
 # =============================================================================
-# 7. SWAY — WAYLAND ENV + SCREEN SHARING SETUP
+# 8. SWAY — WAYLAND ENV + SCREEN SHARING SETUP
 # =============================================================================
 # header "Sway Config Scaffold"
 #
@@ -254,7 +274,7 @@ log "xdg-desktop-portal enabled (screen sharing)"
 # log "~/.config/swaync directory ready"
 
 # =============================================================================
-# 8. STARSHIP PROMPT
+# 9. STARSHIP PROMPT
 # =============================================================================
 header "Starship Prompt"
 
@@ -273,7 +293,7 @@ else
 fi
 
 # =============================================================================
-# 9. LOCALE & TIMEZONE
+# 10. LOCALE & TIMEZONE
 # =============================================================================
 # header "Locale & Timezone"
 #
@@ -290,7 +310,7 @@ fi
 # fi
 
 # =============================================================================
-# 10. HOSTNAME
+# 11. HOSTNAME
 # =============================================================================
 # header "Hostname"
 
@@ -307,7 +327,7 @@ fi
 # fi
 
 # =============================================================================
-# 11. USER GROUPS
+# 12. USER GROUPS
 # =============================================================================
 header "User Groups"
 
@@ -321,7 +341,7 @@ if ! sudo grep -q "^%wheel ALL=(ALL:ALL) ALL" /etc/sudoers; then
 fi
 
 # =============================================================================
-# 12. GTK THEMING
+# 13. GTK THEMING
 # =============================================================================
 header "GTK Settings"
 
