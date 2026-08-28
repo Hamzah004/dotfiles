@@ -29,15 +29,13 @@ Every dotfile is managed with a bare Git repo — clone it and `dotfiles checkou
 
 ---
 
-## 📸 Gallery
+## 📸 Screenshot
 
-| Desktop | Terminal |
-|:---:|:---:|
-| ![desktop](Pictures/screenshots/img1.png) | ![terminal](Pictures/screenshots/img2.png) |
+<div align="center">
 
-| Configs | Wallpapers |
-|:---:|:---:|
-| ![configs](Pictures/screenshots/img3.png) | ![wallpaper](Pictures/screenshots/img4.png) |
+![desktop](Pictures/screenshots/img1.png)
+
+</div>
 
 ---
 
