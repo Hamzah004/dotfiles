@@ -1,116 +1,123 @@
-# Guide for Managing Dotfiles with a Bare Git Repository
+<div align="center">
 
-This guide explains how to use a bare Git repository to manage your dotfiles (configuration files in your home directory).
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Sway](https://img.shields.io/badge/Wayland-Sway-blueviolet)](https://swaywm.org/)
+[![Alacritty](https://img.shields.io/badge/Terminal-Alacritty-orange)](https://alacritty.org/)
+[![Neovim](https://img.shields.io/badge/Editor-Neovim-57A143?logo=neovim)](https://neovim.io/)
+[![Zsh](https://img.shields.io/badge/Shell-Zsh-%234285F4?logo=zsh)](https://zsh.org/)
+[![Starship](https://img.shields.io/badge/Prompt-Starship-363a4f?logo=starship)](https://starship.rs/)
+[![Arch](https://img.shields.io/badge/OS-Arch_Linux-red?logo=archlinux)](https://archlinux.org/)
+[![NixOS](https://img.shields.io/badge/NixOS-Nix-purple?logo=nixos)](https://nixos.org/)
+[![Catppuccin](https://img.shields.io/badge/Theme-Catppuccin_Mocha-blue)](https://github.com/catppuccin/catppuccin)
 
-## What is a Bare Git Repository?
+</div>
 
-A bare Git repository is a repository that doesn't have a working directory. This means it doesn't have a copy of your files checked out. It only contains the Git data, which is usually stored in the `.git` directory.
+<br/>
 
-For managing dotfiles, a bare repository is ideal because you can have your dotfiles in your home directory without having a `.git` subdirectory and without having to move your files into a versioned directory.
+<div align="center">
 
-## How to Create a Bare Repository
+![desktop](Pictures/screenshots/img1.png)
 
-1.  **Initialize the bare repository:**
+</div>
 
-    ```bash
-    git init --bare $HOME/.dotfiles
-    ```
+---
 
-    This creates a directory named `.dotfiles` in your home directory, which will store your versioned dotfiles' history.
+## 🖥️ About
 
-2.  **Create an alias for easier use:**
+A minimal, aesthetic, and highly configured Linux dotfiles setup running on **Sway** (Wayland/wlroots).
+Every dotfile is managed with a bare Git repo — clone it and `dotfiles checkout` to get everything running.
 
-    Add the following alias to your shell's configuration file (e.g., `.bashrc`, `.zshrc`):
+---
 
-    ```bash
-    alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-    ```
+## 📸 Gallery
 
-    This alias allows you to run git commands for your dotfiles repository from anywhere by using `dotfiles` instead of `git`.
+| Desktop | Terminal |
+|:---:|:---:|
+| ![desktop](Pictures/screenshots/img1.png) | ![terminal](Pictures/screenshots/img2.png) |
 
-3.  **Reload your shell configuration:**
+| Configs | Wallpapers |
+|:---:|:---:|
+| ![configs](Pictures/screenshots/img3.png) | ![wallpaper](Pictures/screenshots/img4.png) |
 
-    ```bash
-    source ~/.bashrc  # or ~/.zshrc
-    ```
+---
 
-## How to Set It Up
+## 📦 Configs
 
-1.  **Configure the repository to not show untracked files:**
+| App | Description |
+|:---|:---|
+| **Sway** | Tiling Wayland compositor (wlroots) |
+| **Alacritty** | GPU-accelerated terminal emulator |
+| **Kitty** | Fast, feature-rich terminal |
+| **Neovim** | Hacked Vim — config & plugins |
+| **Zsh** | Shell with Oh My Zsh & Starship prompt |
+| **Fish** | Smart and user-friendly shell |
+| **Fastfetch** | Fast system info fetch |
+| **Rofi** | Application launcher & window switcher |
+| **Waybar** | Modern status bar for Wayland |
+| **Swaylock** | Screen locker |
+| **Swaync** | Notification center |
+| **Starship** | Cross-shell prompt |
+| **NixOS** | Declarative system config |
+| **Wallpaper** | Desktop backgrounds |
 
-    By default, the repository will show all files in your home directory as untracked. To change this, run:
+---
 
-    ```bash
-    dotfiles config --local status.showUntrackedFiles no
-    ```
-
-2.  **Add files to the repository:**
-
-    Now you can start adding your dotfiles to the repository.
-
-    ```bash
-    dotfiles add .bashrc
-    dotfiles add .vimrc
-    dotfiles add .config/nvim/init.vim
-    ```
-
-3.  **Commit your files:**
-
-    ```bash
-    dotfiles commit -m "Add initial dotfiles"
-    ```
-
-4.  **Push to a remote repository (optional but recommended):**
-
-    Create a new repository on a service like GitHub or GitLab and then push your local repository to it.
-
-    ```bash
-    dotfiles remote add origin <remote_repository_url>
-    dotfiles push -u origin master
-    ```
-
-## How to Use It
-
-### Adding New Files
-
-To add new dotfiles, use the `dotfiles add` command:
+## ⚡ Quick Start
 
 ```bash
-dotfiles add .tmux.conf
-dotfiles commit -m "Add tmux configuration"
-dotfiles push
+# Clone your bare dotfiles repo
+git clone --bare <repo-url> $HOME/.dotfiles
+
+# Add the alias
+echo "alias dotfiles='/usr/bin/git --git-dir=\$HOME/.dotfiles/ --work-tree=\$HOME'" >> \$HOME/.zshrc
+
+# Reload shell
+source \$HOME/.zshrc
+
+# Deploy everything
+dotfiles checkout
+
+# Hide untracked files from status
+dotfiles config --local status.showUntrackedFiles no
 ```
 
-### Cloning on a New Machine
+---
 
-To set up your dotfiles on a new machine:
+## 🛠️ Stack
 
-1.  **Clone the repository:**
+```
+┌─────────────────────────────────────┐
+│          Sway WM (wlroots)          │
+│   ┌─────────────────────────────┐   │
+│   │      Alacritty / Kitty      │   │
+│   │  ┌───────────────────────┐  │   │
+│   │  │      Neovim           │  │   │
+│   │  └───────────────────────┘  │   │
+│   └─────────────────────────────┘   │
+│  ┌──────┐  ┌──────┐  ┌──────────┐  │
+│  │ Rofi │  │Waybar│  │ Swaylock │  │
+│  └──────┘  └──────┘  └──────────┘  │
+└─────────────────────────────────────┘
+         Zsh + Starship · Fish
+         Fastfetch · NixOS · Catppuccin Mocha
+```
 
-    ```bash
-    git clone --bare <remote_repository_url> $HOME/.dotfiles
-    ```
+---
 
-2.  **Add the alias** to your shell's configuration file as described above.
+## 🎨 Theme
 
-3.  **Reload your shell configuration.**
+**Catppuccin Mocha** — warm pastel colors with a dark aesthetic across all applications.
 
-4.  **Checkout the files:**
+---
 
-    ```bash
-    dotfiles checkout
-    ```
+## 📜 License
 
-    If you get an error about your local files being overwritten, you can either back them up or force the checkout:
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
-    ```bash
-    dotfiles checkout -f
-    ```
+---
 
-5.  **Configure the repository to not show untracked files:**
+<div align="center">
 
-    ```bash
-    dotfiles config --local status.showUntrackedFiles no
-    ```
+*“If you want to be extraordinary, you have to do extraordinary things.”*
 
-Now your dotfiles are managed by your bare repository on the new machine.
+</div>
