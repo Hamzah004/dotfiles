@@ -1,4 +1,5 @@
-<br/>
+
+# My dotfiles
 
 <div align="center">
 
@@ -7,14 +8,6 @@
 </div>
 
 ---
-
-## 🖥️ About
-
-A minimal, aesthetic, and highly configured Linux dotfiles setup running on **Sway** (Wayland/wlroots).
-Every dotfile is managed with a bare Git repo — clone it and `dotfiles checkout` to get everything running.
-
----
-
 ## 📦 Configs
 
 | App | Description |
