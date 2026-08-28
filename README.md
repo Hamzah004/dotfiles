@@ -8,26 +8,6 @@
 </div>
 
 ---
-## 📦 Configs
-
-| App | Description |
-|:---|:---|
-| **Sway** | Tiling Wayland compositor (wlroots) |
-| **Alacritty** | GPU-accelerated terminal emulator |
-| **Kitty** | Fast, feature-rich terminal |
-| **Neovim** | Hacked Vim — config & plugins |
-| **Zsh** | Shell with Oh My Zsh & Starship prompt |
-| **Fish** | Smart and user-friendly shell |
-| **Fastfetch** | Fast system info fetch |
-| **Rofi** | Application launcher & window switcher |
-| **Waybar** | Modern status bar for Wayland |
-| **Swaylock** | Screen locker |
-| **Swaync** | Notification center |
-| **Starship** | Cross-shell prompt |
-| **NixOS** | Declarative system config |
-| **Wallpaper** | Desktop backgrounds |
-
----
 
 ## Guide for Managing Dotfiles with a Bare Git Repository
 
