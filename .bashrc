@@ -245,4 +245,3 @@ export FT_USER="hbani-at"
 export FT_EMAIL="hbani-at@student.42amman.com"
 
 # fortune -s | cowsay | lolcat
-fastfetch
