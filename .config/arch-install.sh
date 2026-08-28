@@ -91,6 +91,9 @@ PACMAN_PACKAGES=(
   clang
   pnpm
   npm
+  btop
+  vlc
+  vlc-plugins-all
 
   # --- Sway core ---
   sway
