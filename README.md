@@ -1,17 +1,3 @@
-<div align="center">
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Sway](https://img.shields.io/badge/Wayland-Sway-blueviolet)](https://swaywm.org/)
-[![Alacritty](https://img.shields.io/badge/Terminal-Alacritty-orange)](https://alacritty.org/)
-[![Neovim](https://img.shields.io/badge/Editor-Neovim-57A143?logo=neovim)](https://neovim.io/)
-[![Zsh](https://img.shields.io/badge/Shell-Zsh-%234285F4?logo=zsh)](https://zsh.org/)
-[![Starship](https://img.shields.io/badge/Prompt-Starship-363a4f?logo=starship)](https://starship.rs/)
-[![Arch](https://img.shields.io/badge/OS-Arch_Linux-red?logo=archlinux)](https://archlinux.org/)
-[![NixOS](https://img.shields.io/badge/NixOS-Nix-purple?logo=nixos)](https://nixos.org/)
-[![Catppuccin](https://img.shields.io/badge/Theme-Catppuccin_Mocha-blue)](https://github.com/catppuccin/catppuccin)
-
-</div>
-
 <br/>
 
 <div align="center">
@@ -26,16 +12,6 @@
 
 A minimal, aesthetic, and highly configured Linux dotfiles setup running on **Sway** (Wayland/wlroots).
 Every dotfile is managed with a bare Git repo — clone it and `dotfiles checkout` to get everything running.
-
----
-
-## 📸 Screenshot
-
-<div align="center">
-
-![desktop](Pictures/screenshots/img1.png)
-
-</div>
 
 ---
 
@@ -80,42 +56,3 @@ dotfiles config --local status.showUntrackedFiles no
 ```
 
 ---
-
-## 🛠️ Stack
-
-```
-┌─────────────────────────────────────┐
-│          Sway WM (wlroots)          │
-│   ┌─────────────────────────────┐   │
-│   │      Alacritty / Kitty      │   │
-│   │  ┌───────────────────────┐  │   │
-│   │  │      Neovim           │  │   │
-│   │  └───────────────────────┘  │   │
-│   └─────────────────────────────┘   │
-│  ┌──────┐  ┌──────┐  ┌──────────┐  │
-│  │ Rofi │  │Waybar│  │ Swaylock │  │
-│  └──────┘  └──────┘  └──────────┘  │
-└─────────────────────────────────────┘
-         Zsh + Starship · Fish
-         Fastfetch · NixOS · Catppuccin Mocha
-```
-
----
-
-## 🎨 Theme
-
-**Catppuccin Mocha** — warm pastel colors with a dark aesthetic across all applications.
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
----
-
-<div align="center">
-
-*“If you want to be extraordinary, you have to do extraordinary things.”*
-
-</div>
