@@ -1,0 +1,233 @@
+#####################################################################################################
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = false
+format = """
+$directory\
+$git_branch\
+$git_status\
+$character"""
+
+palette = 'catppuccin_mocha'
+# palette = 'catppuccin_latte'
+
+[palettes.catppuccin_mocha]
+# Catppuccin Mocha (Dark) palette
+rosewater = '#f5e0dc'
+flamingo  = '#f2cdcd'
+pink      = '#f5c2e7'
+mauve     = '#cba6f7'
+red       = '#f38ba8'
+maroon    = '#eba0ac'
+peach     = '#fab387'
+yellow    = '#f9e2af'
+green     = '#a6e3a1'
+teal      = '#94e2d5'
+sky       = '#89dceb'
+sapphire  = '#74c7ec'
+blue      = '#89b4fa'
+lavender  = '#b4befe'
+text      = '#cdd6f4'
+subtext1  = '#bac2de'
+subtext0  = '#a6adc8'
+overlay2  = '#9399b2'
+overlay1  = '#7f849c'
+overlay0  = '#6c7086'
+surface2  = '#585b70'
+surface1  = '#45475a'
+surface0  = '#313244'
+base      = '#1e1e2e'
+mantle    = '#181825'
+crust     = '#11111b'
+
+# Aliases used throughout this config
+color_fg0    = '#cdd6f4' # text
+color_bg1    = '#1e1e2e' # base
+color_bg3    = '#313244' # surface0
+color_blue   = '#89b4fa' # blue
+color_aqua   = '#94e2d5' # teal
+color_green  = '#a6e3a1' # green
+color_orange = '#fab387' # peach
+color_purple = '#cba6f7' # mauve
+color_red    = '#f38ba8' # red
+color_yellow = '#f9e2af' # yellow
+color_black  = '#11111b' # crust
+
+# Bare names referenced directly in format strings
+purple = '#cba6f7' # mauve
+white  = '#cdd6f4' # text
+
+# ==============================================================================
+# Catppuccin Latte (Light Theme - Commented Out)
+# To use: uncomment the block below and switch palette = 'catppuccin_latte' above
+# ==============================================================================
+# [palettes.catppuccin_latte]
+# rosewater = '#dc8a78'
+# flamingo  = '#dd7878'
+# pink      = '#ea76cb'
+# mauve     = '#8839ef'
+# red       = '#d20f39'
+# maroon    = '#e64553'
+# peach     = '#fe640b'
+# yellow    = '#df8e1d'
+# green     = '#40a02b'
+# teal      = '#179299'
+# sky       = '#04a5e5'
+# sapphire  = '#209fb5'
+# blue      = '#1e66f5'
+# lavender  = '#7287fd'
+# text      = '#4c4f69'
+# subtext1  = '#5c5f77'
+# subtext0  = '#6c6f85'
+# overlay2  = '#7c7f93'
+# overlay1  = '#8c8fa1'
+# overlay0  = '#9ca0b0'
+# surface2  = '#acb0be'
+# surface1  = '#bcc0cc'
+# surface0  = '#ccd0da'
+# base      = '#eff1f5'
+# mantle    = '#e6e9ef'
+# crust     = '#dce0e8'
+#
+# # Aliases used throughout this config
+# color_fg0    = '#4c4f69' # text
+# color_bg1    = '#eff1f5' # base
+# color_bg3    = '#ccd0da' # surface0
+# color_blue   = '#1e66f5' # blue
+# color_aqua   = '#179299' # teal
+# color_green  = '#40a02b' # green
+# color_orange = '#fe640b' # peach
+# color_purple = '#8839ef' # mauve
+# color_red    = '#d20f39' # red
+# color_yellow = '#df8e1d' # yellow
+# color_black  = '#dce0e8' # crust
+#
+# # Bare names referenced directly in format strings
+# purple = '#8839ef' # mauve
+# white  = '#4c4f69' # text
+
+[os]
+disabled = false
+style = "fg:color_red"
+
+[os.symbols]
+Redhat = "󱄛"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛 "
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+EndeavourOS = ""
+CentOS = ""
+Debian = "󰣚 "
+RedHatEnterprise = "󱄛"
+Pop = ""
+
+[username]
+show_always = true
+style_user = "bg:color_orange fg:color_fg0"
+style_root = "bg:color_orange fg:color_fg0"
+format = '[ $user ]($style)'
+
+[directory]
+style = "bold fg:color_red"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = "󰉍 "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Development" = "󰲋 "
+
+[git_branch]
+symbol = "󰊢 "
+style = "purple"
+format = "[$symbol$branch](purple) "
+
+[git_status]
+format = "[$all_status$ahead_behind](red) "
+modified = "●"
+untracked = "+"
+staged = "✓"
+deleted = "✗"
+ahead = "↑"
+behind = "↓"
+conflicted = "⚡"
+
+[nodejs]
+symbol = "󰎙 "
+format = "[$symbol$version](green) "
+
+[python]
+symbol = "󰌠 "
+format = "[$symbol$version](blue) "
+
+[rust]
+symbol = "󱘗 "
+format = "[$symbol$version](red) "
+
+[java]
+symbol = "󰬷 "
+format = "[$symbol$version](red) "
+
+[golang]
+symbol = "󰟓 "
+format = "[$symbol$version](blue) "
+
+[c]
+symbol = "󰙱 "
+format = "[$symbol$version](blue) "
+
+[kotlin]
+symbol = "󱈙 "
+format = "[$symbol$version](purple) "
+
+[dart]
+symbol = "󰻈 "
+format = "[$symbol$version](blue) "
+
+[php]
+symbol = "󰌟 "
+format = "[$symbol$version](purple) "
+
+[docker_context]
+symbol = "󰡨 "
+format = "[$symbol$context](blue) "
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:color_bg1"
+format = '[[ $time](fg:white)]($style)'
+
+[line_break]
+disabled = false
+
+[character]
+disabled = false
+success_symbol = '[➜](bold fg:color_green)'
+error_symbol = '[➜](bold fg:color_red)'
+
+[custom.countdown]
+command = "~/bin/countdown"
+when = "test -x ~/bin/countdown"
+format = "[$output ](fg:color_red)"
+
+[cmd_duration]
+min_time = 500
+format = '[ ](fg:color_orange)$duration '
+
+[fill]
+symbol = '─'
+style = 'fg:color_yellow'
